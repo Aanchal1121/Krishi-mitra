@@ -1,0 +1,1401 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KrishiMitra (कृषिमित्र) - "दूर की सोच" | SIH 2026 PS 132</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800&family=Teko:wght@500;600&display=swap" rel="stylesheet">
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Chart.js CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body class="theme-light">
+
+    <!-- FULL SCREEN AUTHENTICATION OVERLAY (LOGIN / REGISTER) -->
+    <div class="auth-overlay" id="authOverlay">
+        <div class="auth-card-container">
+            <div class="auth-brand-header">
+                <div class="auth-logo">
+                    <i class="fa-solid fa-seedling"></i>
+                    <h2>KrishiMitra <span>कृषिमित्र</span></h2>
+                </div>
+                <p class="auth-slogan">"दूर की सोच" — Last-Mile Market Linkage & Price Discovery</p>
+            </div>
+
+            <!-- STEP 1: LANGUAGE COMFORT SELECTOR -->
+            <div class="auth-step active" id="authStepLang">
+                <h3 class="step-title"><i class="fa-solid fa-language"></i> अपनी पसंदीदा भाषा चुनें / Select Language</h3>
+                <p class="step-sub">आप जिस भाषा में सहज हैं उसे चुनें (Choose your preferred language):</p>
+                <div class="lang-grid">
+                    <button class="lang-card-btn active" data-lang="hi">
+                        <span class="lang-native">हिंदी</span>
+                        <span class="lang-eng">Hindi</span>
+                    </button>
+                    <button class="lang-card-btn" data-lang="en">
+                        <span class="lang-native">English</span>
+                        <span class="lang-eng">English (UK)</span>
+                    </button>
+                    <button class="lang-card-btn" data-lang="mr">
+                        <span class="lang-native">मराठी</span>
+                        <span class="lang-eng">Marathi</span>
+                    </button>
+                    <button class="lang-card-btn" data-lang="pa">
+                        <span class="lang-native">ਪੰਜਾਬੀ</span>
+                        <span class="lang-eng">Punjabi</span>
+                    </button>
+                    <button class="lang-card-btn" data-lang="gu">
+                        <span class="lang-native">ગુજરાતી</span>
+                        <span class="lang-eng">Gujarati</span>
+                    </button>
+                </div>
+                <button class="btn btn-primary btn-full mt-4" id="btnNextToRole">
+                    आगे बढ़ें / Continue <i class="fa-solid fa-arrow-right"></i>
+                </button>
+            </div>
+
+            <!-- STEP 2: ROLE SELECTION & LOGIN / SIGNUP -->
+            <div class="auth-step hidden" id="authStepRole">
+                <div class="role-tabs">
+                    <button class="role-tab active" id="tabFarmer"><i class="fa-solid fa-wheat-field"></i> Farmer / किसान</button>
+                    <button class="role-tab" id="tabBuyer"><i class="fa-solid fa-building-wheat"></i> Buyer / व्यापारी</button>
+                </div>
+
+                <!-- FARMER FORM -->
+                <form id="farmerAuthForm" class="auth-form mt-3">
+                    <div class="form-group">
+                        <label><i class="fa-solid fa-mobile-screen"></i> मोबाइल नंबर / Mobile Number</label>
+                        <input type="tel" id="fMobile" value="9876543210" placeholder="Enter 10-digit mobile number" required class="form-input">
+                    </div>
+                    <div class="form-group mt-2">
+                        <label><i class="fa-solid fa-user"></i> आपका पूरा नाम / Full Name</label>
+                        <input type="text" id="fName" value="Anjali Khandelwal" placeholder="Enter your full name" required class="form-input">
+                    </div>
+                    <div class="form-group mt-2">
+                        <label><i class="fa-solid fa-id-card"></i> आधार कार्ड नंबर / Aadhar Number (KYC Verification Only)</label>
+                        <input type="text" id="fAadhar" value="9918-2281-8821" placeholder="XXXX-XXXX-XXXX" required class="form-input">
+                    </div>
+                    <div class="form-row mt-2">
+                        <div class="form-group flex-1">
+                            <label>जिला / District</label>
+                            <input type="text" id="fDistrict" value="Indore, MP" class="form-input">
+                        </div>
+                        <div class="form-group flex-1">
+                            <label>भूमि (हेक्टेयर) / Land</label>
+                            <input type="text" id="fLand" value="2.5 Hectares" class="form-input">
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-full mt-4">
+                        <i class="fa-solid fa-shield-check"></i> OTP सत्यापित करें और किसान डैशबोर्ड खोलें (Farmer Login)
+                    </button>
+                </form>
+
+                <!-- BUYER FORM -->
+                <form id="buyerAuthForm" class="auth-form mt-3 hidden">
+                    <div class="form-group">
+                        <label><i class="fa-solid fa-mobile-screen"></i> मोबाइल नंबर / Mobile Number</label>
+                        <input type="tel" id="bMobile" value="9123456789" placeholder="Enter 10-digit mobile number" required class="form-input">
+                    </div>
+                    <div class="form-group mt-2">
+                        <label><i class="fa-solid fa-building"></i> व्यापार का नाम / Company Name</label>
+                        <input type="text" id="bName" value="Rajesh Agrotech Ltd" placeholder="Enter business or firm name" required class="form-input">
+                    </div>
+                    <div class="form-group mt-2">
+                        <label><i class="fa-solid fa-file-contract"></i> APMC मंडी लाइसेंस नं. / APMC License ID</label>
+                        <input type="text" id="bLicense" value="MP-IND-APMC-88219" placeholder="e.g. MP-IND-APMC-88219" required class="form-input">
+                    </div>
+                    <div class="form-group mt-2">
+                        <label><i class="fa-solid fa-receipt"></i> GSTIN नंबर / GST Number</label>
+                        <input type="text" id="bGstin" value="23AAACK8819Q1ZP" placeholder="23AAACK8819Q1ZP" class="form-input">
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-full mt-4">
+                        <i class="fa-solid fa-shield-check"></i> व्यापार लाइसेंस सत्यापित करें और बायर डैशबोर्ड खोलें (Buyer Login)
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- MAIN APP WRAPPER -->
+    <div class="app-container">
+        <!-- SIDEBAR NAVIGATION -->
+        <aside class="sidebar" id="sidebar">
+            <div class="brand-header">
+                <div class="brand-logo">
+                    <i class="fa-solid fa-seedling logo-icon"></i>
+                    <div class="brand-titles">
+                        <span class="brand-name">KrishiMitra</span>
+                        <span class="brand-sub">Grow Better • Live Better</span>
+                    </div>
+                </div>
+                <div class="tagline-badge">
+                    <i class="fa-solid fa-eye"></i> <span data-i18n="tagline">"दूर की सोच"</span>
+                </div>
+            </div>
+
+            <!-- FARMER NAVIGATION MENU (18 FEATURES) -->
+            <nav class="nav-menu" id="farmerNavMenu">
+                <a href="#dashboard" class="nav-item active" data-tab="dashboard">
+                    <i class="fa-solid fa-house"></i>
+                    <span data-i18n="nav_home">Farmer Home</span>
+                </a>
+                <a href="#mandi" class="nav-item" data-tab="mandi">
+                    <i class="fa-solid fa-chart-line"></i>
+                    <span data-i18n="nav_mandi">Live Mandi Prices</span>
+                </a>
+                <a href="#prediction" class="nav-item" data-tab="prediction">
+                    <i class="fa-solid fa-wand-magic-sparkles"></i>
+                    <span data-i18n="nav_prediction">Price Forecast & Advisory</span>
+                </a>
+                <a href="#demandmap" class="nav-item highlight-item" data-tab="demandmap">
+                    <i class="fa-solid fa-fire-flame-curved"></i>
+                    <span data-i18n="nav_demandmap">High Demand Regions & Net Profit</span>
+                </a>
+                <a href="#marketplace" class="nav-item" data-tab="marketplace">
+                    <i class="fa-solid fa-store"></i>
+                    <span data-i18n="nav_find_buyers">Find Verified Buyers</span>
+                </a>
+                <a href="#bidding" class="nav-item" data-tab="bidding">
+                    <i class="fa-solid fa-gavel"></i>
+                    <span>Offers & Bidding</span>
+                </a>
+                <a href="#antifraud" class="nav-item" data-tab="antifraud">
+                    <i class="fa-solid fa-shield-virus"></i>
+                    <span data-i18n="nav_antifraud">AI Price & Risk Detector</span>
+                </a>
+                <a href="#clustering" class="nav-item" data-tab="clustering">
+                    <i class="fa-solid fa-cubes-stacked"></i>
+                    <span data-i18n="nav_clustering">Multi-Farmer Clustering</span>
+                </a>
+                <a href="#fpo" class="nav-item" data-tab="fpo">
+                    <i class="fa-solid fa-people-group"></i>
+                    <span data-i18n="nav_fpo">FPO / Group Pooling</span>
+                </a>
+                <a href="#quicksell" class="nav-item" data-tab="quicksell">
+                    <i class="fa-solid fa-bolt-lightning"></i>
+                    <span data-i18n="nav_quicksell">Need Cash? Quick Sell</span>
+                </a>
+                <a href="#transport" class="nav-item" data-tab="transport">
+                    <i class="fa-solid fa-truck-ramp-box"></i>
+                    <span data-i18n="nav_transport">Transport & Net Profit</span>
+                </a>
+                <a href="#quality" class="nav-item" data-tab="quality">
+                    <i class="fa-solid fa-camera-retro"></i>
+                    <span data-i18n="nav_quality">AI Quality Scanner & Grade</span>
+                </a>
+                <a href="#storage" class="nav-item" data-tab="storage">
+                    <i class="fa-solid fa-warehouse"></i>
+                    <span data-i18n="nav_storage">Warehouse & Storage</span>
+                </a>
+                <a href="#alerts" class="nav-item" data-tab="alerts">
+                    <i class="fa-solid fa-bell"></i>
+                    <span data-i18n="nav_alerts">Smart Price Alerts</span>
+                </a>
+                <a href="#sms" class="nav-item" data-tab="sms">
+                    <i class="fa-solid fa-comment-sms"></i>
+                    <span data-i18n="nav_sms">SMS / Feature Phone Mode</span>
+                </a>
+                <a href="#ledger" class="nav-item" data-tab="ledger">
+                    <i class="fa-solid fa-receipt"></i>
+                    <span data-i18n="nav_ledger">Digital Transaction Ledger</span>
+                </a>
+                <a href="#farmer-kyc" class="nav-item" data-tab="farmer-kyc">
+                    <i class="fa-solid fa-id-card"></i>
+                    <span>Farmer ID & KYC</span>
+                </a>
+                <a href="#feedback" class="nav-item" data-tab="feedback">
+                    <i class="fa-solid fa-star-half-stroke"></i>
+                    <span data-i18n="nav_feedback">Ratings & Support</span>
+                </a>
+            </nav>
+
+            <!-- BUYER NAVIGATION MENU (15 DISTINCT BUYER FEATURES) -->
+            <nav class="nav-menu hidden" id="buyerNavMenu">
+                <a href="#buyer-home" class="nav-item active" data-tab="buyer-home">
+                    <i class="fa-solid fa-chart-pie"></i>
+                    <span>Buyer Home</span>
+                </a>
+                <a href="#buyer-analytics" class="nav-item" data-tab="buyer-analytics">
+                    <i class="fa-solid fa-chart-line"></i>
+                    <span>Market Prices & Analytics</span>
+                </a>
+                <a href="#buyer-find-farmers" class="nav-item" data-tab="buyer-find-farmers">
+                    <i class="fa-solid fa-wheat-field"></i>
+                    <span>Find Farmers / Suppliers</span>
+                </a>
+                <a href="#buyer-marketplace" class="nav-item highlight-item" data-tab="buyer-marketplace">
+                    <i class="fa-solid fa-shop"></i>
+                    <span>Crop Marketplace</span>
+                </a>
+                <a href="#buyer-bidding" class="nav-item" data-tab="buyer-bidding">
+                    <i class="fa-solid fa-handshake"></i>
+                    <span>Bidding & Offers</span>
+                </a>
+                <a href="#buyer-demand-intel" class="nav-item" data-tab="buyer-demand-intel">
+                    <i class="fa-solid fa-brain"></i>
+                    <span>Demand Intelligence</span>
+                </a>
+                <a href="#buyer-bulk-procurement" class="nav-item" data-tab="buyer-bulk-procurement">
+                    <i class="fa-solid fa-truck-container"></i>
+                    <span>Bulk Procurement</span>
+                </a>
+                <a href="#buyer-fpo" class="nav-item" data-tab="buyer-fpo">
+                    <i class="fa-solid fa-users-gear"></i>
+                    <span>FPO & Farmer Groups</span>
+                </a>
+                <a href="#buyer-quality" class="nav-item" data-tab="buyer-quality">
+                    <i class="fa-solid fa-microscope"></i>
+                    <span>AI Quality Verification</span>
+                </a>
+                <a href="#buyer-antifraud" class="nav-item" data-tab="buyer-antifraud">
+                    <i class="fa-solid fa-shield-halved"></i>
+                    <span>AI Deal Risk Detector</span>
+                </a>
+                <a href="#buyer-logistics" class="nav-item" data-tab="buyer-logistics">
+                    <i class="fa-solid fa-truck-fast"></i>
+                    <span>Logistics & Delivery</span>
+                </a>
+                <a href="#buyer-ledger" class="nav-item" data-tab="buyer-ledger">
+                    <i class="fa-solid fa-file-invoice-dollar"></i>
+                    <span>Purchase Ledger</span>
+                </a>
+                <a href="#buyer-feedback" class="nav-item" data-tab="buyer-feedback">
+                    <i class="fa-solid fa-star"></i>
+                    <span>Farmer & FPO Ratings</span>
+                </a>
+                <a href="#buyer-kyc" class="nav-item" data-tab="buyer-kyc">
+                    <i class="fa-solid fa-building-circle-check"></i>
+                    <span>Buyer Verification</span>
+                </a>
+            </nav>
+
+            <div class="sidebar-footer">
+                <div class="slogan-card">
+                    <i class="fa-solid fa-wheat-awn"></i>
+                    <p data-i18n="slogan">Har Kisan Ko Sahi Jankari aur Sahi Daam</p>
+                </div>
+            </div>
+        </aside>
+
+        <!-- MAIN CONTENT WRAPPER -->
+        <main class="main-content">
+            <!-- TOP HEADER BAR -->
+            <header class="top-header">
+                <div class="header-left">
+                    <button class="mobile-toggle" id="mobileToggle">
+                        <i class="fa-solid fa-bars"></i>
+                    </button>
+                    <div class="search-bar">
+                        <i class="fa-solid fa-magnifying-glass search-icon"></i>
+                        <input type="text" id="globalSearch" placeholder="Search crops, mandis, buyers, warehouses..." data-i18n-ph="search_placeholder">
+                    </div>
+                </div>
+
+                <div class="header-right">
+                    <!-- Language Selector Dropdown -->
+                    <div class="lang-selector-wrapper">
+                        <i class="fa-solid fa-language lang-icon"></i>
+                        <select id="langSelect" class="lang-select">
+                            <option value="hi" selected>हिंदी (Hindi)</option>
+                            <option value="en">English (UK)</option>
+                            <option value="mr">मराठी (Marathi)</option>
+                            <option value="pa">ਪੰਜਾਬੀ (Punjabi)</option>
+                            <option value="gu">ગુજરાતી (Gujarati)</option>
+                        </select>
+                    </div>
+
+                    <!-- Voice Assistant Mic Button -->
+                    <button class="voice-assistant-btn" id="voiceAssistantBtn" title="Speak to Voice Assistant">
+                        <i class="fa-solid fa-microphone pulse-mic"></i>
+                        <span class="voice-label" data-i18n="voice_btn">Voice Assistant</span>
+                    </button>
+
+                    <!-- Notifications Bell with Price Fluctuation Alerts -->
+                    <div class="notifications-wrapper" id="notificationsWrapper">
+                        <button class="icon-btn" id="notifBtn" title="Notifications">
+                            <i class="fa-solid fa-bell"></i>
+                            <span class="badge-dot"></span>
+                        </button>
+                        <div class="notifications-dropdown hidden" id="notifDropdown">
+                            <div class="notif-header">
+                                <h4 data-i18n="notifications_title">Price Rise & Fall Alerts</h4>
+                                <span class="clear-all" id="clearNotifsBtn" data-i18n="clear_all">Clear All</span>
+                            </div>
+                            <ul class="notif-list" id="notifList">
+                                <!-- Dynamic Price Rise/Fall items -->
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- User Profile & Account Switcher -->
+                    <div class="user-profile-wrapper">
+                        <div class="user-profile" id="userProfileBtn">
+                            <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=120&q=80" alt="User Profile" class="avatar" id="userAvatar">
+                            <div class="user-info">
+                                <div class="name-row">
+                                    <span class="user-name" id="userName">Anjali Khandelwal</span>
+                                    <span class="kyc-badge green" id="kycBadge"><i class="fa-solid fa-shield-check"></i> <span id="kycBadgeText">Verified Farmer ✓</span></span>
+                                </div>
+                                <span class="user-role" id="userRole" data-i18n="role_farmer">Farmer (Madhya Pradesh)</span>
+                            </div>
+                            <i class="fa-solid fa-chevron-down caret-icon"></i>
+                        </div>
+
+                        <!-- Profile Dropdown -->
+                        <div class="profile-dropdown hidden" id="profileDropdown">
+                            <div class="profile-dropdown-header">
+                                <p><strong data-i18n="switch_mode_title">Account Management</strong></p>
+                            </div>
+                            <button class="role-switch-btn active" id="openAuthModalBtn">
+                                <i class="fa-solid fa-arrow-right-to-bracket"></i>
+                                <div>
+                                    <strong>Switch Role / Account</strong>
+                                    <small>Login as Farmer or Verified Buyer</small>
+                                </div>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </header>
+
+            <!-- DYNAMIC VIEW TAB CONTENT -->
+            <div class="view-content-wrapper">
+
+                <!-- ==================== FARMER TABS ==================== -->
+
+                <!-- 1. FARMER HOME DASHBOARD -->
+                <section class="tab-view active" id="tab-dashboard">
+                    <div class="hero-banner">
+                        <div class="hero-content">
+                            <div class="welcome-tag">
+                                <span data-i18n="welcome_greeting">Namaste,</span>
+                            </div>
+                            <h1 class="farmer-greeting"><span id="heroName">Anjali Khandelwal</span> <i class="fa-solid fa-leaf leaf-icon"></i></h1>
+                            <p class="hero-slogan" data-i18n="hero_subtitle">Smart farming. Better decisions. Higher yields & maximum net profit.</p>
+                            <div class="hero-location">
+                                <i class="fa-solid fa-location-dot"></i> <span id="heroLocation" data-i18n="location_indore">Indore, Madhya Pradesh</span>
+                            </div>
+                        </div>
+                        <div class="hero-graphic">
+                            <div class="hero-card-badge">
+                                <i class="fa-solid fa-hand-holding-heart"></i>
+                                <span data-i18n="hero_badge_text">Healthy Fields • Happy Farmers • Prosperous India</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- TODAY'S MANDI & BEST SELLING OPTION TILES -->
+                    <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap:16px; margin:20px 0;">
+                        <div class="card" style="background:#ECFDF5; border:1px solid #10B981;">
+                            <span style="font-size:12px; color:#047857; font-weight:700;">आज का Best Selling Option</span>
+                            <h3 style="color:#065F46; font-size:18px; margin:4px 0;">Soybean (Grade A)</h3>
+                            <div style="font-size:22px; font-weight:800; color:#10B981;">₹5,350 <small style="font-size:12px;">/ Qtl</small></div>
+                            <small style="color:#047857;">Expected Profit: <strong style="color:#059669;">+₹10,500 Net Gain</strong></small>
+                        </div>
+                        <div class="card" style="background:#EFF6FF; border:1px solid #3B82F6;">
+                            <span style="font-size:12px; color:#1D4ED8; font-weight:700;">Active Buyer Offers</span>
+                            <h3 style="color:#1E40AF; font-size:18px; margin:4px 0;">4 Verified Buyers Nearby</h3>
+                            <div style="font-size:16px; font-weight:700; color:#2563EB;">Highest: ₹5,250 / Qtl</div>
+                            <small style="color:#1D4ED8;">Pithampur Hub (22 km distance)</small>
+                        </div>
+                    </div>
+
+                    <!-- DASHBOARD MAIN GRID -->
+                    <div class="dash-main-grid">
+                        <div class="dash-col-left">
+                            <div class="dash-card">
+                                <div class="dash-card-header">
+                                    <div class="dash-card-title">
+                                        <i class="fa-solid fa-chart-line green"></i>
+                                        <h3 data-i18n="mandi_snapshot_title">Today's Mandi Prices</h3>
+                                    </div>
+                                    <button class="link-btn" data-action="mandi"><span data-i18n="view_all">View All</span> <i class="fa-solid fa-chevron-right"></i></button>
+                                </div>
+                                <div class="mandi-table-wrapper">
+                                    <table class="mandi-mini-table">
+                                        <thead>
+                                            <tr>
+                                                <th data-i18n="th_commodity">Commodity</th>
+                                                <th data-i18n="th_price">Price (₹/Quintal)</th>
+                                                <th data-i18n="th_mandi">Best Mandi</th>
+                                                <th data-i18n="th_trend">Trend</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="miniMandiBody"></tbody>
+                                    </table>
+                                </div>
+                            </div>
+
+                            <!-- MY FARM & CROPS -->
+                            <div class="dash-card mt-4">
+                                <div class="dash-card-header">
+                                    <div class="dash-card-title">
+                                        <i class="fa-solid fa-seedling text-green"></i>
+                                        <h3 data-i18n="my_farm_title">मेरी फसलें (My Farm & Crops)</h3>
+                                    </div>
+                                </div>
+                                <div class="farm-details-grid">
+                                    <div class="farm-detail-item">
+                                        <span class="detail-label" data-i18n="label_total_land">Total Land</span>
+                                        <strong class="detail-val" id="userStatLand">2.5 Hectares</strong>
+                                    </div>
+                                    <div class="farm-detail-item">
+                                        <span class="detail-label" data-i18n="label_active_crop">Active Crop</span>
+                                        <strong class="detail-val text-green">Soybean (JS 335)</strong>
+                                    </div>
+                                    <div class="farm-detail-item">
+                                        <span class="detail-label" data-i18n="label_harvest_est">Harvest Est.</span>
+                                        <strong class="detail-val" data-i18n="val_harvest_days">In 12 Days</strong>
+                                    </div>
+                                </div>
+
+                                <input type="file" id="cropFileInput" accept="image/*" style="display:none;">
+                                <div style="display:flex; gap:10px; margin-top:14px;">
+                                    <button class="btn btn-primary flex-1" id="scanCropBtn">
+                                        <i class="fa-solid fa-camera"></i> <span data-i18n="scan_crop_btn">Scan Crop Quality with AI</span>
+                                    </button>
+                                    <button class="btn btn-outline" id="btnUploadCropPhoto" title="Upload Crop Image">
+                                        <i class="fa-solid fa-upload"></i> Upload Image
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="dash-col-right">
+                            <div class="dash-card weather-card">
+                                <div class="weather-header">
+                                    <div>
+                                        <span class="weather-title" data-i18n="weather_today">Weather Today</span>
+                                        <h4 class="weather-location" id="weatherLocation" data-i18n="location_indore">Indore, Madhya Pradesh</h4>
+                                    </div>
+                                    <i class="fa-solid fa-sun-cloud weather-main-icon"></i>
+                                </div>
+                                <div class="weather-temp-row">
+                                    <span class="temp-big">32°C</span>
+                                    <span class="temp-condition" data-i18n="weather_partly_cloudy">Partly Cloudy</span>
+                                </div>
+                            </div>
+
+                            <!-- AI ASSISTANT & GUIDANCE -->
+                            <div class="dash-card mt-4">
+                                <div class="dash-card-header">
+                                    <div class="dash-card-title">
+                                        <i class="fa-solid fa-robot text-green"></i>
+                                        <h3 data-i18n="ai_crop_doctor_title">AI Assistant & Guidance</h3>
+                                    </div>
+                                </div>
+                                <div id="aiGuidanceBox" style="background:#FFFBEB; border:1px solid #FCD34D; padding:12px; border-radius:10px; max-height:160px; overflow-y:auto;">
+                                    <p style="font-size:13px; color:#92400E;">
+                                        <strong data-i18n="ai_advice_tag">Smart Advice:</strong>
+                                        <span data-i18n="ai_advice_msg">Soybean arrivals in Indore are low today. Prices expected to rise by +8% by Friday!</span>
+                                    </p>
+                                </div>
+                                <div class="ai-input-row mt-3" style="display:flex; gap:8px;">
+                                    <input type="text" id="aiAssistantInput" placeholder="Ask AI: e.g. What is today's soybean rate?" data-i18n-ph="ai_ph" class="form-input flex-1">
+                                    <button class="btn btn-primary" id="sendAiAssistantBtn"><i class="fa-solid fa-paper-plane"></i></button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+
+                <!-- 2. LIVE MANDI PRICES VIEW -->
+                <section class="tab-view" id="tab-mandi">
+                    <div class="page-header">
+                        <div>
+                            <h2>📈 <span data-i18n="mandi_page_title">Live Mandi Prices & Comparison</span></h2>
+                            <p data-i18n="mandi_page_sub">Compare live rates across APMC Mandis, eNAM, and verified private buyers.</p>
+                        </div>
+                    </div>
+
+                    <div class="mandi-full-grid">
+                        <div class="mandi-table-card card">
+                            <table class="data-table">
+                                <thead>
+                                    <tr>
+                                        <th data-i18n="th_mandi_name">Mandi Name</th>
+                                        <th data-i18n="th_commodity">Crop</th>
+                                        <th data-i18n="th_modal_price">Modal Price</th>
+                                        <th data-i18n="th_range">Min - Max Rate</th>
+                                        <th data-i18n="th_arrival">Arrival (Quintals)</th>
+                                        <th data-i18n="th_truth_score">Truth Score</th>
+                                        <th data-i18n="th_action">Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="fullMandiTableBody"></tbody>
+                            </table>
+                        </div>
+                    </div>
+                </section>
+
+
+                <!-- 3. PRICE PREDICTION VIEW -->
+                <section class="tab-view" id="tab-prediction">
+                    <div class="page-header">
+                        <div>
+                            <h2>🔮 <span data-i18n="pred_title">Price Forecast & AI Selling Recommendation</span></h2>
+                            <p data-i18n="pred_sub">Machine learning price forecasting (Agmarknet + IMD Weather + Arrival trend models).</p>
+                        </div>
+                    </div>
+
+                    <div class="pred-grid">
+                        <div class="card col-span-2">
+                            <div class="advisory-banner sell-hold-badge hold" id="advisoryBadge">
+                                <div class="badge-icon"><i class="fa-solid fa-hourglass-half"></i></div>
+                                <div>
+                                    <h3 id="advisoryTitle" data-i18n="adv_hold_title">RECOMMENDATION: HOLD FOR 5 DAYS</h3>
+                                    <p id="advisoryText" data-i18n="adv_hold_desc">Expected price increase: <strong>+₹350/quintal (+7.2%)</strong>.</p>
+                                </div>
+                            </div>
+                            <div class="chart-container mt-4">
+                                <canvas id="pricePredictionChart"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+
+                <!-- 4. HIGH DEMAND REGIONS & NET PROFIT -->
+                <section class="tab-view" id="tab-demandmap">
+                    <div class="page-header">
+                        <div>
+                            <h2>🔥 <span data-i18n="dm_header_title">High Demand Regions & Inter-District Arbitrage Map</span></h2>
+                            <p data-i18n="dm_header_sub">Identifies high deficit regions with high buyer demand so farmers can transport produce for maximum NET PROFIT!</p>
+                        </div>
+                    </div>
+
+                    <div class="demand-map-grid" id="demandMapList"></div>
+                </section>
+
+
+                <!-- 5. FIND VERIFIED BUYERS -->
+                <section class="tab-view" id="tab-marketplace">
+                    <div class="page-header">
+                        <div>
+                            <h2>🏪 <span data-i18n="market_title">Find Verified Buyers</span></h2>
+                            <p data-i18n="market_sub">Direct connection with verified agribusinesses, processors, and FPOs without middleman commission.</p>
+                        </div>
+                    </div>
+
+                    <div class="buyers-grid" id="buyersGrid"></div>
+                </section>
+
+
+                <!-- 6. OFFERS & BIDDING -->
+                <section class="tab-view" id="tab-bidding">
+                    <div class="page-header">
+                        <div>
+                            <h2>💰 <span>Offers & Buyer Bidding</span></h2>
+                            <p>Post crop lots for live bidding or review counter-offers from verified buyers.</p>
+                        </div>
+                        <button class="btn btn-primary" id="openBiddingModalBtn">
+                            <i class="fa-solid fa-gavel"></i> Post Lot for Live Bidding
+                        </button>
+                    </div>
+                    <div class="card">
+                        <h3>Active Bidding Sessions</h3>
+                        <div id="biddingSessionList" style="margin-top:14px;">
+                            <div style="padding:14px; border:1px solid #E2E8E4; border-radius:10px; background:#F9FBF9; display:flex; justify-content:space-between; align-items:center;">
+                                <div>
+                                    <span class="tag tag-emerald">Live 2-Hour Auction</span>
+                                    <h4 style="margin:4px 0;">30 Quintals Soybean (Grade A)</h4>
+                                    <p style="font-size:12px; color:#4B5563;">Current Highest Bid: <strong class="text-green">₹5,320/Qtl</strong> by Patanjali Agro Oils</p>
+                                </div>
+                                <div style="display:flex; gap:8px;">
+                                    <button class="btn btn-primary btn-sm" onclick="alert('Offer Accepted! Buyer direct contact unlocked.')">Accept Bid</button>
+                                    <button class="btn btn-outline btn-sm" onclick="alert('Counter offer sent to buyer.')">Counter Offer</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+
+                <!-- 7. AI PRICE & RISK DETECTOR (3-TIER RISK SCORE SYSTEM) -->
+                <section class="tab-view" id="tab-antifraud">
+                    <div class="page-header">
+                        <div>
+                            <h2>🛡️ <span>AI Price & Fraud Risk Score Detector</span></h2>
+                            <p>3-Tier Risk Score System: Evaluates buyer offers against Agmarknet benchmark without falsely blocking fair prices.</p>
+                        </div>
+                    </div>
+                    <div class="grid-2-cols">
+                        <div class="card">
+                            <h3>Test Buyer Price Risk Engine</h3>
+                            <div class="form-group mt-3">
+                                <label>Select Crop / फसल चुनें</label>
+                                <select id="afCrop" class="form-select">
+                                    <option value="Soybean">Soybean / सोयाबीन (Benchmark: ₹5,150/Qtl)</option>
+                                    <option value="Wheat">Wheat / गेहूं (Benchmark: ₹2,450/Qtl)</option>
+                                    <option value="Chana">Chana / चना (Benchmark: ₹5,850/Qtl)</option>
+                                    <option value="Mustard">Mustard / सरसों (Benchmark: ₹5,600/Qtl)</option>
+                                    <option value="Cotton">Cotton / कपास (Benchmark: ₹7,100/Qtl)</option>
+                                </select>
+                            </div>
+                            <div class="form-group mt-2">
+                                <label>Buyer Offered Rate (₹/Quintal)</label>
+                                <input type="number" id="afPrice" value="5250" class="form-input">
+                                <div style="display:flex; gap:6px; flex-wrap:wrap; margin-top:8px;">
+                                    <button type="button" class="btn btn-sm btn-outline" id="btnTestGenuine" style="font-size:11px; color:#059669; border-color:#059669;">🟢 Fair Price (₹5,250)</button>
+                                    <button type="button" class="btn btn-sm btn-outline" id="btnTestLow" style="font-size:11px; color:#D97706; border-color:#D97706;">🟡 Unusual Price (₹4,200)</button>
+                                    <button type="button" class="btn btn-sm btn-outline" id="btnTestFraud" style="font-size:11px; color:#DC2626; border-color:#DC2626;">🔴 High Risk (₹12,000)</button>
+                                </div>
+                            </div>
+                            <button class="btn btn-primary btn-full mt-3" id="runAntiFraudBtn">
+                                <i class="fa-solid fa-microchip"></i> Run AI Fraud Verification Check
+                            </button>
+                        </div>
+                        <div class="card">
+                            <div id="afResultBox" style="padding:20px; border-radius:12px; background:#ECFDF5; border:1px solid #10B981;">
+                                <i class="fa-solid fa-circle-check text-green" style="font-size:32px;"></i>
+                                <h4 class="mt-2 text-green" style="color:#065F46;">🟢 FAIR PRICE RISK SCORE: LOW RISK</h4>
+                                <p style="font-size:13px; color:#065F46;">Offered rate ₹5,250/Qtl verified within ±5% of Agmarknet modal price (₹5,150/Qtl). Safe transaction.</p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+
+                <!-- 8. MULTI-FARMER CLUSTERING -->
+                <section class="tab-view" id="tab-clustering">
+                    <div class="page-header">
+                        <div>
+                            <h2>👨‍🌾 <span>Multi-Farmer Clustering</span></h2>
+                            <p>Aggregates nearby smallholder farmers with same crop to create bulk quantities for large buyers.</p>
+                        </div>
+                    </div>
+                    <div class="grid-2-cols">
+                        <div class="card">
+                            <h3>Auto-Cluster Nearby Farmers</h3>
+                            <div class="form-group mt-3">
+                                <label>Crop to Aggregate</label>
+                                <select id="clCrop" class="form-select">
+                                    <option value="Soybean">Soybean / सोयाबीन</option>
+                                    <option value="Wheat">Wheat / गेहूं</option>
+                                    <option value="Chana">Chana / चना</option>
+                                </select>
+                            </div>
+                            <div class="form-group mt-2">
+                                <label>Required Bulk Quantity (Quintals)</label>
+                                <input type="number" id="clQty" value="120" class="form-input">
+                            </div>
+                            <button class="btn btn-primary btn-full mt-3" id="runClusteringBtn">
+                                <i class="fa-solid fa-cubes-stacked"></i> Auto-Cluster Nearby Farmers
+                            </button>
+                        </div>
+                        <div class="card">
+                            <div id="clResultList"></div>
+                        </div>
+                    </div>
+                </section>
+
+
+                <!-- 9. FPO GROUP POOLING -->
+                <section class="tab-view" id="tab-fpo">
+                    <div class="page-header">
+                        <div>
+                            <h2>👥 <span data-i18n="fpo_header_title">FPO Virtual Group Selling & Shared Transport</span></h2>
+                            <p data-i18n="fpo_header_sub">Small farmers pool produce together to save 45% on transport and bargain better rates.</p>
+                        </div>
+                    </div>
+                    <div class="grid-2-cols">
+                        <div class="card">
+                            <h3>Active FPO Group Pools</h3>
+                            <div id="fpoGroupList" style="margin-top:12px;"></div>
+                        </div>
+                        <div class="card" style="background:#ECFDF5; border:1px solid #10B981;">
+                            <h3 style="color:#065F46;"><i class="fa-solid fa-handshake"></i> Create / Join Group Pool</h3>
+                            <p style="font-size:13px; color:#047857; margin-top:8px;">Pooling produce with 5 nearby farmers reduces per-quintal freight cost from ₹140 to ₹77!</p>
+                            <button class="btn btn-primary btn-full mt-4" onclick="alert('You have joined the Malwa FPO Soybean Bulk Pool! Combined tonnage updated.')">Join Active Malwa FPO Pool (+35 Qtl)</button>
+                        </div>
+                    </div>
+                </section>
+
+
+                <!-- 10. NEED CASH? QUICK SELL -->
+                <section class="tab-view" id="tab-quicksell">
+                    <div class="page-header warning-header">
+                        <div>
+                            <h2>⚡ <span data-i18n="qs_header_title">Need Cash Urgently? Quick Sell Option</span></h2>
+                            <p data-i18n="qs_header_sub">Instant buyer matches with immediate 100% payout within 2 hours.</p>
+                        </div>
+                    </div>
+                    <div class="quicksell-container card">
+                        <div class="quicksell-comparison mt-4">
+                            <div class="qs-card instant">
+                                <h3><i class="fa-solid fa-bolt text-amber"></i> Quick Cash Offer (Sell Today)</h3>
+                                <div class="qs-price">₹4,700 <small>/ quintal</small></div>
+                                <p style="font-size:13px; color:#4B5563; margin-top:8px;">Instant payment deposited to Bank UPI within 120 minutes!</p>
+                                <button class="btn btn-amber btn-full mt-3" onclick="triggerQuickDeal('Instant Local Trader', 4700, 20)">Accept & Get Cash Now</button>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+
+                <!-- 11. TRANSPORT & NET PROFIT -->
+                <section class="tab-view" id="tab-transport">
+                    <div class="page-header">
+                        <div>
+                            <h2>🚚 <span data-i18n="tc_header_title">Best Mandi & Transport Cost Calculator</span></h2>
+                            <p data-i18n="tc_header_sub">Selling Price − Transport − Other Charges = Net Profit!</p>
+                        </div>
+                    </div>
+                    <div class="grid-2-cols">
+                        <div class="card">
+                            <h3 data-i18n="tc_inputs_title">Calculator Inputs</h3>
+                            <div class="form-group mt-3">
+                                <label>Select Crop / फसल</label>
+                                <select id="tcCrop" class="form-select">
+                                    <option value="Soybean">Soybean / सोयाबीन</option>
+                                    <option value="Wheat">Wheat / गेहूं</option>
+                                    <option value="Chana">Chana / चना</option>
+                                </select>
+                            </div>
+                            <div class="form-group mt-2">
+                                <label>Quantity (Quintals)</label>
+                                <input type="number" id="tcQty" value="25" class="form-input">
+                            </div>
+                            <div class="form-group mt-2">
+                                <label>Vehicle Type</label>
+                                <select id="tcVehicle" class="form-select">
+                                    <option value="tractor">Tractor Trolley (₹25 / km)</option>
+                                    <option value="minitruck">Mini Truck (₹20 / km)</option>
+                                    <option value="tempo">Commercial Tempo (₹15 / km)</option>
+                                </select>
+                            </div>
+                            <button class="btn btn-primary btn-full mt-3" id="calcNetProfitBtn">Calculate Best Net Profit Mandi</button>
+                        </div>
+                        <div class="card">
+                            <div class="ranked-mandi-list" id="rankedMandiList"></div>
+                        </div>
+                    </div>
+                </section>
+
+
+                <!-- 12. AI QUALITY SCANNER & GRADE -->
+                <section class="tab-view" id="tab-quality">
+                    <div class="page-header">
+                        <div>
+                            <h2>📷 <span data-i18n="qs_page_title">AI Crop Quality Scanner & Grade</span></h2>
+                            <p data-i18n="qs_page_sub">Grade A (Export Quality), Grade B (Standard Mandi), Grade C (Factory Processing).</p>
+                        </div>
+                    </div>
+                    <div class="grid-2-cols">
+                        <div class="card">
+                            <h3 data-i18n="camera_scan_title">Camera / Image Scan</h3>
+                            <div id="cameraPreview" style="background:#F0F4F2; border:2px dashed #9CA3AF; border-radius:12px; padding:30px; text-align:center; margin-top:16px;">
+                                <i class="fa-solid fa-camera-retro text-green" style="font-size:48px;"></i>
+                                <p class="mt-2" data-i18n="camera_instruct">Click "Start AI Scan" or upload photo of crop sample</p>
+                            </div>
+                            <input type="file" id="qualityFileInput" accept="image/*" style="display:none;">
+                            <div style="display:flex; gap:10px; margin-top:16px;">
+                                <button class="btn btn-primary flex-1" id="startScanBtn">
+                                    <i class="fa-solid fa-play"></i> <span data-i18n="btn_start_ai_scan">Start AI Scan</span>
+                                </button>
+                                <button class="btn btn-outline" id="btnUploadQualityPhoto">
+                                    <i class="fa-solid fa-upload"></i> Upload Image
+                                </button>
+                            </div>
+                        </div>
+                        <div class="card">
+                            <h3 data-i18n="quality_result_title">AI Quality Analysis Result</h3>
+                            <div id="qualityResultBox" style="margin-top:16px; padding:16px; background:#F9FBF9; border-radius:12px; border:1px solid #E2E8E4;">
+                                <p class="text-muted">Awaiting scan or image upload...</p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+
+                <!-- 13. WAREHOUSE & STORAGE -->
+                <section class="tab-view" id="tab-storage">
+                    <div class="page-header">
+                        <div>
+                            <h2>🏚️ <span data-i18n="wh_page_title">Warehouse Storage & Store vs Sell Recommendation</span></h2>
+                            <p data-i18n="wh_page_sub">Find WDRA-certified warehouses near you for safe storage.</p>
+                        </div>
+                    </div>
+                    <div class="grid-2-cols">
+                        <div class="card">
+                            <h3 data-i18n="wh_wdra_title">WDRA Approved Warehouses Near Indore</h3>
+                            <div id="warehouseList" class="mt-3"></div>
+                        </div>
+                        <div class="card">
+                            <h3>Store vs Sell Recommendation</h3>
+                            <div style="background:#EFF6FF; border:1px solid #3B82F6; padding:16px; border-radius:12px; margin-top:12px;">
+                                <h4 style="color:#1D4ED8;"><i class="fa-solid fa-piggy-bank"></i> RECOMMENDATION: STORE FOR 30 DAYS</h4>
+                                <p style="font-size:13px; color:#1E40AF; margin-top:6px;">Storage fee: ₹15/Qtl/Month. Expected price rise: +₹350/Qtl. Net Profit Gain from storing: <strong style="color:#059669;">+₹335/Qtl!</strong></p>
+                                <button class="btn btn-primary btn-full mt-3" onclick="alert('Warehouse Slot Booked!')">Book Warehouse Space</button>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+
+                <!-- 14. SMART PRICE ALERTS -->
+                <section class="tab-view" id="tab-alerts">
+                    <div class="page-header">
+                        <div>
+                            <h2>🔔 <span data-i18n="alert_page_title">Smart Price Alerts</span></h2>
+                            <p data-i18n="alert_page_sub">Set target prices (e.g. Soybean >= ₹5,500/Qtl) and get notified via SMS/App.</p>
+                        </div>
+                    </div>
+                    <div class="grid-2-cols">
+                        <div class="card">
+                            <h3 data-i18n="create_alert_title">Create New Price Alert</h3>
+                            <form id="createAlertForm" class="mt-3">
+                                <div class="form-group">
+                                    <label>Crop / फसल</label>
+                                    <select id="alertCrop" class="form-select">
+                                        <option value="Soybean">Soybean / सोयाबीन</option>
+                                        <option value="Wheat">Wheat / गेहूं</option>
+                                        <option value="Chana">Chana / चना</option>
+                                    </select>
+                                </div>
+                                <div class="form-group mt-2">
+                                    <label>Target Price (₹/Quintal)</label>
+                                    <input type="number" id="alertPrice" value="5500" class="form-input" required>
+                                </div>
+                                <div class="form-group mt-2">
+                                    <label>Target Mandi</label>
+                                    <select id="alertMandi" class="form-select">
+                                        <option value="Indore APMC">Indore APMC</option>
+                                        <option value="Ujjain APMC">Ujjain APMC</option>
+                                    </select>
+                                </div>
+                                <button type="submit" class="btn btn-primary btn-full mt-3">
+                                    <i class="fa-solid fa-bell"></i> Set Smart Price Alert
+                                </button>
+                            </form>
+                        </div>
+                        <div class="card">
+                            <h3 data-i18n="active_alerts_title">Your Active Alerts</h3>
+                            <ul id="activeAlertsList" class="mt-3"></ul>
+                        </div>
+                    </div>
+                </section>
+
+
+                <!-- 15. SMS / FEATURE PHONE MODE -->
+                <section class="tab-view" id="tab-sms">
+                    <div class="page-header">
+                        <div>
+                            <h2>📱 <span>SMS / Feature Phone Mode</span></h2>
+                            <p>For farmers without smartphones to check rates and sell over SMS!</p>
+                        </div>
+                    </div>
+                    <div class="grid-2-cols">
+                        <div class="card">
+                            <h3>Test Feature Phone Commands</h3>
+                            <div class="sms-presets mt-3" style="display:flex; gap:8px; flex-wrap:wrap;">
+                                <button class="btn btn-sm btn-outline" onclick="sendSmsCommand('KM RATE SOYBEAN')">SMS: KM RATE SOYBEAN</button>
+                                <button class="btn btn-sm btn-outline" onclick="sendSmsCommand('KM SELL SOYBEAN 20 QTL')">SMS: KM SELL SOYBEAN</button>
+                                <button class="btn btn-sm btn-outline" onclick="sendSmsCommand('KM RATE CHANA')">SMS: KM RATE CHANA</button>
+                                <button class="btn btn-sm btn-outline" onclick="sendSmsCommand('KM HELP')">SMS: KM HELP</button>
+                            </div>
+                            <div class="form-group mt-3">
+                                <label>Enter Command</label>
+                                <input type="text" id="smsInput" value="KM RATE SOYBEAN" class="form-input">
+                            </div>
+                            <button class="btn btn-primary btn-full mt-2" id="sendSmsBtn">Send SMS Command</button>
+                        </div>
+                        <div class="card">
+                            <div style="background:#111; color:#00FF66; font-family:monospace; padding:20px; border-radius:16px; min-height:220px;" id="smsPhoneScreen">
+                                <p>[KrishiMitra Feature Phone Gateway]</p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+
+                <!-- 16. DIGITAL TRANSACTION LEDGER -->
+                <section class="tab-view" id="tab-ledger">
+                    <div class="page-header">
+                        <div>
+                            <h2>📒 <span data-i18n="ledger_page_title">Digital Transaction Ledger & History</span></h2>
+                            <p data-i18n="ledger_page_sub">Tamper-evident record of all finalized buyer-farmer deals.</p>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <table class="data-table">
+                            <thead>
+                                <tr>
+                                    <th>Transaction ID</th>
+                                    <th>Date</th>
+                                    <th>Buyer & Contact</th>
+                                    <th>Seller & Contact</th>
+                                    <th>Crop & Qty</th>
+                                    <th>Agreed Rate</th>
+                                    <th>Total Amount</th>
+                                    <th>Status</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody id="ledgerTableBody"></tbody>
+                        </table>
+                    </div>
+                </section>
+
+
+                <!-- 17. FARMER IDENTITY VERIFICATION (FARMER KYC FLOW) -->
+                <section class="tab-view" id="tab-farmer-kyc">
+                    <div class="page-header">
+                        <div>
+                            <h2>🪪 <span>Farmer Identity Verification (KYC)</span></h2>
+                            <p>Verify Aadhaar, Government Land Records, and UPI Bank Account for Verified Farmer Badge ✓</p>
+                        </div>
+                    </div>
+                    <div class="grid-2-cols">
+                        <div class="card">
+                            <div style="display:flex; justify-content:space-between; align-items:center;">
+                                <h3>Verified Farmer Identity</h3>
+                                <span class="tag tag-emerald"><i class="fa-solid fa-shield-check"></i> Verified Farmer ✓</span>
+                            </div>
+                            <div style="background:#F9FBF9; padding:18px; border-radius:12px; border:1px solid #E2E8E4; margin-top:14px;">
+                                <p style="margin-bottom:8px;"><strong>Full Name:</strong> Anjali Khandelwal</p>
+                                <p style="margin-bottom:8px;"><strong>Mobile Number:</strong> +91 98765 43210 (Mobile OTP Verified)</p>
+                                <p style="margin-bottom:8px;"><strong>Aadhaar Card:</strong> XXXX-XXXX-8821 (Linked)</p>
+                                <p style="margin-bottom:8px;"><strong>Farm / Land Details:</strong> Khasra #142/2 (2.5 Hectares - Indore, MP)</p>
+                                <p style="margin-bottom:8px;"><strong>Bank UPI Direct Payout:</strong> 9876543210@paytm</p>
+                                <span style="font-size:12px; color:#065F46; font-weight:700;">Identity Verification Status: VERIFIED FARMER ✓</span>
+                            </div>
+                        </div>
+                        <div class="card">
+                            <h3>Re-verify Aadhaar & Land Record</h3>
+                            <form id="farmerKycForm" class="mt-3">
+                                <div class="form-group">
+                                    <label>Aadhaar Number</label>
+                                    <input type="text" value="9918-2281-8821" class="form-input">
+                                </div>
+                                <div class="form-group mt-2">
+                                    <label>Land Khasra ID</label>
+                                    <input type="text" value="Khasra-142-IND" class="form-input">
+                                </div>
+                                <button type="button" class="btn btn-primary btn-full mt-3" onclick="alert('OTP sent to registered mobile +91 98765 43210. Aadhaar KYC Verified!')">Send Mobile OTP & Verify</button>
+                            </form>
+                        </div>
+                    </div>
+                </section>
+
+
+                <!-- 18. RATINGS & SUPPORT -->
+                <section class="tab-view" id="tab-feedback">
+                    <div class="page-header">
+                        <div>
+                            <h2>⭐ <span>Ratings, Reviews & Support Center</span></h2>
+                            <p>Rate buyers and farmers, submit feedback, or raise complaints/disputes.</p>
+                        </div>
+                    </div>
+                    <div class="grid-2-cols">
+                        <div class="card">
+                            <h3>Submit Farmer / Buyer Rating & Review</h3>
+                            <div class="form-group mt-3">
+                                <label>Target Firm / Farmer Name</label>
+                                <input type="text" id="fbTarget" value="ITC Ltd (Choupal Saagar)" class="form-input">
+                            </div>
+                            <div class="form-group mt-2">
+                                <label>Rating (1 to 5 Stars)</label>
+                                <select id="fbRating" class="form-select">
+                                    <option value="5">⭐⭐⭐⭐⭐ (5 - Excellent)</option>
+                                    <option value="4">⭐⭐⭐⭐ (4 - Very Good)</option>
+                                </select>
+                            </div>
+                            <div class="form-group mt-2">
+                                <label>Your Comments / Feedback</label>
+                                <textarea id="fbComment" class="form-input" style="height:70px;">Punctual payment and fair weighing at Choupal hub.</textarea>
+                            </div>
+                            <button class="btn btn-primary btn-full mt-3" id="submitFeedbackBtn">Submit Review & Rating</button>
+                        </div>
+                        <div class="card">
+                            <h3>Community Feedback</h3>
+                            <div id="feedbackList" class="mt-3"></div>
+                        </div>
+                    </div>
+                </section>
+
+
+                <!-- ==================== BUYER TABS (DISTINCT BUYER DASHBOARD) ==================== -->
+
+                <!-- 1. BUYER HOME -->
+                <section class="tab-view" id="tab-buyer-home">
+                    <div class="hero-banner" style="background: linear-gradient(135deg, #0F172A 0%, #1E293B 100%);">
+                        <div class="hero-content">
+                            <div class="welcome-tag"><span style="background:rgba(255,255,255,0.2); color:#FFF;">Buyer Workspace</span></div>
+                            <h1 class="farmer-greeting" style="color:#FFF;"><span id="buyerHeroName">Rajesh Agrotech Ltd</span> <i class="fa-solid fa-building-wheat text-green"></i></h1>
+                            <p class="hero-slogan" style="color:#CBD5E1;">Direct Crop Procurement Engine • Verified Farmers & FPO Suppliers</p>
+                        </div>
+                    </div>
+
+                    <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap:16px; margin:20px 0;">
+                        <div class="card" style="background:#F0FDF4; border:1px solid #86EFAC;">
+                            <span style="font-size:12px; color:#166534; font-weight:700;">Current Procurement</span>
+                            <div style="font-size:24px; font-weight:800; color:#15803D;">450 MT</div>
+                            <small style="color:#166534;">Soybean & Wheat</small>
+                        </div>
+                        <div class="card" style="background:#FEF3C7; border:1px solid #FDE68A;">
+                            <span style="font-size:12px; color:#92400E; font-weight:700;">Active Bids</span>
+                            <div style="font-size:24px; font-weight:800; color:#B45309;">6 Bids Live</div>
+                            <small style="color:#92400E;">Pending Farmer Acceptance</small>
+                        </div>
+                        <div class="card" style="background:#EFF6FF; border:1px solid #93C5FD;">
+                            <span style="font-size:12px; color:#1E40AF; font-weight:700;">Spending Summary</span>
+                            <div style="font-size:24px; font-weight:800; color:#1D4ED8;">₹23.5 Lakhs</div>
+                            <small style="color:#1E40AF;">This Month</small>
+                        </div>
+                    </div>
+
+                    <div class="card mt-4">
+                        <h3>Available Crops for Procurement</h3>
+                        <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap:14px; margin-top:14px;">
+                            <div style="padding:14px; border:1px solid #E2E8E4; border-radius:10px; background:#F9FBF9;">
+                                <h4>Soybean (Grade A)</h4>
+                                <p style="font-size:13px; color:#4B5563;">Available: <strong>1,200 Quintals</strong> (Indore Cluster)</p>
+                                <span class="tag tag-emerald mt-1">Avg Asking: ₹5,250/Qtl</span>
+                            </div>
+                            <div style="padding:14px; border:1px solid #E2E8E4; border-radius:10px; background:#F9FBF9;">
+                                <h4>Wheat (Grade A)</h4>
+                                <p style="font-size:13px; color:#4B5563;">Available: <strong>2,500 Quintals</strong> (Ujjain FPO)</p>
+                                <span class="tag tag-emerald mt-1">Avg Asking: ₹2,510/Qtl</span>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+
+                <!-- 2. BUYER MARKET PRICES & ANALYTICS -->
+                <section class="tab-view" id="tab-buyer-analytics">
+                    <div class="page-header">
+                        <div>
+                            <h2>📊 <span>Market Prices & Procurement Analytics</span></h2>
+                            <p>Live mandi prices, historical trends, and price forecast for industrial buyers.</p>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <h3>Mandi Market Trends & Procurement Ceiling Rates</h3>
+                        <div id="buyerAnalyticsList" class="mt-3"></div>
+                    </div>
+                </section>
+
+
+                <!-- 3. FIND FARMERS / SUPPLIERS -->
+                <section class="tab-view" id="tab-buyer-find-farmers">
+                    <div class="page-header">
+                        <div>
+                            <h2>🔎 <span>Find Farmers & FPO Suppliers</span></h2>
+                            <p>Search suppliers by Crop, District, and Required Quantity.</p>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div style="display:flex; gap:10px; flex-wrap:wrap;">
+                            <select id="bFindCrop" class="form-select flex-1">
+                                <option value="Soybean">Soybean / सोयाबीन</option>
+                                <option value="Wheat">Wheat / गेहूं</option>
+                            </select>
+                            <input type="text" id="bFindLocation" value="Indore" placeholder="District / Mandi" class="form-input flex-1">
+                            <input type="number" id="bFindQty" value="500" placeholder="Qty (Quintals)" class="form-input flex-1">
+                            <button class="btn btn-primary" id="btnSearchFarmers"><i class="fa-solid fa-magnifying-glass"></i> Search Suppliers</button>
+                        </div>
+                        <div id="buyerFarmerSearchResults" class="mt-4">
+                            <div style="padding:14px; border:1px solid #E2E8E4; border-radius:10px; margin-bottom:10px; display:flex; justify-content:space-between; align-items:center;">
+                                <div>
+                                    <span class="tag tag-emerald">Verified Farmer Group</span>
+                                    <h4>Malwa Farmer Producer Co. (Indore Block)</h4>
+                                    <p style="font-size:13px; color:#4B5563;">Available: <strong>650 Qtl Soybean</strong> | Grade A | Asking: ₹5,280/Qtl</p>
+                                </div>
+                                <button class="btn btn-primary btn-sm" onclick="alert('Purchase request sent to Malwa FPO!')">Send Purchase Offer</button>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+
+                <!-- 4. CROP MARKETPLACE (BUYER MAIN MARKETPLACE) -->
+                <section class="tab-view" id="tab-buyer-marketplace">
+                    <div class="page-header">
+                        <div>
+                            <h2>🛒 <span>Buyer Crop Marketplace</span></h2>
+                            <p>Browse available crop lots directly from verified farmers and FPOs.</p>
+                        </div>
+                    </div>
+                    <div class="buyers-grid" id="buyerMarketplaceGrid"></div>
+                </section>
+
+
+                <!-- 5. BUYER BIDDING & OFFERS -->
+                <section class="tab-view" id="tab-buyer-bidding">
+                    <div class="page-header">
+                        <div>
+                            <h2>💰 <span>Bidding & Offer Management</span></h2>
+                            <p>Send binding offers to farmers, negotiate prices, or submit bulk bids.</p>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <h3>Send Offer to Farmer Lot</h3>
+                        <div class="form-group mt-3">
+                            <label>Target Farmer / FPO</label>
+                            <input type="text" value="Anjali Khandelwal (30 Qtl Soybean)" class="form-input" readonly>
+                        </div>
+                        <div class="form-group mt-2">
+                            <label>Your Offered Rate (₹/Quintal)</label>
+                            <input type="number" id="buyerOfferRate" value="5300" class="form-input">
+                        </div>
+                        <button class="btn btn-primary btn-full mt-3" onclick="alert('Binding procurement offer of ₹5,300/Qtl sent to farmer!')">Send Binding Offer</button>
+                    </div>
+                </section>
+
+
+                <!-- 6. DEMAND INTELLIGENCE -->
+                <section class="tab-view" id="tab-buyer-demand-intel">
+                    <div class="page-header">
+                        <div>
+                            <h2>🔥 <span>Demand Intelligence & Procurement Insights</span></h2>
+                            <p>Identifies high crop demand trends, surplus procurement areas, and expected price movements.</p>
+                        </div>
+                    </div>
+                    <div class="card" style="border-left:5px solid #3B82F6;">
+                        <h3>Procurement Opportunity: Indore Industrial Zone</h3>
+                        <p style="font-size:13px; color:#4B5563; margin-top:6px;">High industrial deficit for Soybean (800 MT). Procurement advice: Source from Ratlam Rural (Rate ₹4,900) for +₹510/Qtl margin benefit.</p>
+                    </div>
+                </section>
+
+
+                <!-- 7. BULK PROCUREMENT -->
+                <section class="tab-view" id="tab-buyer-bulk-procurement">
+                    <div class="page-header">
+                        <div>
+                            <h2>📦 <span>Bulk Quantity Procurement Engine</span></h2>
+                            <p>Create bulk requirements (e.g., Need 1000 Qtl) and auto-aggregate from multi-farmer clusters.</p>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <h3>Create Bulk Requirement Request</h3>
+                        <div class="form-group mt-3">
+                            <label>Crop Required</label>
+                            <select id="bulkCrop" class="form-select">
+                                <option value="Soybean">Soybean / सोयाबीन</option>
+                                <option value="Wheat">Wheat / गेहूं</option>
+                            </select>
+                        </div>
+                        <div class="form-group mt-2">
+                            <label>Bulk Quantity Needed (Quintals)</label>
+                            <input type="number" id="bulkQty" value="1000" class="form-input">
+                        </div>
+                        <button class="btn btn-primary btn-full mt-3" onclick="alert('Bulk requirement of 1,000 Qtl posted! Multi-farmer clusters & FPOs notified.')">Post Bulk Requirement</button>
+                    </div>
+                </section>
+
+
+                <!-- 8. BUYER FPO & FARMER GROUPS -->
+                <section class="tab-view" id="tab-buyer-fpo">
+                    <div class="page-header">
+                        <div>
+                            <h2>👥 <span>FPO & Farmer Group Suppliers</span></h2>
+                            <p>Direct bulk procurement contracts with FPO cooperatives.</p>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <h3>Verified FPO Partners</h3>
+                        <div id="buyerFpoList" class="mt-3"></div>
+                    </div>
+                </section>
+
+
+                <!-- 9. BUYER AI QUALITY VERIFICATION -->
+                <section class="tab-view" id="tab-buyer-quality">
+                    <div class="page-header">
+                        <div>
+                            <h2>📷 <span>AI Crop Quality Verification</span></h2>
+                            <p>Inspect farmer crop sample photos and AI quality scores before purchasing.</p>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <h3>Sample Quality Report #SAM-9912</h3>
+                        <div style="background:#ECFDF5; padding:16px; border-radius:10px; border:1px solid #10B981; margin-top:12px;">
+                            <h4 style="color:#065F46;">Grade A (Export Quality) • Score: 98/100</h4>
+                            <p style="font-size:13px; color:#047857; margin-top:4px;">Moisture: 10.2% | Impurities: 0.8% | Grain Uniformity: 96%</p>
+                        </div>
+                    </div>
+                </section>
+
+
+                <!-- 10. BUYER AI PRICE & RISK DETECTOR -->
+                <section class="tab-view" id="tab-buyer-antifraud">
+                    <div class="page-header">
+                        <div>
+                            <h2>🛡️ <span>AI Price & Deal Risk Detector</span></h2>
+                            <p>Highlights price risk indicators for buyers (e.g. asking price vs market average).</p>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <h3>Test Seller Asking Rate Risk</h3>
+                        <div class="form-group mt-3">
+                            <label>Seller Asking Rate (₹/Qtl)</label>
+                            <input type="number" id="buyerRiskPrice" value="7800" class="form-input">
+                        </div>
+                        <button class="btn btn-primary btn-full mt-3" onclick="
+                            const p = parseFloat(document.getElementById('buyerRiskPrice').value) || 0;
+                            const res = document.getElementById('buyerRiskBox');
+                            if(p > 6000) {
+                                res.style.background='#FEF2F2'; res.style.borderColor='#EF4444';
+                                res.innerHTML='<h4 style=\'color:#DC2626;\'>⚠️ HIGH ASKING PRICE RISK</h4><p style=\'font-size:13px; color:#991B1B;\'>Asking price ₹'+p+' is +50% above current mandi average (₹5,200). High cost risk.</p>';
+                            } else {
+                                res.style.background='#ECFDF5'; res.style.borderColor='#10B981';
+                                res.innerHTML='<h4 style=\'color:#065F46;\'>🟢 FAIR DEAL PRICE</h4><p style=\'font-size:13px; color:#065F46;\'>Asking price is aligned with market benchmark.</p>';
+                            }
+                        ">Evaluate Deal Risk</button>
+                        <div id="buyerRiskBox" class="mt-3" style="padding:16px; border-radius:10px;"></div>
+                    </div>
+                </section>
+
+
+                <!-- 11. BUYER LOGISTICS & DELIVERY -->
+                <section class="tab-view" id="tab-buyer-logistics">
+                    <div class="page-header">
+                        <div>
+                            <h2>🚚 <span>Logistics & Delivery Tracking</span></h2>
+                            <p>Track pickup locations, freight dispatches, and shipment status.</p>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <h3>Active Shipment #SHIP-8821</h3>
+                        <div style="background:#F9FBF9; padding:16px; border-radius:10px; border:1px solid #E2E8E4; margin-top:12px;">
+                            <p><strong>Route:</strong> Depalpur, Indore &rarr; Pithampur Processing Factory</p>
+                            <p><strong>Status:</strong> <span class="tag tag-emerald">In Transit (Driver: Ramesh - +91 98111 22233)</span></p>
+                        </div>
+                    </div>
+                </section>
+
+
+                <!-- 12. BUYER PURCHASE LEDGER -->
+                <section class="tab-view" id="tab-buyer-ledger">
+                    <div class="page-header">
+                        <div>
+                            <h2>📒 <span>Buyer Purchase Ledger & Invoices</span></h2>
+                            <p>Complete history of completed purchases and pending payments.</p>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <table class="data-table">
+                            <thead>
+                                <tr>
+                                    <th>Deal ID</th>
+                                    <th>Date</th>
+                                    <th>Supplier Name</th>
+                                    <th>Crop & Qty</th>
+                                    <th>Total Payment</th>
+                                    <th>Status</th>
+                                </tr>
+                            </thead>
+                            <tbody id="buyerLedgerTableBody"></tbody>
+                        </table>
+                    </div>
+                </section>
+
+
+                <!-- 13. BUYER RATINGS & SUPPORT -->
+                <section class="tab-view" id="tab-buyer-feedback">
+                    <div class="page-header">
+                        <div>
+                            <h2>⭐ <span>Farmer & FPO Ratings & Reviews</span></h2>
+                            <p>Rate suppliers on quality compliance and delivery punctuality.</p>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <h3>Submit Supplier Rating</h3>
+                        <button class="btn btn-primary btn-full mt-3" onclick="alert('Supplier rating published!')">Rate Farmer / FPO</button>
+                    </div>
+                </section>
+
+
+                <!-- 14. BUYER BUSINESS VERIFICATION (BUYER KYC FLOW) -->
+                <section class="tab-view" id="tab-buyer-kyc">
+                    <div class="page-header">
+                        <div>
+                            <h2>🪪 <span>Buyer Business Verification & Licensing</span></h2>
+                            <p>Verify APMC Trade License, GSTIN, PAN, and Business Registration Proof.</p>
+                        </div>
+                    </div>
+                    <div class="grid-2-cols">
+                        <div class="card">
+                            <div style="display:flex; justify-content:space-between; align-items:center;">
+                                <h3>Verified Buyer Business Profile</h3>
+                                <span class="tag tag-emerald" id="buyerKycTag">🟢 Verified Buyer</span>
+                            </div>
+                            <div style="background:#F9FBF9; padding:18px; border-radius:12px; border:1px solid #E2E8E4; margin-top:14px;">
+                                <p style="margin-bottom:8px;"><strong>Company Name:</strong> Rajesh Agrotech Ltd</p>
+                                <p style="margin-bottom:8px;"><strong>Authorized Owner:</strong> Rajesh Sharma</p>
+                                <p style="margin-bottom:8px;"><strong>PAN Number:</strong> AAACK8819Q</p>
+                                <p style="margin-bottom:8px;"><strong>GSTIN:</strong> 23AAACK8819Q1ZP</p>
+                                <p style="margin-bottom:8px;"><strong>APMC Trade License:</strong> MP-IND-APMC-88219 (Active)</p>
+                                <p style="margin-bottom:8px;"><strong>Bank Payout Account:</strong> State Bank of India (A/C ****8819)</p>
+                                <span style="font-size:12px; color:#065F46; font-weight:700;">Status: VERIFIED BUYER ✓</span>
+                            </div>
+                        </div>
+                        <div class="card">
+                            <h3>Update APMC Trade License & Documents</h3>
+                            <form id="buyerKycFormDoc" class="mt-3">
+                                <div class="form-group">
+                                    <label>APMC License ID</label>
+                                    <input type="text" value="MP-IND-APMC-88219" class="form-input">
+                                </div>
+                                <div class="form-group mt-2">
+                                    <label>GSTIN Number</label>
+                                    <input type="text" value="23AAACK8819Q1ZP" class="form-input">
+                                </div>
+                                <button type="button" class="btn btn-primary btn-full mt-3" onclick="alert('Buyer APMC License & GST Documents verified with State APMC Board!')">Verify Documents & Upgrade Status</button>
+                            </form>
+                        </div>
+                    </div>
+                </section>
+
+            </div>
+        </main>
+    </div>
+
+    <!-- VOICE ASSISTANT MODAL -->
+    <div class="modal-overlay hidden" id="voiceModal">
+        <div class="modal-card voice-modal-card" style="width:480px;">
+            <button class="modal-close" id="closeVoiceModal">&times;</button>
+            <div style="text-align:center; padding:10px;">
+                <i class="fa-solid fa-microphone text-green pulse-mic" style="font-size:48px; margin-bottom:12px;"></i>
+                <h3 data-i18n="voice_modal_title">KrishiMitra Voice Assistant</h3>
+                <p class="voice-transcript" id="voiceTranscript" style="font-size:15px; color:#1B4D3E; font-weight:600; margin:12px 0;">"नमस्ते! आज इंदौर मंडी में सोयाबीन का भाव ₹5,150 प्रति क्विंटल है।"</p>
+                <div style="display:flex; gap:6px; flex-wrap:wrap; justify-content:center; margin:12px 0;">
+                    <button class="btn btn-sm btn-outline" onclick="triggerVoiceQuery('सोयाबीन का भाव')">सोयाबीन का भाव</button>
+                    <button class="btn btn-sm btn-outline" onclick="triggerVoiceQuery('गेहूं की तेजी')">गेहूं की तेजी</button>
+                    <button class="btn btn-sm btn-outline" onclick="triggerVoiceQuery('बेचें या रुकें?')">बेचें या रुकें?</button>
+                </div>
+                <div style="display:flex; gap:8px; margin-top:12px;">
+                    <input type="text" id="voiceInput" placeholder="Type or click query..." class="form-input flex-1">
+                    <button class="btn btn-primary" onclick="triggerVoiceQuery(document.getElementById('voiceInput').value)"><i class="fa-solid fa-paper-plane"></i></button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- RECEIPT & DIRECT CONTACT EXCHANGE MODAL -->
+    <div class="modal-overlay hidden" id="receiptModal">
+        <div class="modal-card receipt-modal-card" style="width:580px;">
+            <button class="modal-close" id="closeReceiptModal">&times;</button>
+            <div class="receipt-header">
+                <i class="fa-solid fa-circle-check text-green receipt-check-icon" style="font-size:36px;"></i>
+                <h2>Transaction Verified & Direct Contact Unlocked</h2>
+                <p>Digital Receipt #KM-TXN-<span id="recId">88912</span></p>
+            </div>
+            <div class="receipt-details-list" id="receiptDetails"></div>
+            <div class="receipt-footer mt-4">
+                <button class="btn btn-primary" onclick="window.print()"><i class="fa-solid fa-print"></i> Print Receipt</button>
+                <button class="btn btn-outline" id="closeReceiptBtn">Close</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
