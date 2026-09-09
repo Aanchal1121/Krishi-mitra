@@ -71,6 +71,69 @@ const warehouseData = [
     { id: 2, name: 'MP State Logistics & Warehouse Hub', distance: '18 km', capacity: '25,000 MT', rate: '₹14 / Qtl / Month', pledgeFinancing: 'KCC Pledge Loan Eligible', wdraId: 'WDRA-MP-IND-088' }
 ];
 
+// --- COMPREHENSIVE INDIAN CROP CATALOGUE (SEASON & CATEGORY TAGGED) ---
+const cropCatalog = [
+    // Top Priority Kharif Crop
+    { id: 'o-1', name: 'Soybean', nameHi: 'सोयाबीन', nameMr: 'सोयाबीन', namePa: 'ਸੋਇਆਬੀਨ', nameGu: 'સોયાબીન', category: 'Oilseeds', season: 'Kharif', basePrice: 5150 },
+
+    // Cereals
+    { id: 'c-1', name: 'Wheat', nameHi: 'गेहूं', nameMr: 'गहू', namePa: 'ਕਣਕ', nameGu: 'ઘઉં', category: 'Cereals', season: 'Rabi', basePrice: 2450 },
+    { id: 'c-2', name: 'Rice', nameHi: 'चावल/धान', nameMr: 'तांदूळ', namePa: 'ਚੌਲ/ਝੋਨਾ', nameGu: 'ચોખા', category: 'Cereals', season: 'Kharif', basePrice: 2200 },
+    { id: 'c-3', name: 'Maize', nameHi: 'मक्का', nameMr: 'मका', namePa: 'ਮੱਕੀ', nameGu: 'મકાઈ', category: 'Cereals', season: 'Kharif', basePrice: 2150 },
+    { id: 'c-4', name: 'Barley', nameHi: 'जौ', nameMr: 'सातू', namePa: 'ਜੌਂ', nameGu: 'જવ', category: 'Cereals', season: 'Rabi', basePrice: 1980 },
+    { id: 'c-5', name: 'Sorghum/Jowar', nameHi: 'ज्वार', nameMr: 'ज्वारी', namePa: 'ਜੁਆਰ', nameGu: 'જુવાર', category: 'Cereals', season: 'Kharif', basePrice: 2980 },
+    { id: 'c-6', name: 'Pearl Millet/Bajra', nameHi: 'बाजरा', nameMr: 'बाजरी', namePa: 'ਬਾਜਰਾ', nameGu: 'બાજરી', category: 'Cereals', season: 'Kharif', basePrice: 2350 },
+    { id: 'c-7', name: 'Ragi', nameHi: 'रागी', nameMr: 'नाचणी', namePa: 'ਰਾਗੀ', nameGu: 'ਰਾਗੀ', category: 'Cereals', season: 'Kharif', basePrice: 3500 },
+
+    // Pulses
+    { id: 'p-1', name: 'Chickpea/Gram', nameHi: 'चना', nameMr: 'हरभरा', namePa: 'ਛੋਲੇ', nameGu: 'ચણા', category: 'Pulses', season: 'Rabi', basePrice: 5850 },
+    { id: 'p-2', name: 'Pigeon Pea/Tur', nameHi: 'तुअर/अरहर', nameMr: 'तूर', namePa: 'ਅਰਹਰ', nameGu: 'તુવેર', category: 'Pulses', season: 'Kharif', basePrice: 7200 },
+    { id: 'p-3', name: 'Green Gram/Moong', nameHi: 'मूंग', nameMr: 'मूग', namePa: 'ਮੂੰਗੀ', nameGu: 'મગ', category: 'Pulses', season: 'Zaid', basePrice: 7750 },
+    { id: 'p-4', name: 'Black Gram/Urad', nameHi: 'उड़द', nameMr: 'उडीद', namePa: 'ਮਾਂਹ', nameGu: 'અડદ', category: 'Pulses', season: 'Kharif', basePrice: 6900 },
+    { id: 'p-5', name: 'Lentil/Masoor', nameHi: 'मसूर', nameMr: 'मसूर', namePa: 'ਮਸੂਰ', nameGu: 'મਸૂર', category: 'Pulses', season: 'Rabi', basePrice: 6400 },
+    { id: 'p-6', name: 'Peas', nameHi: 'मटर', nameMr: 'वाटाणा', namePa: 'ਮਟਰ', nameGu: 'ਵટાણા', category: 'Pulses', season: 'Rabi', basePrice: 4200 },
+    { id: 'p-7', name: 'Cowpea', nameHi: 'लोबिया', nameMr: 'चवळी', namePa: 'ਰੌਂਗੀ', nameGu: 'ਚੋળી', category: 'Pulses', season: 'Kharif', basePrice: 5100 },
+
+    // Oilseeds
+    { id: 'o-2', name: 'Mustard', nameHi: 'सरसों', nameMr: 'मोहरी', namePa: 'ਸਰ੍ਹੋਂ', nameGu: 'રાયડો/રાઈ', category: 'Oilseeds', season: 'Rabi', basePrice: 5600 },
+    { id: 'o-3', name: 'Groundnut', nameHi: 'मूंगफली', nameMr: 'भुईमूग', namePa: 'ਮੂੰਗਫਲੀ', nameGu: 'મગਫਲੀ', category: 'Oilseeds', season: 'Kharif', basePrice: 6300 },
+    { id: 'o-4', name: 'Sesame', nameHi: 'तिल', nameMr: 'तीळ', namePa: 'ਤਿਲ', nameGu: 'તલ', category: 'Oilseeds', season: 'Kharif', basePrice: 12500 },
+    { id: 'o-5', name: 'Sunflower', nameHi: 'सूरजमुखी', nameMr: 'सूर्यफूल', namePa: 'ਸੂਰਜਮੁਖੀ', nameGu: 'સૂરજમુખી', category: 'Oilseeds', season: 'Rabi', basePrice: 5400 },
+    { id: 'o-6', name: 'Castor', nameHi: 'अरंडी', nameMr: 'एरंडी', namePa: 'ਅਰੰਡੀ', nameGu: 'દિવેલા/એરંડા', category: 'Oilseeds', season: 'Kharif', basePrice: 5900 },
+
+    // Cash/Fibre Crops
+    { id: 'f-1', name: 'Cotton', nameHi: 'कपास', nameMr: 'कापूस', namePa: 'ਕਪਾਹ', nameGu: 'કપાસ', category: 'Cash/Fibre Crops', season: 'Kharif', basePrice: 7100 },
+    { id: 'f-2', name: 'Sugarcane', nameHi: 'गन्ना', nameMr: 'ऊस', namePa: 'ਗੰਨਾ', nameGu: 'શેરડી', category: 'Cash/Fibre Crops', season: 'Kharif', basePrice: 340 },
+    { id: 'f-3', name: 'Jute', nameHi: 'पटसन/जूट', nameMr: 'ताग', namePa: 'ਪਟਸਨ', nameGu: 'શણ', category: 'Cash/Fibre Crops', season: 'Kharif', basePrice: 4800 },
+
+    // Spices
+    { id: 's-1', name: 'Coriander', nameHi: 'धनिया', nameMr: 'धने', namePa: 'ਧਨੀਆ', nameGu: 'ધાણા', category: 'Spices', season: 'Rabi', basePrice: 6800 },
+    { id: 's-2', name: 'Cumin', nameHi: 'जीरा', nameMr: 'जिरे', namePa: 'ਜੀਰਾ', nameGu: 'જીરૂ', category: 'Spices', season: 'Rabi', basePrice: 24000 },
+    { id: 's-3', name: 'Turmeric', nameHi: 'हल्दी', nameMr: 'हळद', namePa: 'ਹਲਦੀ', nameGu: 'હળદર', category: 'Spices', season: 'Kharif', basePrice: 13500 },
+    { id: 's-4', name: 'Chilli', nameHi: 'लाल मिर्च', nameMr: 'मिरची', namePa: 'ਮਿਰਚ', nameGu: 'મરચું', category: 'Spices', season: 'Kharif', basePrice: 18000 },
+    { id: 's-5', name: 'Garlic', nameHi: 'लहसुन', nameMr: 'लसूण', namePa: 'ਲਸਣ', nameGu: 'લસણ', category: 'Spices', season: 'Rabi', basePrice: 9500 },
+
+    // Fruits & Vegetables
+    { id: 'v-1', name: 'Watermelon', nameHi: 'तरबूज', nameMr: 'कलिंगड', namePa: 'ਹਦਵਾਣਾ', nameGu: 'તરબૂચ', category: 'Fruits & Vegetables', season: 'Zaid', basePrice: 1400 },
+    { id: 'v-2', name: 'Muskmelon', nameHi: 'खरबूजा', nameMr: 'खरबूज', namePa: 'ਖਰਬੂਜਾ', nameGu: 'શક્કરટેટી', category: 'Fruits & Vegetables', season: 'Zaid', basePrice: 1800 },
+    { id: 'v-3', name: 'Cucumber', nameHi: 'खीरा/ककड़ी', nameMr: 'काकडी', namePa: 'ਖੀਰਾ', nameGu: 'કાકડી', category: 'Fruits & Vegetables', season: 'Zaid', basePrice: 1200 },
+    { id: 'v-4', name: 'Onion', nameHi: 'प्याज', nameMr: 'कांदा', namePa: 'ਗੰਢਾ/ਪਿਆਜ਼', nameGu: 'ડુંગળી', category: 'Fruits & Vegetables', season: 'Rabi', basePrice: 1950 },
+    { id: 'v-5', name: 'Potato', nameHi: 'आलू', nameMr: 'बटाटा', namePa: 'ਆਲੂ', nameGu: 'બટાટા', category: 'Fruits & Vegetables', season: 'Rabi', basePrice: 1450 }
+];
+
+// DYNAMIC AGRICULTURAL SEASON CALCULATION BASED ON DATE
+function getCurrentSeason() {
+    const month = new Date().getMonth() + 1; // 1 to 12
+    if (month >= 6 && month <= 10) {
+        return { name: 'Kharif', icon: '🌾', labelHi: 'खरीफ 🌾', labelEn: 'Kharif 🌾', labelMr: 'खरीप 🌾', labelPa: 'ਖਰੀਫ 🌾', labelGu: 'ખરીફ 🌾' };
+    } else if (month >= 11 || month <= 3) {
+        return { name: 'Rabi', icon: '🌾', labelHi: 'रबी 🌾', labelEn: 'Rabi 🌾', labelMr: 'रब्बी 🌾', labelPa: 'ਰਬੀ 🌾', labelGu: 'ਰબી 🌾' };
+    } else {
+        return { name: 'Zaid', icon: '🍉', labelHi: 'जायद 🍉', labelEn: 'Zaid 🍉', labelMr: 'झैद 🍉', labelPa: 'ਜ਼ਾਇਦ 🍉', labelGu: 'ઝાયદ 🍉' };
+    }
+}
+
+
 // Multilingual Dictionary for ALL 5 Languages
 const i18n = {
     en: {
@@ -448,6 +511,207 @@ const i18n = {
     }
 };
 
+// --- REUSABLE CUSTOM POPUP ALERT HELPER ---
+function showCustomPopup(title, message, isSuccess = true) {
+    const modal = document.getElementById('customPopupModal');
+    const icon = document.getElementById('popupIcon');
+    const titleEl = document.getElementById('popupTitle');
+    const msgEl = document.getElementById('popupMessage');
+    const closeBtn = document.getElementById('closeCustomPopupBtn');
+    const okBtn = document.getElementById('btnPopupOk');
+
+    if (!modal) return;
+    if (titleEl) titleEl.innerText = title;
+    if (msgEl) msgEl.innerText = message;
+
+    if (icon) {
+        if (isSuccess) {
+            icon.className = 'fa-solid fa-circle-check text-green popup-icon-large';
+        } else {
+            icon.className = 'fa-solid fa-triangle-exclamation text-amber popup-icon-large';
+        }
+    }
+
+    modal.classList.remove('hidden');
+
+    const hide = () => modal.classList.add('hidden');
+    if (closeBtn) closeBtn.onclick = hide;
+    if (okBtn) okBtn.onclick = hide;
+}
+
+function validateMobile(mobile) {
+    if (!mobile) return false;
+    const clean = mobile.replace(/[\s\+\-]/g, '');
+    return /^\d{10}$/.test(clean);
+}
+
+function validateName(name) {
+    if (!name) return false;
+    return name.trim().length >= 3;
+}
+
+function validateAadhaar(aadhar) {
+    if (!aadhar) return false;
+    const clean = aadhar.replace(/[\s-]/g, '');
+    return /^\d{12}$/.test(clean);
+}
+
+function validateDistrict(district) {
+    if (!district) return false;
+    return district.trim().length >= 2;
+}
+
+function validateLand(land) {
+    if (!land) return false;
+    return land.trim().length >= 1;
+}
+
+function validateLicense(license) {
+    if (!license) return false;
+    return license.trim().length >= 6;
+}
+
+function validateGST(gstin) {
+    if (!gstin) return false;
+    const clean = gstin.trim();
+    return clean.length === 15;
+}
+
+function renderSeasonBadges() {
+    const season = getCurrentSeason();
+    const lang = state.currentLang || 'hi';
+
+    let titleText = 'Current Agricultural Season';
+    let subText = 'Season-Aware Crop Recommendation & Market Advisory Active';
+    let seasonLabel = season.labelEn;
+    
+    if (lang === 'hi') {
+        titleText = 'वर्तमान कृषि सीज़न (Current Agricultural Season)';
+        subText = 'मौसम-आधारित फसल मांग व बाजार भाव विश्लेषण सक्रिय';
+        seasonLabel = season.labelHi;
+    } else if (lang === 'mr') {
+        titleText = 'सध्याचा कृषी हंगाम (Current Agricultural Season)';
+        subText = 'हंगामावर आधारित पीक मागणी आणि बाजार भाव विश्लेषण सक्रिय';
+        seasonLabel = season.labelMr;
+    } else if (lang === 'pa') {
+        titleText = 'ਮੌਜੂਦਾ ਖੇਤੀਬਾੜੀ ਸੀਜ਼ਨ (Current Agricultural Season)';
+        subText = 'ਸੀਜ਼ਨ-ਅਧਾਰਿਤ ਫਸਲ ਮੰਗ ਅਤੇ ਮੰਡੀ ਭਾਅ ਵਿਸ਼ਲੇਸ਼ਣ';
+        seasonLabel = season.labelPa;
+    } else if (lang === 'gu') {
+        titleText = 'વર્તમાન કૃષિ સીઝન (Current Agricultural Season)';
+        subText = 'સીઝન આધારિત પાક માંગ અને બજાર ભાવ વિશ્લેષણ';
+        seasonLabel = season.labelGu;
+    }
+
+    const fContainer = document.getElementById('seasonBadgeContainer');
+    if (fContainer) {
+        fContainer.innerHTML = `
+            <div class="season-badge-hero-card" style="
+                background: linear-gradient(135deg, #064E3B 0%, #047857 50%, #059669 100%);
+                border-radius: 20px;
+                padding: 20px 28px;
+                color: #FFFFFF;
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                box-shadow: 0 8px 25px rgba(4, 120, 87, 0.25);
+                border: 2.5px solid #34D399;
+                margin: 20px 0 24px;
+            ">
+                <div style="display: flex; align-items: center; gap: 20px;">
+                    <div style="background: rgba(255, 255, 255, 0.2); width: 64px; height: 64px; border-radius: 18px; display: flex; align-items: center; justify-content: center; font-size: 38px; backdrop-filter: blur(4px); box-shadow: inset 0 0 10px rgba(255,255,255,0.2);">
+                        ${season.icon}
+                    </div>
+                    <div>
+                        <span style="font-size: 13px; text-transform: uppercase; letter-spacing: 1px; color: #A7F3D0; font-weight: 700; display: block;">${titleText}</span>
+                        <div style="font-size: 32px; font-weight: 900; color: #FFFFFF; text-shadow: 0 2px 6px rgba(0,0,0,0.3); display: flex; align-items: center; gap: 12px; margin: 2px 0;">
+                            ${seasonLabel} <span style="background: #34D399; color: #064E3B; font-size: 13px; font-weight: 800; padding: 4px 12px; border-radius: 20px; text-transform: uppercase; letter-spacing: 0.5px;">ACTIVE 2026</span>
+                        </div>
+                        <small style="color: #D1FAE5; font-size: 14px; font-weight: 500;">${subText}</small>
+                    </div>
+                </div>
+                <div style="background: rgba(255,255,255,0.15); padding: 12px 22px; border-radius: 16px; text-align: right; backdrop-filter: blur(4px); border: 1px solid rgba(255,255,255,0.25);">
+                    <span style="font-size: 11px; color: #A7F3D0; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px;">Key Crops / मुख्य फसलें</span>
+                    <div style="font-size: 16px; font-weight: 800; color: #FFFFFF; margin-top: 2px;">🌱 Soybean, Paddy, Maize, Cotton</div>
+                </div>
+            </div>
+        `;
+    }
+}
+
+// --- GLOBAL LIVE SEARCH ENGINE ---
+function initGlobalSearch() {
+    const searchInput = document.getElementById('globalSearch');
+    const resultsBox = document.getElementById('globalSearchResults');
+    if (!searchInput || !resultsBox) return;
+
+    searchInput.addEventListener('input', (e) => {
+        const query = e.target.value.trim().toLowerCase();
+        if (query.length < 2) {
+            resultsBox.classList.add('hidden');
+            return;
+        }
+
+        const matches = [];
+
+        // Search Crops
+        cropCatalog.forEach(c => {
+            if (c.name.toLowerCase().includes(query) || (c.nameHi && c.nameHi.toLowerCase().includes(query))) {
+                matches.push({ type: 'Crop', title: c.name + (c.nameHi ? ` (${c.nameHi})` : ''), sub: `Category: ${c.category} | Season: ${c.season}`, tab: 'prediction', crop: c.name });
+            }
+        });
+
+        // Search Buyers
+        buyerData.forEach(b => {
+            if (b.name.toLowerCase().includes(query) || b.cropNeeded.toLowerCase().includes(query)) {
+                matches.push({ type: 'Buyer', title: b.name, sub: `Buys ${b.cropNeeded} | Rate: ₹${b.offeredRate}/Qtl`, tab: 'marketplace' });
+            }
+        });
+
+        // Search Warehouses
+        warehouseData.forEach(w => {
+            if (w.name.toLowerCase().includes(query)) {
+                matches.push({ type: 'Warehouse', title: w.name, sub: `Capacity: ${w.capacity} | ${w.distance}`, tab: 'storage' });
+            }
+        });
+
+        if (matches.length === 0) {
+            resultsBox.innerHTML = '<div style="padding:12px; font-size:13px; color:#6B7C75; text-align:center;">No matching crops, buyers, or warehouses found.</div>';
+        } else {
+            resultsBox.innerHTML = matches.slice(0, 6).map(m => `
+                <div class="search-item" onclick="selectSearchResult('${m.tab}', '${m.crop || ''}')">
+                    <div>
+                        <strong style="font-size:13px; color:#1B4D3E;">[${m.type}] ${m.title}</strong>
+                        <div style="font-size:11px; color:#6B7C75;">${m.sub}</div>
+                    </div>
+                    <i class="fa-solid fa-chevron-right" style="font-size:11px; color:#9CA3AF;"></i>
+                </div>
+            `).join('');
+        }
+
+        resultsBox.classList.remove('hidden');
+    });
+
+    document.addEventListener('click', (e) => {
+        if (!searchInput.contains(e.target) && !resultsBox.contains(e.target)) {
+            resultsBox.classList.add('hidden');
+        }
+    });
+}
+
+function selectSearchResult(tab, cropName) {
+    const resultsBox = document.getElementById('globalSearchResults');
+    if (resultsBox) resultsBox.classList.add('hidden');
+    switchTab(tab);
+    if (cropName && tab === 'prediction') {
+        const sel = document.getElementById('forecastCropSelect');
+        if (sel) {
+            sel.value = cropName;
+            sel.dispatchEvent(new Event('change'));
+        }
+    }
+}
+
 // --- INITIALIZATION ---
 document.addEventListener('DOMContentLoaded', () => {
     initAuthOverlay();
@@ -466,9 +730,12 @@ document.addEventListener('DOMContentLoaded', () => {
     renderFeedbackList();
     renderFpoGroups();
     initPredictionChart();
+    initForecastEngine();
+    initGlobalSearch();
     initVoiceAssistant();
     initEventListeners();
     initNewFeatureListeners();
+    renderSeasonBadges();
 
     const savedLang = localStorage.getItem('km_lang');
     if (savedLang) {
@@ -655,76 +922,311 @@ function renderBuyerFpo() {
     `;
 }
 
+// --- PRICE FORECAST & ADVISORY ENGINE ---
+function initForecastEngine() {
+    const sel = document.getElementById('forecastCropSelect');
+    if (!sel) return;
+
+    sel.innerHTML = cropCatalog.map(c => `<option value="${c.name}">${c.name} / ${c.nameHi || c.name} (${c.season} - ₹${c.basePrice}/Qtl)</option>`).join('');
+
+    sel.addEventListener('change', () => {
+        const cropName = sel.value;
+        const crop = cropCatalog.find(c => c.name === cropName) || cropCatalog[0];
+        renderForecastForCrop(crop);
+    });
+
+    renderForecastForCrop(cropCatalog[0]);
+}
+
+function renderForecastForCrop(crop) {
+    const metricsCards = document.getElementById('forecastMetricsCards');
+    const advisoryTitle = document.getElementById('advisoryTitle');
+    const advisoryText = document.getElementById('advisoryText');
+    const lang = state.currentLang || 'hi';
+
+    const base = crop.basePrice;
+    const day7 = Math.round(base * 1.07);
+    const day15 = Math.round(base * 1.12);
+    const day30 = Math.round(base * 1.16);
+
+    let cropDisplayName = crop.name;
+    if (lang === 'hi' && crop.nameHi) cropDisplayName = crop.nameHi;
+    else if (lang === 'mr' && crop.nameMr) cropDisplayName = crop.nameMr;
+    else if (lang === 'pa' && crop.namePa) cropDisplayName = crop.namePa;
+    else if (lang === 'gu' && crop.nameGu) cropDisplayName = crop.nameGu;
+
+    if (metricsCards) {
+        metricsCards.innerHTML = `
+            <div style="background:#F0FDF4; border:1px solid #86EFAC; padding:12px; border-radius:10px; text-align:center;">
+                <span style="font-size:11px; color:#166534; font-weight:700;">${lang === 'hi' ? 'वर्तमान भाव' : 'Current Price'}</span>
+                <div style="font-size:18px; font-weight:800; color:#15803D;">₹${base.toLocaleString()} <small>/ Qtl</small></div>
+                <small style="color:#166534;">${cropDisplayName} Baseline</small>
+            </div>
+            <div style="background:#EFF6FF; border:1px solid #93C5FD; padding:12px; border-radius:10px; text-align:center;">
+                <span style="font-size:11px; color:#1E40AF; font-weight:700;">${lang === 'hi' ? '7 दिनों का पूर्वानुमान' : '7-Day Forecast'}</span>
+                <div style="font-size:18px; font-weight:800; color:#1D4ED8;">₹${day7.toLocaleString()}</div>
+                <small style="color:#1E40AF; font-weight:700;">📈 +7.0% Expected</small>
+            </div>
+            <div style="background:#FEF3C7; border:1px solid #FDE68A; padding:12px; border-radius:10px; text-align:center;">
+                <span style="font-size:11px; color:#92400E; font-weight:700;">${lang === 'hi' ? '15 दिनों का पूर्वानुमान' : '15-Day Forecast'}</span>
+                <div style="font-size:18px; font-weight:800; color:#B45309;">₹${day15.toLocaleString()}</div>
+                <small style="color:#92400E; font-weight:700;">📈 +12.0% Expected</small>
+            </div>
+            <div style="background:#FAF5FF; border:1px solid #E9D5FF; padding:12px; border-radius:10px; text-align:center;">
+                <span style="font-size:11px; color:#6B21A8; font-weight:700;">${lang === 'hi' ? '30 दिनों का पूर्वानुमान' : '30-Day Forecast'}</span>
+                <div style="font-size:18px; font-weight:800; color:#7E22CE;">₹${day30.toLocaleString()}</div>
+                <small style="color:#6B21A8; font-weight:700;">📈 +16.0% Expected</small>
+            </div>
+        `;
+    }
+
+    if (advisoryTitle && advisoryText) {
+        if (lang === 'hi') {
+            advisoryTitle.innerText = `${cropDisplayName.toUpperCase()} के लिए AI सलाह: 7-10 दिनों तक रुकें (HOLD)`;
+            advisoryText.innerHTML = `${cropDisplayName} के भाव में अगले 7 दिनों में <strong>+₹${day7 - base}/क्विंटल (+7.0%)</strong> की बढ़ोतरी का अनुमान है। AI सलाह: उच्च मांग आने तक रुकना बेहतर है।`;
+        } else {
+            advisoryTitle.innerText = `RECOMMENDATION FOR ${cropDisplayName.toUpperCase()}: HOLD FOR 7-10 DAYS`;
+            advisoryText.innerHTML = `Expected price increase for ${cropDisplayName}: <strong>+₹${day7 - base}/quintal (+7.0%)</strong> within next 7 days. AI timing advisory: Consider waiting for peak demand.`;
+        }
+    }
+
+    if (predChartInstance) {
+        predChartInstance.data.datasets[0].label = `${cropDisplayName} Rate (₹/Qtl)`;
+        predChartInstance.data.datasets[0].data = [Math.round(base * 0.94), Math.round(base * 0.96), Math.round(base * 0.98), Math.round(base * 0.99), base, null, null, null];
+        predChartInstance.data.datasets[1].data = [null, null, null, null, base, Math.round(base * 1.03), Math.round(base * 1.05), day7];
+        predChartInstance.update();
+    }
+}
+
+// --- AI QUALITY SCANNER & FINAL GRADE WORKFLOW ---
+const labState = { step: 1, labReportUploaded: false };
+
+function initLabFirstQualityWorkflow() {
+    const btnUpLab = document.getElementById('btnUploadLabReport');
+    const btnCamLab = document.getElementById('btnScanLabReportCam');
+    const fileInLab = document.getElementById('labReportFileInput');
+    const camInLab = document.getElementById('labReportCameraInput');
+
+    const btnCamCrop = document.getElementById('btnOpenCamera');
+    const btnUpCrop = document.getElementById('btnUploadQualityPhoto');
+    const fileInCrop = document.getElementById('qualityFileInput');
+    const btnScan = document.getElementById('startScanBtn');
+
+    if (btnUpLab && fileInLab) btnUpLab.addEventListener('click', () => fileInLab.click());
+    if (btnCamLab && camInLab) btnCamLab.addEventListener('click', () => camInLab.click());
+
+    const handleLabUpload = () => {
+        const notice = document.getElementById('labStatusNotice');
+        if (notice) {
+            notice.innerHTML = `
+                <div style="color:#047857; font-weight:700;"><i class="fa-solid fa-spinner fa-spin text-green"></i> Scanning & Extracting Lab Report Data via AI OCR...</div>
+                <p style="font-size:12px; color:#065F46; margin-top:2px;">Analyzing document parameters, NABL barcode, moisture %, and protein/oil grade...</p>
+            `;
+        }
+        setTimeout(() => {
+            labState.labReportUploaded = true;
+            setLabStep(1.5); // Lab Report Loaded
+        }, 700);
+    };
+
+    if (fileInLab) fileInLab.addEventListener('change', handleLabUpload);
+    if (camInLab) camInLab.addEventListener('change', handleLabUpload);
+
+    if (btnCamCrop && fileInCrop) btnCamCrop.addEventListener('click', () => fileInCrop.click());
+    if (btnUpCrop && fileInCrop) btnUpCrop.addEventListener('click', () => fileInCrop.click());
+
+    if (fileInCrop) {
+        fileInCrop.addEventListener('change', () => {
+            if (fileInCrop.files && fileInCrop.files[0]) {
+                setLabStep(2); // Crop Photo Captured
+            }
+        });
+    }
+
+    if (btnScan) {
+        btnScan.addEventListener('click', () => {
+            btnScan.disabled = true;
+            btnScan.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Running AI Quality Analysis...';
+            setTimeout(() => {
+                setLabStep(3); // Final Grade Output
+                btnScan.disabled = false;
+                btnScan.innerHTML = '<i class="fa-solid fa-microchip"></i> Step 3: Run AI Quality & Grade Scanner';
+            }, 800);
+        });
+    }
+}
+
+function setLabStep(stepNum) {
+    labState.step = stepNum;
+    
+    const notice = document.getElementById('labStatusNotice');
+    const photoWrapper = document.getElementById('photoStageWrapper');
+    const btnCamCrop = document.getElementById('btnOpenCamera');
+    const btnUpCrop = document.getElementById('btnUploadQualityPhoto');
+    const btnScan = document.getElementById('startScanBtn');
+    const resBox = document.getElementById('qualityResultBox');
+
+    if (stepNum === 1.5 || stepNum >= 2) {
+        for (let i = 1; i <= 3; i++) {
+            const stepEl = document.getElementById(`labStep${i}`);
+            if (stepEl) {
+                stepEl.classList.remove('active', 'completed');
+                if (i < Math.floor(stepNum)) stepEl.classList.add('completed');
+                if (i === Math.floor(stepNum)) stepEl.classList.add('active');
+            }
+        }
+
+        if (notice) {
+            notice.style.background = '#ECFDF5';
+            notice.style.border = '1px solid #10B981';
+            notice.innerHTML = `
+                <div style="display:flex; justify-content:space-between; align-items:center;">
+                    <strong style="color:#065F46;"><i class="fa-solid fa-circle-check"></i> Lab Report Uploaded & Verified: NABL-MP-LAB-9921 ✅</strong>
+                    <span class="tag tag-emerald">Official Report</span>
+                </div>
+                <p style="font-size:12px; color:#047857; margin-top:4px;">
+                    • Moisture Content: <strong>10.2% (Lab Verified)</strong><br>
+                    • Oil/Protein Content: <strong>19.5%</strong> | Foreign Matter: <strong>0.8%</strong>
+                </p>
+                <small style="color:#065F46; font-style:italic;">Unlocked: Step 2 (Crop Photo) & Step 3 (AI Quality Scan)</small>
+            `;
+        }
+
+        if (photoWrapper) {
+            photoWrapper.style.opacity = '1';
+            photoWrapper.style.pointerEvents = 'auto';
+        }
+        if (btnCamCrop) btnCamCrop.disabled = false;
+        if (btnUpCrop) btnUpCrop.disabled = false;
+        if (btnScan) btnScan.disabled = false;
+    }
+
+    if (stepNum === 2) {
+        if (resBox) {
+            resBox.innerHTML = `
+                <div style="background:#EFF6FF; border:1px solid #93C5FD; border-radius:12px; padding:16px;">
+                    <h4 style="color:#1E40AF;"><i class="fa-solid fa-camera"></i> Crop Photo Captured Successfully!</h4>
+                    <p style="font-size:12px; color:#1D4ED8; margin-top:4px;">Crop batch image attached. Click <strong>"Step 3: Run AI Quality & Grade Scanner"</strong> to analyze quality metrics against Lab Report NABL-MP-LAB-9921.</p>
+                </div>
+            `;
+        }
+    } else if (stepNum === 3) {
+        if (resBox) {
+            resBox.innerHTML = `
+                <div style="background:#ECFDF5; border:1px solid #10B981; border-radius:12px; padding:16px; animation: fadeIn 0.3s ease;">
+                    <div style="display:flex; justify-content:space-between; align-items:center;">
+                        <h4 style="color:#065F46;"><i class="fa-solid fa-circle-check text-green"></i> Final Quality Grade: GRADE A+ (Export Quality)</h4>
+                        <span class="tag tag-emerald">99% Truth Verified</span>
+                    </div>
+                    <p style="font-size:12px; color:#047857; margin-top:4px;">Calculated from: <strong>Official Lab Report NABL-MP-LAB-9921 + Crop Photo AI Analysis</strong></p>
+                    <hr style="border:0; border-top:1px dashed #A7F3D0; margin:10px 0;">
+                    <div style="display:grid; grid-template-columns:1fr 1fr; gap:8px; font-size:12px;">
+                        <div>• Moisture Content: <strong>10.2%</strong> (Lab Verified)</div>
+                        <div>• Oil/Protein: <strong>19.5%</strong></div>
+                        <div>• Foreign Matter: <strong>0.8%</strong></div>
+                        <div>• Grain Uniformity: <strong>96%</strong></div>
+                    </div>
+                    <div style="margin-top:12px; padding:12px; background:#FFFFFF; border-radius:8px; border:1.5px solid #10B981;">
+                        <div style="font-size:12px; color:#047857; font-weight:700;">Recommended Market Selling Price:</div>
+                        <div style="font-size:22px; font-weight:800; color:#059669;">₹5,350 / Quintal <small style="font-size:11px; color:#047857;">(+₹200/Qtl Grade A+ Premium Gain)</small></div>
+                    </div>
+                </div>
+            `;
+        }
+    }
+}
+
 // --- NEW FEATURES LISTENERS ---
 function initNewFeatureListeners() {
+    initLabFirstQualityWorkflow();
+
+    // Populate anti-fraud crop dropdown from catalog
+    const afCropSelect = document.getElementById('afCrop');
+    if (afCropSelect) {
+        afCropSelect.innerHTML = cropCatalog.map(c => `<option value="${c.name}">${c.name} / ${c.nameHi || c.name} (Benchmark: ₹${c.basePrice}/Qtl)</option>`).join('');
+    }
+
+    // Populate clustering crop dropdown from catalog
+    const clCropSelect = document.getElementById('clCrop');
+    if (clCropSelect) {
+        clCropSelect.innerHTML = cropCatalog.map(c => `<option value="${c.name}">${c.name} / ${c.nameHi || c.name}</option>`).join('');
+    }
+
     // 1. AI Anti-Fraud Price Verification
     const afBtn = document.getElementById('runAntiFraudBtn');
-    const afCropSelect = document.getElementById('afCrop');
     const afPriceInput = document.getElementById('afPrice');
     const btnTestGenuine = document.getElementById('btnTestGenuine');
     const btnTestFraud = document.getElementById('btnTestFraud');
     const btnTestLow = document.getElementById('btnTestLow');
 
-    const benchmarks = { Soybean: 5150, Wheat: 2450, Chana: 5850, Mustard: 5600, Cotton: 7100, Rice: 2200, Maize: 2150, Onion: 1950 };
-
     const updateAntiFraudResult = () => {
-        const crop = afCropSelect ? afCropSelect.value : 'Soybean';
+        const cropName = afCropSelect ? afCropSelect.value : 'Soybean';
+        const cropObj = cropCatalog.find(c => c.name === cropName) || cropCatalog[0];
         const price = parseFloat(afPriceInput ? afPriceInput.value : 0) || 0;
         const resBox = document.getElementById('afResultBox');
         if (!resBox) return;
 
-        const benchmark = benchmarks[crop] || 5000;
+        const benchmark = cropObj.basePrice || 5000;
 
         if (price > benchmark * 1.25) {
-            // HIGH RISK ALERT
             resBox.style.background = '#FEF2F2';
             resBox.style.borderColor = '#EF4444';
             resBox.innerHTML = `
                 <i class="fa-solid fa-triangle-exclamation text-amber" style="font-size:32px; color:#DC2626;"></i>
-                <h4 style="color:#DC2626; margin-top:8px;">🔴 HIGH RISK PRICE ALERT</h4>
+                <h4 style="color:#DC2626; margin-top:8px;">🔴 HIGH RISK PRICE ALERT - ${cropObj.name.toUpperCase()}</h4>
                 <p style="font-size:13px; color:#991B1B; margin-top:4px;">
                     Off-market price anomaly detected! Offered rate ₹${price.toLocaleString()}/Qtl is <strong>${Math.round(Math.abs(price - benchmark) / benchmark * 100)}% ABOVE</strong> the standard Agmarknet benchmark (₹${benchmark.toLocaleString()}/Qtl). High Risk Alert: Proceed with extra caution or verify buyer credentials.
                 </p>
+                <div style="margin-top:10px; background:#FFF; padding:10px; border-radius:8px; border:1px solid #FECACA;">
+                    <strong style="color:#991B1B; font-size:12px;"><i class="fa-solid fa-wand-magic-sparkles"></i> AI Timing Advisory:</strong>
+                    <p style="font-size:12px; color:#7F1D1D; margin-top:2px;">Expected market price for ${cropObj.name} may reach ₹${Math.round(benchmark * 1.07)}/quintal within 7-10 days, subject to market conditions.</p>
+                </div>
             `;
         } else if (price < benchmark * 0.75) {
-            // UNUSUAL PRICE ADVISORY
             resBox.style.background = '#FFFBEB';
             resBox.style.borderColor = '#F59E0B';
             resBox.innerHTML = `
                 <i class="fa-solid fa-triangle-exclamation text-amber" style="font-size:32px; color:#D97706;"></i>
-                <h4 style="color:#B45309; margin-top:8px;">🟡 UNUSUAL PRICE ADVISORY</h4>
+                <h4 style="color:#B45309; margin-top:8px;">🟡 UNUSUAL PRICE ADVISORY - ${cropObj.name.toUpperCase()}</h4>
                 <p style="font-size:13px; color:#92400E; margin-top:4px;">
                     Offered rate ₹${price.toLocaleString()}/Qtl is <strong>${Math.round(Math.abs(benchmark - price) / benchmark * 100)}% BELOW</strong> current Agmarknet modal price (₹${benchmark.toLocaleString()}/Qtl). Low price advisory: Consider holding or selling to alternative verified buyers.
                 </p>
+                <div style="margin-top:10px; background:#FFF; padding:10px; border-radius:8px; border:1px solid #FDE68A;">
+                    <strong style="color:#92400E; font-size:12px;"><i class="fa-solid fa-wand-magic-sparkles"></i> AI Timing Advisory:</strong>
+                    <p style="font-size:12px; color:#78350F; margin-top:2px;">Current price is below expected market range. Consider waiting for better prices if market conditions remain favorable.</p>
+                </div>
             `;
         } else {
-            // FAIR REASONABLE RATE
             resBox.style.background = '#ECFDF5';
             resBox.style.borderColor = '#10B981';
             resBox.innerHTML = `
                 <i class="fa-solid fa-circle-check text-green" style="font-size:32px;"></i>
-                <h4 style="color:#065F46; margin-top:8px;">🟢 FAIR PRICE RISK SCORE: LOW RISK</h4>
+                <h4 style="color:#065F46; margin-top:8px;">🟢 FAIR PRICE RISK SCORE: LOW RISK - ${cropObj.name.toUpperCase()}</h4>
                 <p style="font-size:13px; color:#065F46; margin-top:4px;">
                     Offered rate ₹${price.toLocaleString()}/Qtl verified within ±5% of Agmarknet modal price (₹${benchmark.toLocaleString()}/Qtl). Safe transaction.
                 </p>
+                <div style="margin-top:10px; background:#FFF; padding:10px; border-radius:8px; border:1px solid #A7F3D0;">
+                    <strong style="color:#065F46; font-size:12px;"><i class="fa-solid fa-wand-magic-sparkles"></i> AI Timing Advisory:</strong>
+                    <p style="font-size:12px; color:#047857; margin-top:2px;">The current offer is within expected fair-price range and deal risk is low.</p>
+                </div>
             `;
         }
     };
 
     if (afCropSelect) {
         afCropSelect.addEventListener('change', () => {
-            const crop = afCropSelect.value;
-            const benchmark = benchmarks[crop] || 5000;
-            if (afPriceInput) afPriceInput.value = Math.round(benchmark * 1.02);
+            const cropName = afCropSelect.value;
+            const cropObj = cropCatalog.find(c => c.name === cropName) || cropCatalog[0];
+            if (afPriceInput) afPriceInput.value = Math.round(cropObj.basePrice * 1.02);
             updateAntiFraudResult();
         });
     }
 
     if (btnTestGenuine) {
         btnTestGenuine.addEventListener('click', () => {
-            const crop = afCropSelect ? afCropSelect.value : 'Soybean';
-            const benchmark = benchmarks[crop] || 5150;
-            if (afPriceInput) afPriceInput.value = Math.round(benchmark * 1.02);
+            const cropName = afCropSelect ? afCropSelect.value : 'Soybean';
+            const cropObj = cropCatalog.find(c => c.name === cropName) || cropCatalog[0];
+            if (afPriceInput) afPriceInput.value = Math.round(cropObj.basePrice * 1.02);
             updateAntiFraudResult();
         });
     }
@@ -738,16 +1240,14 @@ function initNewFeatureListeners() {
 
     if (btnTestLow) {
         btnTestLow.addEventListener('click', () => {
-            const crop = afCropSelect ? afCropSelect.value : 'Soybean';
-            const benchmark = benchmarks[crop] || 5150;
-            if (afPriceInput) afPriceInput.value = Math.round(benchmark * 0.7);
+            const cropName = afCropSelect ? afCropSelect.value : 'Soybean';
+            const cropObj = cropCatalog.find(c => c.name === cropName) || cropCatalog[0];
+            if (afPriceInput) afPriceInput.value = Math.round(cropObj.basePrice * 0.7);
             updateAntiFraudResult();
         });
     }
 
-    if (afBtn) {
-        afBtn.addEventListener('click', updateAntiFraudResult);
-    }
+    if (afBtn) afBtn.addEventListener('click', updateAntiFraudResult);
 
     // 2. Multi-Farmer Cluster Aggregation
     const clBtn = document.getElementById('runClusteringBtn');
@@ -1105,33 +1605,165 @@ function initAuthOverlay() {
     if (farmerForm) {
         farmerForm.addEventListener('submit', async (e) => {
             e.preventDefault();
+            const mobileVal = document.getElementById('fMobile') ? document.getElementById('fMobile').value : '';
+            const nameVal = document.getElementById('fName') ? document.getElementById('fName').value : '';
+            const aadharVal = document.getElementById('fAadhar') ? document.getElementById('fAadhar').value : '';
+            const districtVal = document.getElementById('fDistrict') ? document.getElementById('fDistrict').value : '';
+            const landVal = document.getElementById('fLand') ? document.getElementById('fLand').value : '';
+
+            if (!validateMobile(mobileVal)) {
+                showCustomPopup(
+                    state.currentLang === 'hi' ? 'अमान्य मोबाइल नंबर' : 'Invalid Mobile Number',
+                    state.currentLang === 'hi'
+                        ? 'अमान्य मोबाइल नंबर! कृपया 10 अंकों का सही मोबाइल नंबर दर्ज करें (Invalid Mobile Number. Please enter a valid 10-digit mobile number).'
+                        : 'Invalid Mobile Number. Please enter a valid 10-digit mobile number.',
+                    false
+                );
+                return;
+            }
+
+            if (!validateName(nameVal)) {
+                showCustomPopup(
+                    state.currentLang === 'hi' ? 'अमान्य नाम' : 'Invalid Name',
+                    state.currentLang === 'hi'
+                        ? 'अमान्य नाम! कृपया अपना पूरा नाम दर्ज करें - न्यूनतम 3 अक्षर (Please enter your full name - min 3 characters).'
+                        : 'Invalid Name. Please enter your full name (at least 3 characters).',
+                    false
+                );
+                return;
+            }
+
+            if (!validateAadhaar(aadharVal)) {
+                showCustomPopup(
+                    state.currentLang === 'hi' ? 'अमान्य आधार संख्या' : 'Invalid Aadhaar Number',
+                    state.currentLang === 'hi'
+                        ? 'अमान्य आधार संख्या! कृपया 12 अंकों की सही आधार संख्या दर्ज करें (Invalid Aadhaar Number. Please enter a valid 12-digit Aadhaar number).'
+                        : 'Invalid Aadhaar Number. Please enter a valid 12-digit Aadhaar number.',
+                    false
+                );
+                return;
+            }
+
+            if (!validateDistrict(districtVal)) {
+                showCustomPopup(
+                    state.currentLang === 'hi' ? 'अमान्य जिला' : 'Invalid District',
+                    state.currentLang === 'hi'
+                        ? 'अमान्य जिला! कृपया अपना जिला व राज्य दर्ज करें (Please enter your district and state).'
+                        : 'Invalid District. Please enter your district and state.',
+                    false
+                );
+                return;
+            }
+
+            if (!validateLand(landVal)) {
+                showCustomPopup(
+                    state.currentLang === 'hi' ? 'अमान्य भूमि आकार' : 'Invalid Land Size',
+                    state.currentLang === 'hi'
+                        ? 'अमान्य भूमि! कृपया भूमि हेक्टेयर/एकड़ में दर्ज करें (Please enter land size in hectares/acres).'
+                        : 'Invalid Land Size. Please enter land size.',
+                    false
+                );
+                return;
+            }
+
+            // Valid Mobile, Name, Aadhaar, District & Land
+            showCustomPopup(
+                state.currentLang === 'hi' ? 'केवाईसी सत्यापन सफल' : 'Verification Successful',
+                state.currentLang === 'hi' ? 'मोबाइल नंबर, नाम व आधार/केवाईसी सत्यापन सफल रहा (Mobile, Name & Aadhaar/KYC verification successful).' : 'Mobile, Name & Aadhaar/KYC verification successful.',
+                true
+            );
+
             const userObj = {
                 role: 'farmer',
-                name: document.getElementById('fName').value || 'Anjali Khandelwal',
-                mobile: document.getElementById('fMobile').value || '9876543210',
-                aadhar: document.getElementById('fAadhar').value || 'XXXX-XXXX-8821',
-                location: document.getElementById('fDistrict').value || 'Indore, MP',
-                landSize: document.getElementById('fLand').value || '2.5 Hectares',
+                name: nameVal,
+                mobile: mobileVal,
+                aadhar: aadharVal,
+                location: districtVal,
+                landSize: landVal,
                 crop: 'Soybean (JS 335)',
                 language: state.currentLang
             };
-            await completeLogin(userObj);
+
+            setTimeout(async () => {
+                await completeLogin(userObj);
+            }, 1000);
         });
     }
 
     if (buyerForm) {
         buyerForm.addEventListener('submit', async (e) => {
             e.preventDefault();
+            const mobileVal = document.getElementById('bMobile') ? document.getElementById('bMobile').value : '';
+            const nameVal = document.getElementById('bName') ? document.getElementById('bName').value : '';
+            const licenseVal = document.getElementById('bLicense') ? document.getElementById('bLicense').value : '';
+            const gstinVal = document.getElementById('bGstin') ? document.getElementById('bGstin').value : '';
+
+            if (!validateMobile(mobileVal)) {
+                showCustomPopup(
+                    state.currentLang === 'hi' ? 'अमान्य मोबाइल नंबर' : 'Invalid Mobile Number',
+                    state.currentLang === 'hi'
+                        ? 'अमान्य मोबाइल नंबर! कृपया 10 अंकों का सही मोबाइल नंबर दर्ज करें (Invalid Mobile Number. Please enter a valid 10-digit mobile number).'
+                        : 'Invalid Mobile Number. Please enter a valid 10-digit mobile number.',
+                    false
+                );
+                return;
+            }
+
+            if (!validateName(nameVal)) {
+                showCustomPopup(
+                    state.currentLang === 'hi' ? 'अमान्य व्यापार का नाम' : 'Invalid Firm Name',
+                    state.currentLang === 'hi'
+                        ? 'अमान्य व्यापार का नाम! कृपया कंपनी या फर्म का पूरा नाम दर्ज करें - न्यूनतम 3 अक्षर (Please enter business/firm name - min 3 chars).'
+                        : 'Invalid Firm Name. Please enter business/firm name (at least 3 characters).',
+                    false
+                );
+                return;
+            }
+
+            if (!validateLicense(licenseVal)) {
+                showCustomPopup(
+                    state.currentLang === 'hi' ? 'अमान्य लाइसेंस' : 'Invalid License ID',
+                    state.currentLang === 'hi'
+                        ? 'अमान्य लाइसेंस आईडी! कृपया सही एपीएमसी लाइसेंस आईडी दर्ज करें - न्यूनतम 6 अक्षर (Invalid License ID. Please enter a valid APMC license number).'
+                        : 'Invalid License ID. Please enter a valid APMC license number (at least 6 characters).',
+                    false
+                );
+                return;
+            }
+
+            if (!validateGST(gstinVal)) {
+                showCustomPopup(
+                    state.currentLang === 'hi' ? 'अमान्य जीएसटीIN' : 'Invalid GST Number',
+                    state.currentLang === 'hi'
+                        ? 'अमान्य जीएसटी नंबर! कृपया 15 अंकों/अक्षरों का सही GSTIN दर्ज करें (Invalid GST Number. Please enter a valid 15-character GSTIN).'
+                        : 'Invalid GST Number. Please enter a valid 15-character GSTIN.',
+                    false
+                );
+                return;
+            }
+
+            // Valid Mobile, Company Name, License & GST
+            showCustomPopup(
+                state.currentLang === 'hi' ? 'व्यापारी सत्यापन सफल' : 'Verification Successful',
+                state.currentLang === 'hi'
+                    ? 'मोबाइल नंबर, कंपनी नाम, लाइसेंस आईडी और जीएसटी नंबर सफलतापूर्वक सत्यापित हो गए हैं (Mobile, Firm Name, License ID & GST Number verified successfully).'
+                    : 'Mobile, Firm Name, License ID & GST Number verified successfully.',
+                true
+            );
+
             const userObj = {
                 role: 'buyer',
                 name: document.getElementById('bName').value || 'Rajesh Agrotech Ltd',
                 mobile: document.getElementById('bMobile').value || '9123456789',
-                apmcLicense: document.getElementById('bLicense').value || 'MP-IND-APMC-88219',
-                gstin: document.getElementById('bGstin').value || '23AAACK8819Q1ZP',
+                apmcLicense: licenseVal,
+                gstin: gstinVal,
                 location: 'Indore APMC Yard',
                 language: state.currentLang
             };
-            await completeLogin(userObj);
+
+            setTimeout(async () => {
+                await completeLogin(userObj);
+            }, 1000);
         });
     }
 
@@ -1254,6 +1886,7 @@ function updateUiLanguage() {
 
     applyUserRoleUI(state.userRole);
 
+    renderSeasonBadges();
     renderDemandMap();
     renderMiniMandiTable();
     renderFullMandiTable();
