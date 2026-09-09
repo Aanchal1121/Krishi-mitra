@@ -1069,30 +1069,23 @@
                             <p>Rate buyers and farmers, submit feedback, or raise complaints/disputes.</p>
                         </div>
                     </div>
-                    <div class="grid-2-cols">
-                        <div class="card">
-                            <h3>Submit Farmer / Buyer Rating & Review</h3>
-                            <div class="form-group mt-3">
-                                <label>Target Firm / Farmer Name</label>
-                                <input type="text" id="fbTarget" value="ITC Ltd (Choupal Saagar)" class="form-input">
-                            </div>
-                            <div class="form-group mt-2">
-                                <label>Rating (1 to 5 Stars)</label>
-                                <select id="fbRating" class="form-select">
-                                    <option value="5">⭐⭐⭐⭐⭐ (5 - Excellent)</option>
-                                    <option value="4">⭐⭐⭐⭐ (4 - Very Good)</option>
-                                </select>
-                            </div>
-                            <div class="form-group mt-2">
-                                <label>Your Comments / Feedback</label>
-                                <textarea id="fbComment" class="form-input" style="height:70px;">Punctual payment and fair weighing at Choupal hub.</textarea>
-                            </div>
-                            <button class="btn btn-primary btn-full mt-3" id="submitFeedbackBtn">Submit Review & Rating</button>
+                    <div class="card">
+                        <h3>Submit Farmer / Buyer Rating</h3>
+                        <div class="form-group mt-3">
+                            <label>Target Firm / Farmer Name</label>
+                            <input type="text" id="fbTarget" value="ITC Ltd (Choupal Saagar)" class="form-input">
                         </div>
-                        <div class="card">
-                            <h3>Community Feedback</h3>
-                            <div id="feedbackList" class="mt-3"></div>
+                        <div class="form-group mt-2">
+                            <label>Rating (1 to 5 Stars)</label>
+                            <select id="fbRating" class="form-select">
+                                <option value="5">⭐⭐⭐⭐⭐ (5 - Excellent)</option>
+                                <option value="4">⭐⭐⭐⭐ (4 - Very Good)</option>
+                                <option value="3">⭐⭐⭐ (3 - Average)</option>
+                                <option value="2">⭐⭐ (2 - Below Average)</option>
+                                <option value="1">⭐ (1 - Poor)</option>
+                            </select>
                         </div>
+                        <button class="btn btn-primary btn-full mt-3" id="submitFeedbackBtn">Submit Rating</button>
                     </div>
                 </section>
 
@@ -1246,13 +1239,110 @@
                 <section class="tab-view" id="tab-buyer-demand-intel">
                     <div class="page-header">
                         <div>
-                            <h2>🔥 <span>Demand Intelligence & Procurement Insights</span></h2>
-                            <p>Identifies high crop demand trends, surplus procurement areas, and expected price movements.</p>
+                            <h2>🔥 <span>Demand Intelligence & Regional Procurement Insights</span></h2>
+                            <p>AI-powered analysis identifying high industrial deficit zones, surplus Mandi supply clusters, and 30-day crop price movement forecasts.</p>
                         </div>
                     </div>
-                    <div class="card" style="border-left:5px solid #3B82F6;">
-                        <h3>Procurement Opportunity: Indore Industrial Zone</h3>
-                        <p style="font-size:13px; color:#4B5563; margin-top:6px;">High industrial deficit for Soybean (800 MT). Procurement advice: Source from Ratlam Rural (Rate ₹4,900) for +₹510/Qtl margin benefit.</p>
+
+                    <!-- METRIC KPI STATS -->
+                    <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap:14px; margin-bottom:20px;">
+                        <div style="background:#FFFFFF; border:1px solid #E2E8E4; border-left:4px solid #EF4444; border-radius:12px; padding:16px;">
+                            <div style="display:flex; justify-content:space-between; align-items:center;">
+                                <span style="font-size:12px; font-weight:700; color:#64748B;">Total Regional Deficit</span>
+                                <span style="color:#EF4444; font-size:18px;"><i class="fa-solid fa-industry"></i></span>
+                            </div>
+                            <div style="font-size:24px; font-weight:800; color:#1E293B; margin:6px 0 2px 0;">4,250 MT</div>
+                            <small style="color:#EF4444; font-size:11px; font-weight:600;"><i class="fa-solid fa-arrow-trend-up"></i> High Buyer Demand</small>
+                        </div>
+                        <div style="background:#FFFFFF; border:1px solid #E2E8E4; border-left:4px solid #10B981; border-radius:12px; padding:16px;">
+                            <div style="display:flex; justify-content:space-between; align-items:center;">
+                                <span style="font-size:12px; font-weight:700; color:#64748B;">Active Surplus Hubs</span>
+                                <span style="color:#10B981; font-size:18px;"><i class="fa-solid fa-warehouse"></i></span>
+                            </div>
+                            <div style="font-size:24px; font-weight:800; color:#1E293B; margin:6px 0 2px 0;">8 Mandi Hubs</div>
+                            <small style="color:#059669; font-size:11px; font-weight:600;"><i class="fa-solid fa-check"></i> High Supply Availability</small>
+                        </div>
+                        <div style="background:#FFFFFF; border:1px solid #E2E8E4; border-left:4px solid #3B82F6; border-radius:12px; padding:16px;">
+                            <div style="display:flex; justify-content:space-between; align-items:center;">
+                                <span style="font-size:12px; font-weight:700; color:#64748B;">Direct Sourcing Margin</span>
+                                <span style="color:#3B82F6; font-size:18px;"><i class="fa-solid fa-sack-dollar"></i></span>
+                            </div>
+                            <div style="font-size:24px; font-weight:800; color:#1E293B; margin:6px 0 2px 0;">+₹480/Qtl</div>
+                            <small style="color:#2563EB; font-size:11px; font-weight:600;"><i class="fa-solid fa-shield-halved"></i> Direct FPO Arbitrage Benefit</small>
+                        </div>
+                        <div style="background:#FFFFFF; border:1px solid #E2E8E4; border-left:4px solid #8B5CF6; border-radius:12px; padding:16px;">
+                            <div style="display:flex; justify-content:space-between; align-items:center;">
+                                <span style="font-size:12px; font-weight:700; color:#64748B;">30-Day Demand Signal</span>
+                                <span style="color:#8B5CF6; font-size:18px;"><i class="fa-solid fa-chart-line"></i></span>
+                            </div>
+                            <div style="font-size:24px; font-weight:800; color:#1E293B; margin:6px 0 2px 0;">Bullish (+4.2%)</div>
+                            <small style="color:#7C3AED; font-size:11px; font-weight:600;"><i class="fa-solid fa-bolt"></i> Strong Festive Crushing Demand</small>
+                        </div>
+                    </div>
+
+                    <!-- CROP FILTER BUTTONS BAR -->
+                    <div style="margin-bottom:20px; display:flex; gap:8px; flex-wrap:wrap; align-items:center;">
+                        <span style="font-size:13px; font-weight:700; color:#475569; margin-right:4px;"><i class="fa-solid fa-filter"></i> Filter Demand Insights:</span>
+                        <button class="btn btn-sm btn-primary demand-filter-btn" onclick="filterDemandIntel('all', this)">All Crops</button>
+                        <button class="btn btn-sm btn-outline demand-filter-btn" onclick="filterDemandIntel('Oilseeds', this)">Oilseeds (Soybean/Mustard)</button>
+                        <button class="btn btn-sm btn-outline demand-filter-btn" onclick="filterDemandIntel('Cereals', this)">Cereals (Wheat/Maize)</button>
+                        <button class="btn btn-sm btn-outline demand-filter-btn" onclick="filterDemandIntel('Pulses', this)">Pulses (Chana/Masoor)</button>
+                    </div>
+
+                    <!-- INDUSTRIAL DEFICIT & SOURCING OPPORTUNITIES GRID -->
+                    <div style="margin-bottom:24px;">
+                        <h3 style="font-size:16px; font-weight:700; color:#1E293B; margin-bottom:12px; display:flex; align-items:center; gap:8px;">
+                            <i class="fa-solid fa-building-wheat" style="color:#2563EB;"></i> Industrial Deficit Zones & AI Optimal Sourcing Opportunities
+                        </h3>
+                        <div id="demandOpportunitiesContainer" style="display:grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap:16px;">
+                            <!-- Dynamic Content generated by renderBuyerDemandIntel() -->
+                        </div>
+                    </div>
+
+                    <!-- SURPLUS SUPPLY & PRICE MOVEMENT MATRIX -->
+                    <div style="margin-bottom:24px; background:#FFFFFF; border:1px solid #E2E8E4; border-radius:12px; padding:18px;">
+                        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:14px; flex-wrap:wrap; gap:8px;">
+                            <div>
+                                <h3 style="font-size:16px; font-weight:700; color:#1E293B; margin:0;">
+                                    <i class="fa-solid fa-map-location-dot" style="color:#059669;"></i> Regional Mandi Surplus & 14-Day Price Forecast
+                                </h3>
+                                <p style="font-size:12px; color:#64748B; margin:2px 0 0 0;">Live Mandi arrivals, quality moisture ratings, and predicted price direction</p>
+                            </div>
+                            <span class="tag" style="background:#ECFDF5; color:#065F46; border:1px solid #A7F3D0; font-size:11px; font-weight:700;"><i class="fa-solid fa-rotate"></i> Updated Live</span>
+                        </div>
+                        <div class="table-responsive">
+                            <table class="table" style="width:100%; border-collapse:collapse; font-size:13px;">
+                                <thead>
+                                    <tr style="background:#F8FAFC; border-bottom:2px solid #E2E8E4; text-align:left; color:#475569;">
+                                        <th style="padding:10px;">District Mandi Hub</th>
+                                        <th style="padding:10px;">Surplus Crop</th>
+                                        <th style="padding:10px;">Surplus Qty</th>
+                                        <th style="padding:10px;">Mandi Benchmark Rate</th>
+                                        <th style="padding:10px;">Quality & Moisture</th>
+                                        <th style="padding:10px;">14-Day Price Forecast</th>
+                                        <th style="padding:10px; text-align:right;">Direct Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="demandSurplusTableBody">
+                                    <!-- Dynamic Table Rows generated by renderBuyerDemandIntel() -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <!-- AI ARBITRAGE & TIMING ADVISORY BOX -->
+                    <div style="background:linear-gradient(135deg, #EFF6FF 0%, #F0FDF4 100%); border:1px solid #93C5FD; border-radius:12px; padding:18px;">
+                        <div style="display:flex; align-items:flex-start; gap:12px;">
+                            <div style="background:#2563EB; color:#FFFFFF; width:36px; height:36px; border-radius:10px; display:flex; align-items:center; justify-content:center; flex-shrink:0; font-size:18px;">
+                                <i class="fa-solid fa-robot"></i>
+                            </div>
+                            <div>
+                                <h4 style="font-size:15px; font-weight:700; color:#1E3A8A; margin:0 0 4px 0;">AI Arbitrage & Optimal Sourcing Timing Advice</h4>
+                                <p style="font-size:13px; color:#1E40AF; margin:0; line-height:1.5;">
+                                    <strong>Ratlam & Mandsaur Arbitrage Opportunity:</strong> Ratlam Mandi Soybean is currently trading at a <strong>₹260/Qtl discount</strong> relative to Dewas Mandi. Sourcing 500 Qtl directly from Ratlam FPO cluster yields a net savings of <strong>₹1,30,000</strong> post-transportation. Recommended window: <strong>Lock in contract within 48 hours</strong> before expected price rise due to oil mill demand.
+                                </p>
+                            </div>
+                        </div>
                     </div>
                 </section>
 
@@ -1312,20 +1402,23 @@
                             <p>Inspect farmer crop sample photos, official lab test reports, and AI quality scores before purchasing.</p>
                         </div>
                     </div>
-                    <div class="card">
-                        <div style="display:flex; justify-content:space-between; align-items:center;">
-                            <h3>Sample Quality Report #SAM-9912 (Farmer Submitted)</h3>
-                            <span class="tag tag-emerald">100% Quality Verified</span>
-                        </div>
-                        <div style="background:#ECFDF5; padding:18px; border-radius:12px; border:1px solid #10B981; margin-top:14px;">
+                    <div class="card" id="buyerQualityCard">
+                        <div id="buyerQualityContainer">
                             <div style="display:flex; justify-content:space-between; align-items:center;">
-                                <h4 style="color:#065F46; font-size:18px;"><i class="fa-solid fa-circle-check text-green"></i> Grade A+ (Export Quality) • Truth Score: 99/100</h4>
-                                <span style="background:#10B981; color:white; padding:3px 10px; border-radius:12px; font-size:11px; font-weight:700;">NABL Verified</span>
+                                <h3>Sample Quality Report #SAM-9912 (Farmer Submitted)</h3>
+                                <span class="tag tag-emerald">100% Quality Verified</span>
                             </div>
-                            <p style="font-size:13px; color:#047857; margin-top:6px;">
-                                • <strong>Laboratory Report NABL-MP-LAB-9921:</strong> Moisture: 10.2% | Oil Content: 19.5% | Impurities: 0.8%<br>
-                                • <strong>AI Image Analysis:</strong> Grain Size Uniformity: 96% | Visual Defects: 0.4% (Passed)
-                            </p>
+                            <div style="background:#ECFDF5; padding:18px; border-radius:12px; border:1px solid #10B981; margin-top:14px;">
+                                <div style="display:flex; justify-content:space-between; align-items:center;">
+                                    <h4 style="color:#065F46; font-size:18px;"><i class="fa-solid fa-circle-check text-green"></i> Grade A+ (Export Quality) • Truth Score: 99/100</h4>
+                                    <span style="background:#10B981; color:white; padding:3px 10px; border-radius:12px; font-size:11px; font-weight:700;">NABL Verified</span>
+                                </div>
+                                <p style="font-size:13px; color:#047857; margin-top:6px;">
+                                    • <strong>Farmer:</strong> Anjali Khandelwal (Indore, MP - Verified Farmer)<br>
+                                    • <strong>Laboratory Report NABL-MP-LAB-9921:</strong> Moisture: 10.2% | Oil Content: 19.5% | Impurities: 0.8%<br>
+                                    • <strong>AI Image Analysis:</strong> Grain Size Uniformity: 96% | Visual Defects: 0.4% (Passed)
+                                </p>
+                            </div>
                         </div>
                     </div>
                 </section>
@@ -1336,20 +1429,7 @@
                     <div class="page-header">
                         <div>
                             <h2>🛡️ <span>AI Price & Deal Risk Detector</span></h2>
-                            <p>Highlights price risk indicators and market timing suggestions for buyers.</p>
-                        </div>
-                    </div>
-                    <!-- AI MARKET TIMING & ADVISORY BOX -->
-                    <div class="card mb-4" style="background:#FFFBEB; border:1.5px solid #FCD34D;">
-                        <div style="display:flex; align-items:center; gap:10px;">
-                            <i class="fa-solid fa-lightbulb text-amber" style="font-size:24px;"></i>
-                            <div>
-                                <h4 style="color:#92400E;">AI Timing & Deal Advisory (खरीद व बिक्री AI समय सलाह)</h4>
-                                <p style="font-size:13px; color:#78350F; margin-top:2px;">
-                                    💡 <strong>Market Trend:</strong> Wheat & Soybean mandi rates are expected to increase by <strong>+7.0% (approx +₹350/Qtl)</strong> over the next 7 days due to reduced arrivals.<br>
-                                    🎯 <strong>AI Recommendation:</strong> Lock procurement contracts immediately at current benchmark rates (₹5,250 - ₹5,350/Qtl) before prices increase further!
-                                </p>
-                            </div>
+                            <p>Highlights price risk indicators for buyers.</p>
                         </div>
                     </div>
 
@@ -1359,17 +1439,7 @@
                             <label>Seller Asking Rate (₹/Qtl)</label>
                             <input type="number" id="buyerRiskPrice" value="7800" class="form-input">
                         </div>
-                        <button class="btn btn-primary btn-full mt-3" onclick="
-                            const p = parseFloat(document.getElementById('buyerRiskPrice').value) || 0;
-                            const res = document.getElementById('buyerRiskBox');
-                            if(p > 6000) {
-                                res.style.background='#FEF2F2'; res.style.borderColor='#EF4444';
-                                res.innerHTML='<h4 style=\'color:#DC2626;\'>⚠️ HIGH ASKING PRICE RISK</h4><p style=\'font-size:13px; color:#991B1B;\'>Asking price ₹'+p+' is +50% above current mandi average (₹5,200). High cost risk.</p>';
-                            } else {
-                                res.style.background='#ECFDF5'; res.style.borderColor='#10B981';
-                                res.innerHTML='<h4 style=\'color:#065F46;\'>🟢 FAIR DEAL PRICE</h4><p style=\'font-size:13px; color:#065F46;\'>Asking price is aligned with market benchmark.</p>';
-                            }
-                        ">Evaluate Deal Risk</button>
+                        <button class="btn btn-primary btn-full mt-3" id="btnEvaluateBuyerRisk" onclick="evaluateBuyerDealRisk()">Evaluate Deal Risk</button>
                         <div id="buyerRiskBox" class="mt-3" style="padding:16px; border-radius:10px;"></div>
                     </div>
                 </section>
@@ -1423,12 +1493,12 @@
                 <section class="tab-view" id="tab-buyer-feedback">
                     <div class="page-header">
                         <div>
-                            <h2>⭐ <span>Farmer & FPO Ratings & Reviews</span></h2>
+                            <h2>⭐ <span>Farmer & FPO Ratings</span></h2>
                             <p>Rate suppliers on quality compliance, punctuality, and trust score.</p>
                         </div>
                     </div>
                     <div class="card">
-                        <h3>Submit Supplier Rating & Review</h3>
+                        <h3>Submit Supplier Rating</h3>
                         <div class="form-group mt-3">
                             <label>Supplier Type</label>
                             <select id="buyerFbType" class="form-select">
@@ -1451,11 +1521,7 @@
                                 <option value="1">⭐ (1 Star - Poor Quality)</option>
                             </select>
                         </div>
-                        <div class="form-group mt-2">
-                            <label>Review Comment</label>
-                            <textarea id="buyerFbComment" class="form-input" rows="3" placeholder="Enter supplier review comments... e.g. Punctual delivery, fair moisture % and clean Grade A produce!"></textarea>
-                        </div>
-                        <button class="btn btn-primary btn-full mt-3" id="btnSubmitBuyerRating">Publish Supplier Rating & Review</button>
+                        <button class="btn btn-primary btn-full mt-3" id="btnSubmitBuyerRating">Publish Supplier Rating</button>
                     </div>
                 </section>
 
@@ -1550,7 +1616,7 @@
             <div id="popupModalContent">
                 <i class="fa-solid fa-circle-check text-green popup-icon-large" id="popupIcon"></i>
                 <h3 id="popupTitle" style="font-size:20px; font-weight:700; margin-bottom:8px;">Notification</h3>
-                <p id="popupMessage" style="font-size:14px; color:var(--text-muted); margin-bottom:18px;">Message content here...</p>
+                <div id="popupMessage" style="font-size:14px; color:var(--text-muted); margin-bottom:18px;">Message content here...</div>
                 <button class="btn btn-primary btn-full" id="btnPopupOk">OK / ठीक है</button>
             </div>
         </div>

@@ -522,7 +522,7 @@ function showCustomPopup(title, message, isSuccess = true) {
 
     if (!modal) return;
     if (titleEl) titleEl.innerText = title;
-    if (msgEl) msgEl.innerText = message;
+    if (msgEl) msgEl.innerHTML = message;
 
     if (icon) {
         if (isSuccess) {
@@ -826,6 +826,11 @@ function switchTab(targetTab) {
     });
 
     state.currentTab = targetTab;
+
+    if (targetTab.startsWith('buyer-') || state.userRole === 'buyer') {
+        renderBuyerViews();
+    }
+
     window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
@@ -835,33 +840,53 @@ function renderBuyerViews() {
     renderBuyerLedger();
     renderBuyerAnalytics();
     renderBuyerFpo();
+    renderBuyerDemandIntel();
 }
 
 function renderBuyerMarketplace() {
     const grid = document.getElementById('buyerMarketplaceGrid');
     if (!grid) return;
 
-    grid.innerHTML = [
-        { farmer: 'Anjali Khandelwal (Indore)', crop: 'Soybean (Grade A)', qty: '30 Quintals', askingRate: 5250, distance: '12 km', status: '🟢 Fair Price' },
-        { farmer: 'Ramesh Patel (Depalpur)', crop: 'Soybean (Grade A)', qty: '35 Quintals', askingRate: 5280, distance: '22 km', status: '🟢 Fair Price' },
-        { farmer: 'Suresh Verma (Sanwer)', crop: 'Wheat (Grade A)', qty: '50 Quintals', askingRate: 2510, distance: '18 km', status: '🟢 Fair Price' },
-        { farmer: 'Malwa FPO Cooperative', crop: 'Soybean (Bulk Pool)', qty: '365 Quintals', askingRate: 5320, distance: '15 km', status: '🟢 Fair Price' }
-    ].map(item => `
-        <div class="buyer-card" style="background:#FFFFFF; border:1px solid #E2E8E4; border-radius:12px; padding:16px; margin-bottom:12px;">
-            <div class="buyer-header" style="display:flex; justify-content:space-between; align-items:flex-start;">
-                <div>
-                    <span class="tag tag-emerald mb-1"><i class="fa-solid fa-user-check"></i> ${item.farmer}</span>
-                    <h3 class="buyer-name" style="margin-top:4px; font-size:16px;">${item.crop} (${item.qty})</h3>
-                    <small class="text-muted"><i class="fa-solid fa-location-dot"></i> Distance: ${item.distance}</small>
-                </div>
-                <div style="text-align:right;">
-                    <div class="buyer-offer" style="font-size:20px; font-weight:800; color:#10B981;">₹${item.askingRate.toLocaleString()} <small>/ Qtl</small></div>
-                    <span style="font-size:11px; background:#ECFDF5; color:#065F46; padding:2px 8px; border-radius:10px; font-weight:700;">${item.status}</span>
+    const items = [
+        { farmer: 'Anjali Khandelwal (Indore)', crop: 'Soybean (Grade A)', qty: '30 Quintals', askingRate: 5250, distance: '12 km', status: '🟢 Fair Price', moisture: '10.2%' },
+        { farmer: 'Ramesh Patel (Depalpur)', crop: 'Soybean (Grade A)', qty: '35 Quintals', askingRate: 5280, distance: '22 km', status: '🟢 Fair Price', moisture: '10.5%' },
+        { farmer: 'Suresh Verma (Sanwer)', crop: 'Wheat (Sharbati Grade A+)', qty: '50 Quintals', askingRate: 2510, distance: '18 km', status: '🟢 Fair Price', moisture: '9.8%' },
+        { farmer: 'Malwa FPO Cooperative', crop: 'Soybean (Bulk Pool)', qty: '365 Quintals', askingRate: 5320, distance: '15 km', status: '🟢 Fair Price', moisture: '10.0%' },
+        { farmer: 'Vikram Singh (Vidisha FPO)', crop: 'Wheat (Lokwan 1)', qty: '120 Quintals', askingRate: 2380, distance: '45 km', status: '🟢 Fair Price', moisture: '10.1%' },
+        { farmer: 'Deepak Sharma (Mandsaur)', crop: 'Mustard (Yellow Seed)', qty: '80 Quintals', askingRate: 5300, distance: '65 km', status: '🟢 Fair Price', moisture: '8.5%' },
+        { farmer: 'Narsinghpur Pulses Group', crop: 'Chickpea / Desi Chana', qty: '150 Quintals', askingRate: 5050, distance: '80 km', status: '🟢 Fair Price', moisture: '10.0%' },
+        { farmer: 'Kailash Joshi (Ratlam)', crop: 'Black Urad / Lentil', qty: '40 Quintals', askingRate: 6100, distance: '35 km', status: '🟢 Fair Price', moisture: '10.3%' }
+    ];
+
+    grid.style.display = 'grid';
+    grid.style.gridTemplateColumns = 'repeat(auto-fit, minmax(320px, 1fr))';
+    grid.style.gap = '16px';
+
+    grid.innerHTML = items.map(item => `
+        <div class="card buyer-card" style="background:#FFFFFF; border:1px solid #E2E8E4; border-radius:12px; padding:18px; display:flex; flex-direction:column; justify-content:space-between;">
+            <div>
+                <div style="display:flex; justify-content:space-between; align-items:flex-start;">
+                    <div>
+                        <span class="tag tag-emerald mb-1"><i class="fa-solid fa-user-check"></i> ${item.farmer}</span>
+                        <h3 class="buyer-name" style="margin-top:6px; font-size:16px; font-weight:700; color:#1E293B;">${item.crop}</h3>
+                        <div style="font-size:12px; color:#64748B; margin-top:2px;">
+                            <strong>Quantity:</strong> ${item.qty} &bull; <strong>Moisture:</strong> ${item.moisture}
+                        </div>
+                        <small class="text-muted" style="display:block; margin-top:4px;"><i class="fa-solid fa-location-dot"></i> Distance: ${item.distance}</small>
+                    </div>
+                    <div style="text-align:right;">
+                        <div class="buyer-offer" style="font-size:20px; font-weight:800; color:#10B981;">₹${item.askingRate.toLocaleString()} <small style="font-size:11px; font-weight:normal; color:#64748B;">/ Qtl</small></div>
+                        <span style="font-size:11px; background:#ECFDF5; color:#065F46; padding:2px 8px; border-radius:10px; font-weight:700; display:inline-block; margin-top:4px;">${item.status}</span>
+                    </div>
                 </div>
             </div>
-            <div style="display:flex; gap:8px; margin-top:14px;">
-                <button class="btn btn-primary flex-1 btn-sm" onclick="triggerDealAccept('${item.farmer}', ${item.askingRate})">Buy Now / Accept Asking Price</button>
-                <button class="btn btn-outline btn-sm" onclick="alert('Negotiation offer sent to ${item.farmer}')">Send Counter Offer</button>
+            <div style="display:flex; gap:8px; margin-top:16px;">
+                <button class="btn btn-primary flex-1 btn-sm" onclick="triggerDealAccept('${item.farmer}', ${item.askingRate})">
+                    <i class="fa-solid fa-cart-shopping"></i> Buy Now / Accept Price
+                </button>
+                <button class="btn btn-outline btn-sm" onclick="alert('Negotiation offer sent to ${item.farmer}')">
+                    <i class="fa-solid fa-comments"></i> Counter Offer
+                </button>
             </div>
         </div>
     `).join('');
@@ -890,20 +915,104 @@ function renderBuyerAnalytics() {
     const container = document.getElementById('buyerAnalyticsList');
     if (!container) return;
 
+    const cardsHtml = cropCatalog.map(c => {
+        const minP = Math.round(c.basePrice * 0.96);
+        const maxP = Math.round(c.basePrice * 1.04);
+        const cropDisp = state.currentLang === 'hi' ? (c.nameHi || c.name) : c.name;
+        
+        let tagColor = '#10B981';
+        let bgStyle = '#F0FDF4';
+        let borderStyle = '#86EFAC';
+        if (c.category === 'Pulses') {
+            tagColor = '#D97706';
+            bgStyle = '#FEF3C7';
+            borderStyle = '#FDE68A';
+        } else if (c.category === 'Cereals') {
+            tagColor = '#2563EB';
+            bgStyle = '#EFF6FF';
+            borderStyle = '#93C5FD';
+        } else if (c.category === 'Commercial') {
+            tagColor = '#9333EA';
+            bgStyle = '#FAF5FF';
+            borderStyle = '#E9D5FF';
+        }
+
+        return `
+            <div class="card crop-analytics-card" onclick="openCropTrendAnalyticsModal('${c.name}')" style="background:#FFFFFF; border:1.5px solid #E2E8E4; border-radius:12px; padding:16px; cursor:pointer; transition: all 0.2s ease;" onmouseover="this.style.borderColor='#10B981'; this.style.transform='translateY(-2px)';" onmouseout="this.style.borderColor='#E2E8E4'; this.style.transform='none';">
+                <div style="display:flex; justify-content:space-between; align-items:flex-start;">
+                    <div>
+                        <span class="tag" style="background:${bgStyle}; color:${tagColor}; border:1px solid ${borderStyle}; font-weight:700; font-size:11px; margin-bottom:6px; display:inline-block;">${c.category} • ${c.season}</span>
+                        <h3 style="font-size:16px; color:#1E293B; margin:4px 0; font-weight:700;">${cropDisp} <small style="font-size:12px; color:#64748B;">(${c.name})</small></h3>
+                    </div>
+                    <span style="color:${tagColor}; font-size:16px;"><i class="fa-solid fa-chart-line"></i></span>
+                </div>
+                <div style="margin-top:10px;">
+                    <div style="font-size:20px; font-weight:800; color:${tagColor};">₹${minP.toLocaleString()} - ₹${maxP.toLocaleString()} <small style="font-size:11px; color:#64748B;">/ Qtl</small></div>
+                    <div style="font-size:12px; color:#475569; margin-top:6px; display:flex; justify-content:space-between; align-items:center;">
+                        <span><i class="fa-solid fa-location-dot"></i> Mandi Benchmark</span>
+                        <span style="font-weight:700; color:#059669;"><i class="fa-solid fa-arrow-right"></i> Details</span>
+                    </div>
+                </div>
+            </div>
+        `;
+    }).join('');
+
     container.innerHTML = `
-        <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap:14px;">
-            <div style="padding:14px; border:1px solid #E2E8E4; border-radius:10px; background:#F9FBF9;">
-                <h4>Soybean Industrial Benchmark</h4>
-                <div style="font-size:22px; font-weight:800; color:#10B981;">₹5,150 - ₹5,350 / Qtl</div>
-                <small style="color:#047857;">Arrival Volume: High (Indore & Ujjain APMC)</small>
-            </div>
-            <div style="padding:14px; border:1px solid #E2E8E4; border-radius:10px; background:#F9FBF9;">
-                <h4>Wheat Milling Quality Benchmark</h4>
-                <div style="font-size:22px; font-weight:800; color:#2563EB;">₹2,450 - ₹2,550 / Qtl</div>
-                <small style="color:#1D4ED8;">Forecast: Stable over next 7 days</small>
-            </div>
+        <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap:16px;">
+            ${cardsHtml}
         </div>
     `;
+}
+
+function openCropTrendAnalyticsModal(cropName) {
+    const crop = cropCatalog.find(c => c.name.toLowerCase() === cropName.toLowerCase()) || cropCatalog[0];
+    const cropDisp = state.currentLang === 'hi' ? (crop.nameHi || crop.name) : crop.name;
+    const base = crop.basePrice || 5000;
+    const minP = Math.round(base * 0.96);
+    const maxP = Math.round(base * 1.04);
+
+    showCustomPopup(
+        `📈 Mandi Price Trend & Ceiling Rates — ${cropDisp} (${crop.name})`,
+        `
+        <div style="text-align:left; font-family:Inter, sans-serif;">
+            <div style="background:#ECFDF5; border:1px solid #10B981; padding:14px; border-radius:10px; margin-bottom:12px;">
+                <div style="font-size:12px; color:#065F46; font-weight:700;">State APMC Mandi Benchmark Range (${crop.season} Season):</div>
+                <div style="font-size:24px; font-weight:800; color:#059669;">₹${minP.toLocaleString()} - ₹${maxP.toLocaleString()} / Quintal</div>
+                <p style="font-size:12px; color:#047857; margin-top:4px;">Procurement Ceiling Rate: <strong>₹${maxP.toLocaleString()}/Qtl</strong> (Industrial Max Buying Rate)</p>
+            </div>
+            
+            <h4 style="font-size:14px; color:#1E293B; margin-bottom:8px;">📊 Live APMC Mandi Rates & Arrival Breakdown:</h4>
+            <div style="display:grid; grid-template-columns:1fr 1fr; gap:8px; font-size:12px; margin-bottom:14px;">
+                <div style="padding:10px; background:#F8FAFC; border-radius:8px; border:1px solid #CBD5E1;">
+                    <strong>Indore APMC:</strong> ₹${base.toLocaleString()}/Qtl<br>
+                    <small style="color:#059669;">Arrival: 4,500 Qtl (High)</small>
+                </div>
+                <div style="padding:10px; background:#F8FAFC; border-radius:8px; border:1px solid #CBD5E1;">
+                    <strong>Ujjain APMC:</strong> ₹${Math.round(base * 1.02).toLocaleString()}/Qtl<br>
+                    <small style="color:#059669;">Arrival: 3,200 Qtl (Moderate)</small>
+                </div>
+                <div style="padding:10px; background:#F8FAFC; border-radius:8px; border:1px solid #CBD5E1;">
+                    <strong>Bhopal APMC:</strong> ₹${Math.round(base * 1.03).toLocaleString()}/Qtl<br>
+                    <small style="color:#D97706;">Arrival: 2,100 Qtl (High Deficit)</small>
+                </div>
+                <div style="padding:10px; background:#F8FAFC; border-radius:8px; border:1px solid #CBD5E1;">
+                    <strong>Neemuch APMC:</strong> ₹${Math.round(base * 1.04).toLocaleString()}/Qtl<br>
+                    <small style="color:#059669;">Arrival: 1,900 Qtl (Peak Grade)</small>
+                </div>
+            </div>
+
+            <div style="margin-top:12px; display:flex; gap:8px;">
+                <button class="btn btn-primary btn-full" onclick="
+                    document.getElementById('customPopupModal').classList.add('hidden');
+                    openBiddingForVerifiedLot('${crop.name} Verified Farmer Lots', ${base});
+                ">
+                    <i class="fa-solid fa-paper-plane"></i> Send Purchase Offer for ${cropDisp} (₹${base}/Qtl)
+                </button>
+            </div>
+        </div>
+        `,
+        true
+    );
 }
 
 function renderBuyerFpo() {
@@ -920,6 +1029,178 @@ function renderBuyerFpo() {
             <button class="btn btn-primary btn-sm mt-2" onclick="alert('Direct procurement contract initiated with Malwa FPO!')">Contract Direct Tonnage</button>
         </div>
     `;
+}
+
+function renderBuyerDemandIntel(filterCategory = 'all') {
+    const oppContainer = document.getElementById('demandOpportunitiesContainer');
+    const tableBody = document.getElementById('demandSurplusTableBody');
+    if (!oppContainer || !tableBody) return;
+
+    const opportunities = [
+        {
+            zone: 'Indore Industrial Zone',
+            crop: 'Soybean (JS 335 / Grade A)',
+            category: 'Oilseeds',
+            deficit: '800 MT Deficit',
+            severity: 'high',
+            plantRate: 5350,
+            sourcingCluster: 'Ratlam Rural APMC Hub',
+            clusterRate: 4890,
+            savings: '+₹460/Qtl',
+            batchSavings: '₹3,68,000 / 800 Qtl',
+            surplusQty: '1,200 MT Available'
+        },
+        {
+            zone: 'Bhopal Processing & Flour Mills',
+            crop: 'Wheat (Sharbati / Lokwan 1)',
+            category: 'Cereals',
+            deficit: '1,400 MT Deficit',
+            severity: 'moderate',
+            plantRate: 2580,
+            sourcingCluster: 'Vidisha FPO Producer Cluster',
+            clusterRate: 2350,
+            savings: '+₹230/Qtl',
+            batchSavings: '₹2,30,000 / 1000 Qtl',
+            surplusQty: '2,500 MT Available'
+        },
+        {
+            zone: 'Ujjain Solvent & Oil Extraction Mills',
+            crop: 'Mustard Seed (Yellow / High Oil 42%)',
+            category: 'Oilseeds',
+            deficit: '650 MT Deficit',
+            severity: 'high',
+            plantRate: 5750,
+            sourcingCluster: 'Morena-Mandsaur APMC Belt',
+            clusterRate: 5280,
+            savings: '+₹470/Qtl',
+            batchSavings: '₹2,35,000 / 500 Qtl',
+            surplusQty: '950 MT Available'
+        },
+        {
+            zone: 'Jabalpur Pulses & Milling Hub',
+            crop: 'Chickpea / Chana (Desi & Kabuli)',
+            category: 'Pulses',
+            deficit: '900 MT Deficit',
+            severity: 'moderate',
+            plantRate: 5450,
+            sourcingCluster: 'Narsinghpur Farmer Group Pool',
+            clusterRate: 5020,
+            savings: '+₹430/Qtl',
+            batchSavings: '₹2,15,000 / 500 Qtl',
+            surplusQty: '1,800 MT Available'
+        }
+    ];
+
+    const filteredOpps = filterCategory === 'all'
+        ? opportunities
+        : opportunities.filter(o => o.category.toLowerCase() === filterCategory.toLowerCase());
+
+    oppContainer.innerHTML = filteredOpps.map(opp => {
+        const isHigh = opp.severity === 'high';
+        const badgeBg = isHigh ? '#FEF2F2' : '#FEF3C7';
+        const badgeColor = isHigh ? '#991B1B' : '#92400E';
+        const badgeBorder = isHigh ? '#FECACA' : '#FDE68A';
+
+        return `
+            <div class="card" style="background:#FFFFFF; border:1px solid #E2E8E4; border-radius:12px; padding:18px; position:relative;">
+                <div style="display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:10px;">
+                    <div>
+                        <span class="tag" style="background:${badgeBg}; color:${badgeColor}; border:1px solid ${badgeBorder}; font-size:11px; font-weight:700;">
+                            <i class="fa-solid fa-triangle-exclamation"></i> ${opp.deficit}
+                        </span>
+                        <h4 style="font-size:16px; font-weight:700; color:#1E293B; margin:6px 0 2px 0;">${opp.zone}</h4>
+                        <div style="font-size:13px; color:#475569; font-weight:600;"><i class="fa-solid fa-wheat-awn" style="color:#10B981;"></i> ${opp.crop}</div>
+                    </div>
+                    <div style="text-align:right;">
+                        <span style="font-size:11px; color:#64748B; display:block;">Target Margin Benefit</span>
+                        <span style="font-size:18px; font-weight:800; color:#059669;">${opp.savings}</span>
+                    </div>
+                </div>
+
+                <div style="background:#F8FAFC; border:1px solid #E2E8E4; border-radius:8px; padding:12px; margin:12px 0; font-size:12px;">
+                    <div style="display:flex; justify-content:space-between; margin-bottom:4px;">
+                        <span style="color:#64748B;">Industrial Plant Buying Rate:</span>
+                        <strong style="color:#1E293B;">₹${opp.plantRate.toLocaleString()}/Qtl</strong>
+                    </div>
+                    <div style="display:flex; justify-content:space-between; margin-bottom:4px;">
+                        <span style="color:#64748B;">Recommended Sourcing Cluster:</span>
+                        <strong style="color:#2563EB;">${opp.sourcingCluster}</strong>
+                    </div>
+                    <div style="display:flex; justify-content:space-between; margin-bottom:4px;">
+                        <span style="color:#64748B;">Cluster Mandi Procurement Rate:</span>
+                        <strong style="color:#059669;">₹${opp.clusterRate.toLocaleString()}/Qtl</strong>
+                    </div>
+                    <div style="display:flex; justify-content:space-between; border-top:1px dashed #CBD5E1; padding-top:4px; margin-top:4px;">
+                        <span style="color:#475569; font-weight:600;">Net Batch Profit Benefit:</span>
+                        <strong style="color:#059669;">${opp.batchSavings}</strong>
+                    </div>
+                </div>
+
+                <div style="display:flex; gap:8px;">
+                    <button class="btn btn-primary btn-sm flex-1" onclick="openBiddingForVerifiedLot('${opp.sourcingCluster} (${opp.crop})', ${opp.clusterRate})">
+                        <i class="fa-solid fa-paper-plane"></i> Send Direct Offer (₹${opp.clusterRate}/Qtl)
+                    </button>
+                    <button class="btn btn-outline btn-sm" onclick="connectFpoDirect()">
+                        <i class="fa-solid fa-handshake"></i> FPO Direct
+                    </button>
+                </div>
+            </div>
+        `;
+    }).join('');
+
+    const surplusList = [
+        { mandi: 'Ratlam APMC Mandi Hub', crop: 'Soybean (JS 335)', category: 'Oilseeds', qty: '1,200 MT', rate: 4890, grade: 'Grade A+ (Moisture 10.1%)', forecast: '📈 +3.5% (Buy Now)', forecastType: 'bullish' },
+        { mandi: 'Dewas Mandi Yard', crop: 'Soybean (JS 9560)', category: 'Oilseeds', qty: '850 MT', rate: 5150, grade: 'Grade A (Moisture 10.4%)', forecast: '➡️ Stable', forecastType: 'neutral' },
+        { mandi: 'Vidisha Mandi Hub', crop: 'Wheat (Sharbati)', category: 'Cereals', qty: '2,500 MT', rate: 2350, grade: 'Grade A+ (Moisture 9.8%)', forecast: '📈 +2.8% (Rising)', forecastType: 'bullish' },
+        { mandi: 'Narsinghpur Mandi', crop: 'Chana / Desi Gram', category: 'Pulses', qty: '1,800 MT', rate: 5020, grade: 'Grade A (Moisture 10.0%)', forecast: '📈 +4.0% (Demand Peak)', forecastType: 'bullish' },
+        { mandi: 'Morena APMC Hub', crop: 'Mustard (High Oil)', category: 'Oilseeds', qty: '950 MT', rate: 5280, grade: 'Grade A+ (Oil 42%)', forecast: '➡️ Stable', forecastType: 'neutral' },
+        { mandi: 'Harda Mandi Hub', crop: 'Maize / Corn', category: 'Cereals', qty: '1,600 MT', rate: 2050, grade: 'Grade A (Moisture 11.2%)', forecast: '📉 -1.5% (Cooling)', forecastType: 'bearish' }
+    ];
+
+    const filteredSurplus = filterCategory === 'all'
+        ? surplusList
+        : surplusList.filter(s => s.category.toLowerCase() === filterCategory.toLowerCase());
+
+    tableBody.innerHTML = filteredSurplus.map(s => {
+        let forecastBg = '#ECFDF5';
+        let forecastColor = '#065F46';
+        if (s.forecastType === 'neutral') {
+            forecastBg = '#FEF3C7';
+            forecastColor = '#92400E';
+        } else if (s.forecastType === 'bearish') {
+            forecastBg = '#FEF2F2';
+            forecastColor = '#991B1B';
+        }
+
+        return `
+            <tr style="border-bottom:1px solid #F1F5F9;">
+                <td style="padding:12px 10px;"><strong><i class="fa-solid fa-location-dot" style="color:#059669;"></i> ${s.mandi}</strong></td>
+                <td style="padding:12px 10px;">${s.crop}</td>
+                <td style="padding:12px 10px;"><span class="tag" style="background:#F1F5F9; color:#334155; font-weight:700;">${s.qty}</span></td>
+                <td style="padding:12px 10px; font-weight:800; color:#059669;">₹${s.rate.toLocaleString()}/Qtl</td>
+                <td style="padding:12px 10px; font-size:12px; color:#475569;">${s.grade}</td>
+                <td style="padding:12px 10px;"><span style="background:${forecastBg}; color:${forecastColor}; padding:4px 8px; border-radius:6px; font-size:11px; font-weight:700;">${s.forecast}</span></td>
+                <td style="padding:12px 10px; text-align:right;">
+                    <button class="btn btn-sm btn-outline" style="font-size:11px; padding:4px 10px;" onclick="openBiddingForVerifiedLot('${s.mandi} - ${s.crop}', ${s.rate})">
+                        Procure Lot
+                    </button>
+                </td>
+            </tr>
+        `;
+    }).join('');
+}
+
+function filterDemandIntel(category, btnEl) {
+    const buttons = document.querySelectorAll('.demand-filter-btn');
+    buttons.forEach(b => {
+        b.classList.remove('btn-primary');
+        b.classList.add('btn-outline');
+    });
+    if (btnEl) {
+        btnEl.classList.remove('btn-outline');
+        btnEl.classList.add('btn-primary');
+    }
+    renderBuyerDemandIntel(category);
 }
 
 // --- PRICE FORECAST & ADVISORY ENGINE ---
@@ -1111,6 +1392,25 @@ function setLabStep(stepNum) {
             `;
         }
     } else if (stepNum === 3) {
+        state.farmerQualityReport = {
+            farmerName: state.userName || 'Anjali Khandelwal',
+            farmerLocation: state.userLocation || 'Indore, MP',
+            crop: 'Soybean (JS 335, Lot #LOT-9921)',
+            labReportId: 'NABL-MP-LAB-9921',
+            grade: 'GRADE A+ (Export Quality)',
+            truthScore: '99%',
+            moisture: '10.2%',
+            proteinOil: '19.5%',
+            impurities: '0.8%',
+            uniformity: '96%',
+            recommendedRate: 5350,
+            timestamp: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
+        };
+        try {
+            localStorage.setItem('km_quality_report', JSON.stringify(state.farmerQualityReport));
+        } catch (e) { }
+        renderBuyerQualityVerification();
+
         if (resBox) {
             resBox.innerHTML = `
                 <div style="background:#ECFDF5; border:1px solid #10B981; border-radius:12px; padding:16px; animation: fadeIn 0.3s ease;">
@@ -1324,18 +1624,19 @@ function initNewFeatureListeners() {
         fbBtn.addEventListener('click', () => {
             const target = document.getElementById('fbTarget') ? document.getElementById('fbTarget').value : 'ITC Ltd';
             const rating = parseInt(document.getElementById('fbRating').value) || 5;
-            const comment = document.getElementById('fbComment').value || 'Great service!';
 
             state.feedbacks.unshift({
                 id: state.feedbacks.length + 1,
                 user: `${state.userName} (${state.userRole === 'farmer' ? 'Farmer' : 'Buyer'})`,
                 target,
-                rating,
-                comment
+                rating
             });
 
-            renderFeedbackList();
-            alert('Thank you! Your feedback and rating have been published.');
+            showCustomPopup(
+                state.currentLang === 'hi' ? 'रेटिंग सबमिट हुई' : 'Rating Submitted',
+                state.currentLang === 'hi' ? `${target} के लिए आपकी ${rating}-स्टार रेटिंग सफलतापूर्वक सबमिट हो गई है।` : `Your ${rating}-star rating for ${target} has been submitted successfully!`,
+                true
+            );
         });
     }
 
@@ -1378,6 +1679,312 @@ function initNewFeatureListeners() {
             alert(`✅ APMC Buyer Trade License [${bLicense}] for ${bName} updated and verified with MP APMC Board!`);
         });
     }
+
+    // 10. Buyer Dashboard Bidding, Rating, Supplier Search & Bulk Procurement Listeners
+    initBiddingOfferHandler();
+    initBuyerRatingHandler();
+    initSupplierSearchHandlers();
+    initBulkProcurementHandler();
+}
+
+// --- BUYER DASHBOARD ENGINE & RENDERING FUNCTIONS ---
+function renderBuyerViews() {
+    renderBuyerQualityVerification();
+    renderBuyerFpoList();
+    renderBuyerFeedbackList();
+    renderBuyerAnalytics();
+    renderBuyerLedger();
+}
+
+function renderBuyerQualityVerification() {
+    const container = document.getElementById('buyerQualityContainer');
+    if (!container) return;
+
+    let rep = state.farmerQualityReport;
+    if (!rep) {
+        try {
+            const saved = localStorage.getItem('km_quality_report');
+            if (saved) rep = JSON.parse(saved);
+        } catch (e) { }
+    }
+
+    if (!rep) {
+        rep = {
+            farmerName: 'Anjali Khandelwal',
+            farmerLocation: 'Indore, Madhya Pradesh',
+            crop: 'Soybean (JS 335, Lot #LOT-9921)',
+            labReportId: 'NABL-MP-LAB-9921',
+            grade: 'GRADE A+ (Export Quality)',
+            truthScore: '99%',
+            moisture: '10.2%',
+            proteinOil: '19.5%',
+            impurities: '0.8%',
+            uniformity: '96%',
+            recommendedRate: 5350,
+            timestamp: 'Verified Farmer Submission'
+        };
+    }
+
+    container.innerHTML = `
+        <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px;">
+            <div>
+                <span class="tag tag-emerald mb-1"><i class="fa-solid fa-circle-check"></i> Farmer Verified Lab & AI Sample</span>
+                <h3 style="font-size:18px; color:#065F46;">${rep.crop} — Submitted by ${rep.farmerName}</h3>
+                <small style="color:#4B5563;"><i class="fa-solid fa-location-dot"></i> Location: ${rep.farmerLocation} | Submitted: ${rep.timestamp}</small>
+            </div>
+            <span class="tag tag-emerald" style="font-size:13px; font-weight:700; padding:6px 14px;"><i class="fa-solid fa-shield-check"></i> ${rep.truthScore} Truth Score Verified</span>
+        </div>
+        <div style="background:#ECFDF5; padding:18px; border-radius:12px; border:1.5px solid #10B981; margin-top:14px;">
+            <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:8px;">
+                <h4 style="color:#065F46; font-size:18px;"><i class="fa-solid fa-award text-green"></i> ${rep.grade}</h4>
+                <span style="background:#10B981; color:white; padding:4px 12px; border-radius:12px; font-size:12px; font-weight:700;">NABL Accredited Test: ${rep.labReportId}</span>
+            </div>
+            <hr style="border:0; border-top:1px dashed #A7F3D0; margin:12px 0;">
+            <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap:12px; font-size:13px; color:#047857;">
+                <div style="background:#FFFFFF; padding:10px; border-radius:8px; border:1px solid #A7F3D0;">
+                    <strong>Moisture Content:</strong><br><span style="font-size:16px; font-weight:700; color:#065F46;">${rep.moisture}</span> (Lab Test)
+                </div>
+                <div style="background:#FFFFFF; padding:10px; border-radius:8px; border:1px solid #A7F3D0;">
+                    <strong>Oil / Protein %:</strong><br><span style="font-size:16px; font-weight:700; color:#065F46;">${rep.proteinOil}</span> (Lab Test)
+                </div>
+                <div style="background:#FFFFFF; padding:10px; border-radius:8px; border:1px solid #A7F3D0;">
+                    <strong>Foreign Impurities:</strong><br><span style="font-size:16px; font-weight:700; color:#065F46;">${rep.impurities}</span> (Minimal)
+                </div>
+                <div style="background:#FFFFFF; padding:10px; border-radius:8px; border:1px solid #A7F3D0;">
+                    <strong>Grain Uniformity:</strong><br><span style="font-size:16px; font-weight:700; color:#065F46;">${rep.uniformity}</span> (AI Vision)
+                </div>
+            </div>
+            <div style="margin-top:14px; background:#FFFFFF; padding:14px; border-radius:10px; border:1.5px solid #10B981; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px;">
+                <div>
+                    <span style="font-size:12px; color:#4B5563; font-weight:600;">Recommended Benchmark Offered Rate:</span>
+                    <div style="font-size:22px; font-weight:800; color:#059669;">₹${rep.recommendedRate.toLocaleString()} / Qtl</div>
+                </div>
+                <div style="display:flex; gap:8px;">
+                    <button class="btn btn-primary" onclick="openBiddingForVerifiedLot('${rep.farmerName}', ${rep.recommendedRate})">
+                        <i class="fa-solid fa-paper-plane"></i> Send Binding Offer on Lot
+                    </button>
+                    <button class="btn btn-outline" onclick="openReceiptModal('KM-QUAL-9921', '${rep.farmerName}', ${rep.recommendedRate * 30}, '+91 98765 43210', '+91 91234 56789')">
+                        <i class="fa-solid fa-phone"></i> Contact Farmer Directly
+                    </button>
+                </div>
+            </div>
+        </div>
+    `;
+}
+
+function renderBuyerFpoList() {
+    const list = document.getElementById('buyerFpoList');
+    if (!list) return;
+
+    const fpos = [
+        { id: 'FPO-MP-101', name: 'Malwa Farmer Producer Co. (Indore Block)', members: 140, crop: 'Soybean & Wheat', totalAvailable: '1,200 MT', phone: '+91 98999 88877', leader: 'Vikram Singh (FPO Manager)', location: 'Depalpur, Indore', trustScore: '99% Verified FPO' },
+        { id: 'FPO-MP-102', name: 'Ujjain Flour Mills Wheat Farmers Co-op', members: 210, crop: 'Sharbati Wheat', totalAvailable: '2,500 MT', phone: '+91 98444 77766', leader: 'Sunil Joshi (Co-op Director)', location: 'Sanwer Road, Ujjain', trustScore: '98% Verified FPO' },
+        { id: 'FPO-MP-103', name: 'Narmada Valley Organic Producers Group', members: 95, crop: 'Organic Chana & Soy', totalAvailable: '600 MT', phone: '+91 98777 44433', leader: 'Rajeshwar Patel', location: 'Dhar Mandi District', trustScore: '96% Verified FPO' }
+    ];
+
+    list.innerHTML = fpos.map(f => `
+        <div style="padding:16px; border:1px solid #E2E8E4; border-radius:12px; margin-bottom:12px; background:#F9FBF9; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px;">
+            <div>
+                <span class="tag tag-emerald mb-1"><i class="fa-solid fa-users text-green"></i> ${f.trustScore}</span>
+                <h4 style="color:#065F46; font-size:16px; margin:2px 0;">${f.name}</h4>
+                <p style="font-size:13px; color:#4B5563; margin-top:2px;">
+                    Crops: <strong>${f.crop}</strong> | Available Bulk Qty: <strong style="color:#059669;">${f.totalAvailable}</strong> | Members: ${f.members} Farmers<br>
+                    <small style="color:#6B7C75;"><i class="fa-solid fa-user-tie"></i> Leader: ${f.leader} | Location: ${f.location}</small>
+                </p>
+            </div>
+            <div style="display:flex; flex-direction:column; gap:8px;">
+                <button class="btn btn-primary btn-sm" onclick="connectFpoDirect('${f.name}', '${f.phone}', '${f.crop}')">
+                    <i class="fa-solid fa-file-contract"></i> Connect Direct & Initiate Contract
+                </button>
+                <button class="btn btn-outline btn-sm" onclick="openReceiptModal('KM-FPO-CONTRACT', '${f.name}', 250000, '${f.phone}', '+91 91234 56789')">
+                    <i class="fa-solid fa-phone"></i> Call FPO Manager (${f.phone})
+                </button>
+            </div>
+        </div>
+    `).join('');
+}
+
+function connectFpoDirect(fpoName, phone, crop) {
+    showCustomPopup(
+        state.currentLang === 'hi' ? 'FPO प्रत्यक्ष अनुबंध आरंभ' : 'Direct FPO Contract Initiated',
+        state.currentLang === 'hi'
+            ? `${crop} की मांग के लिए ${fpoName} के साथ direct procurement contract का प्रस्ताव भेजा गया है! FPO मैनेजर (${phone}) आपसे संपर्क करेंगे।`
+            : `Direct procurement contract request for ${crop} sent to ${fpoName}! FPO Manager (${phone}) will connect shortly.`,
+        true
+    );
+    openReceiptModal('KM-FPO-' + Math.floor(1000 + Math.random() * 9000), fpoName, 500000, phone, '+91 91234 56789');
+}
+
+function initBiddingOfferHandler() {
+    const btnSend = document.getElementById('btnSendBiddingOffer');
+    if (!btnSend) return;
+
+    btnSend.addEventListener('click', () => {
+        const target = document.getElementById('biddingTargetFarmer') ? document.getElementById('biddingTargetFarmer').value : 'Anjali Khandelwal';
+        const rate = parseFloat(document.getElementById('buyerOfferRate') ? document.getElementById('buyerOfferRate').value : 5300) || 5300;
+
+        const offerId = `BID-${Math.floor(1000 + Math.random() * 9000)}`;
+        showCustomPopup(
+            state.currentLang === 'hi' ? 'बिडिंग ऑफर सफलतापूर्वक भेजा गया!' : 'Binding Offer Dispatched!',
+            state.currentLang === 'hi'
+                ? `आपका ₹${rate.toLocaleString()}/क्विंटल का binding offer [${target}] को सफलतापूर्वक भेज दिया गया है (ऑफर ID: #${offerId})। किसान को SMS नोटिफिकेशन प्राप्त हो गया है।`
+                : `Your binding offer of ₹${rate.toLocaleString()}/Quintal sent to [${target}] successfully (Offer ID: #${offerId}). Instant SMS dispatched to farmer.`,
+            true
+        );
+
+        triggerQuickDeal(target, rate, 30);
+    });
+}
+
+function evaluateBuyerDealRisk() {
+    const priceInput = document.getElementById('buyerRiskPrice');
+    const p = parseFloat(priceInput ? priceInput.value : 0) || 0;
+    const res = document.getElementById('buyerRiskBox');
+    const benchmark = 5250;
+
+    if (!res) return;
+
+    if (p > 6000) {
+        res.style.background = '#FEF2F2';
+        res.style.borderColor = '#EF4444';
+        res.innerHTML = `
+            <div style="display:flex; align-items:center; gap:10px;">
+                <i class="fa-solid fa-triangle-exclamation text-amber" style="font-size:28px; color:#DC2626;"></i>
+                <div>
+                    <h4 style="color:#DC2626;">⚠️ HIGH ASKING PRICE RISK</h4>
+                    <p style="font-size:13px; color:#991B1B; margin-top:2px;">Asking rate ₹${p.toLocaleString()}/Qtl is <strong>+${Math.round((p - benchmark) / benchmark * 100)}% ABOVE</strong> benchmark (₹${benchmark.toLocaleString()}/Qtl). High procurement cost risk!</p>
+                </div>
+            </div>
+        `;
+        showCustomPopup(
+            state.currentLang === 'hi' ? 'उच्च मूल्य जोखिम (High Risk)' : 'High Asking Price Risk',
+            state.currentLang === 'hi'
+                ? `पूछी गई दर ₹${p.toLocaleString()}/क्विंटल बाज़ार औसत से ${Math.round((p - benchmark) / benchmark * 100)}% अधिक है। कृपया बातचीत करें या AI सजेस्टेड बेंचमार्क ₹5,250 चुनें।`
+                : `Asking price of ₹${p.toLocaleString()}/Qtl is ${Math.round((p - benchmark) / benchmark * 100)}% above market benchmark. Consider negotiating rate.`,
+            false
+        );
+    } else {
+        res.style.background = '#ECFDF5';
+        res.style.borderColor = '#10B981';
+        res.innerHTML = `
+            <div style="display:flex; align-items:center; gap:10px;">
+                <i class="fa-solid fa-circle-check text-green" style="font-size:28px;"></i>
+                <div>
+                    <h4 style="color:#065F46;">🟢 FAIR DEAL PRICE</h4>
+                    <p style="font-size:13px; color:#065F46; margin-top:2px;">Asking rate ₹${p.toLocaleString()}/Qtl is aligned within expected market range (₹5,200 - ₹5,400/Qtl). Low risk deal!</p>
+                </div>
+            </div>
+        `;
+        showCustomPopup(
+            state.currentLang === 'hi' ? 'उचित सौदा (Fair Deal)' : 'Fair Deal Price Verified',
+            state.currentLang === 'hi'
+                ? `दर ₹${p.toLocaleString()}/क्विंटल बाज़ार बेंचमार्क के अनुकूल है। सुरक्षित और लाभदायक सौदा!`
+                : `Asking rate ₹${p.toLocaleString()}/Qtl is fair and aligned with Agmarknet benchmark.`,
+            true
+        );
+    }
+}
+
+function initBuyerRatingHandler() {
+    const btnSubmit = document.getElementById('btnSubmitBuyerRating');
+    if (!btnSubmit) return;
+
+    btnSubmit.addEventListener('click', () => {
+        const type = document.getElementById('buyerFbType') ? document.getElementById('buyerFbType').value : 'Farmer';
+        const target = document.getElementById('buyerFbTarget') ? document.getElementById('buyerFbTarget').value : 'Anjali Khandelwal';
+        const rating = parseInt(document.getElementById('buyerFbRating') ? document.getElementById('buyerFbRating').value : 5) || 5;
+
+        state.feedbacks.unshift({
+            id: state.feedbacks.length + 1,
+            user: `${state.userName} (Buyer)`,
+            target: `${target} (${type})`,
+            rating: rating
+        });
+
+        renderBuyerFeedbackList();
+
+        showCustomPopup(
+            state.currentLang === 'hi' ? 'सप्लायर रेटिंग प्रकाशित!' : 'Supplier Rating Published!',
+            state.currentLang === 'hi'
+                ? `${target} के लिए आपकी ${rating}-स्टार रेटिंग सफलतापूर्वक सबमिट कर दी गई है।`
+                : `Your ${rating}-star rating for ${target} has been submitted successfully!`,
+            true
+        );
+    });
+}
+
+function renderBuyerFeedbackList() {
+    const list = document.getElementById('buyerFeedbackList');
+    if (!list) return;
+
+    list.innerHTML = state.feedbacks.map(f => `
+        <div style="padding:12px; border-bottom:1px solid #F0F4F2; background:#F9FBF9; border-radius:8px; margin-bottom:8px;">
+            <div style="display:flex; justify-content:space-between; align-items:center;">
+                <strong style="color:#065F46;">${f.user} &rarr; ${f.target}</strong>
+                <span class="text-gold">${'⭐'.repeat(f.rating)}</span>
+            </div>
+        </div>
+    `).join('');
+}
+
+function initSupplierSearchHandlers() {
+    const btnSearch = document.getElementById('btnSearchFarmers');
+    const offer1 = document.getElementById('btnSendPurchaseOffer1');
+    const offer2 = document.getElementById('btnSendPurchaseOffer2');
+
+    if (btnSearch) {
+        btnSearch.addEventListener('click', () => {
+            const crop = document.getElementById('bFindCrop') ? document.getElementById('bFindCrop').value : 'Soybean';
+            const loc = document.getElementById('bFindLocation') ? document.getElementById('bFindLocation').value : 'Indore';
+            const qty = document.getElementById('bFindQty') ? document.getElementById('bFindQty').value : 500;
+
+            showCustomPopup(
+                state.currentLang === 'hi' ? 'सप्लायर खोज परिणाम' : 'Suppliers Found',
+                state.currentLang === 'hi'
+                    ? `${loc} क्षेत्र में ${crop} (${qty} Qtl) के लिए 4 सत्यापित किसान व FPO पाए गए!`
+                    : `Found 4 verified farmers & FPOs for ${crop} (${qty} Qtl) near ${loc}!`,
+                true
+            );
+        });
+    }
+
+    if (offer1) {
+        offer1.addEventListener('click', () => {
+            openBiddingForVerifiedLot('Malwa Farmer Producer Co.', 5280);
+        });
+    }
+
+    if (offer2) {
+        offer2.addEventListener('click', () => {
+            openBiddingForVerifiedLot('Anjali Khandelwal (Indore, MP)', 5350);
+        });
+    }
+}
+
+function initBulkProcurementHandler() {
+    const btnBulk = document.getElementById('btnPostBulkRequirement');
+    if (!btnBulk) return;
+
+    btnBulk.addEventListener('click', () => {
+        const crop = document.getElementById('bulkCrop') ? document.getElementById('bulkCrop').value : 'Soybean';
+        const qty = document.getElementById('bulkQty') ? document.getElementById('bulkQty').value : 1000;
+
+        showCustomPopup(
+            state.currentLang === 'hi' ? 'थोक आवश्यकता पोस्ट की गई!' : 'Bulk Requirement Posted!',
+            state.currentLang === 'hi'
+                ? `${crop} (${qty} quintals) की थोक आवश्यकता दर्ज कर ली गई है! निकटतम किसान समूहों (FPO Clusters) को अलर्ट भेज दिया गया है।`
+                : `Bulk requirement for ${crop} (${qty} quintals) posted! Multi-farmer FPO clusters notified.`,
+            true
+        );
+    });
+}
+
+function openBiddingForVerifiedLot(targetName, rate) {
+    switchTab('buyer-bidding');
+    const targetInput = document.getElementById('biddingTargetFarmer');
+    const rateInput = document.getElementById('buyerOfferRate');
+    if (targetInput) targetInput.value = targetName;
+    if (rateInput) rateInput.value = rate;
 }
 
 // --- AI QUALITY SCAN & FILE UPLOAD VALIDATION ENGINE ---
