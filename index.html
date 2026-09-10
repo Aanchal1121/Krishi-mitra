@@ -229,59 +229,59 @@
             <nav class="nav-menu hidden" id="buyerNavMenu">
                 <a href="#buyer-home" class="nav-item active" data-tab="buyer-home">
                     <i class="fa-solid fa-chart-pie"></i>
-                    <span>Buyer Home</span>
+                    <span data-i18n="bnav_home">Buyer Home</span>
                 </a>
                 <a href="#buyer-analytics" class="nav-item" data-tab="buyer-analytics">
                     <i class="fa-solid fa-chart-line"></i>
-                    <span>Market Prices & Analytics</span>
+                    <span data-i18n="bnav_analytics">Market Prices & Analytics</span>
                 </a>
                 <a href="#buyer-find-farmers" class="nav-item" data-tab="buyer-find-farmers">
                     <i class="fa-solid fa-wheat-field"></i>
-                    <span>Find Farmers / Suppliers</span>
+                    <span data-i18n="bnav_find_farmers">Find Farmers / Suppliers</span>
                 </a>
                 <a href="#buyer-marketplace" class="nav-item highlight-item" data-tab="buyer-marketplace">
                     <i class="fa-solid fa-shop"></i>
-                    <span>Crop Marketplace</span>
+                    <span data-i18n="bnav_marketplace">Crop Marketplace</span>
                 </a>
                 <a href="#buyer-bidding" class="nav-item" data-tab="buyer-bidding">
                     <i class="fa-solid fa-handshake"></i>
-                    <span>Bidding & Offers</span>
+                    <span data-i18n="bnav_bidding">Bidding & Offers</span>
                 </a>
                 <a href="#buyer-demand-intel" class="nav-item" data-tab="buyer-demand-intel">
                     <i class="fa-solid fa-brain"></i>
-                    <span>Demand Intelligence</span>
+                    <span data-i18n="bnav_demand_intel">Demand Intelligence</span>
                 </a>
                 <a href="#buyer-bulk-procurement" class="nav-item" data-tab="buyer-bulk-procurement">
                     <i class="fa-solid fa-truck-container"></i>
-                    <span>Bulk Procurement</span>
+                    <span data-i18n="bnav_bulk">Bulk Procurement</span>
                 </a>
                 <a href="#buyer-fpo" class="nav-item" data-tab="buyer-fpo">
                     <i class="fa-solid fa-users-gear"></i>
-                    <span>FPO & Farmer Groups</span>
+                    <span data-i18n="bnav_fpo">FPO & Farmer Groups</span>
                 </a>
                 <a href="#buyer-quality" class="nav-item" data-tab="buyer-quality">
                     <i class="fa-solid fa-microscope"></i>
-                    <span>AI Quality Verification</span>
+                    <span data-i18n="bnav_quality">AI Quality Verification</span>
                 </a>
                 <a href="#buyer-antifraud" class="nav-item" data-tab="buyer-antifraud">
                     <i class="fa-solid fa-shield-halved"></i>
-                    <span>AI Deal Risk Detector</span>
+                    <span data-i18n="bnav_antifraud">AI Deal Risk Detector</span>
                 </a>
                 <a href="#buyer-logistics" class="nav-item" data-tab="buyer-logistics">
                     <i class="fa-solid fa-truck-fast"></i>
-                    <span>Logistics & Delivery</span>
+                    <span data-i18n="bnav_logistics">Logistics & Delivery</span>
                 </a>
                 <a href="#buyer-ledger" class="nav-item" data-tab="buyer-ledger">
                     <i class="fa-solid fa-file-invoice-dollar"></i>
-                    <span>Purchase Ledger</span>
+                    <span data-i18n="bnav_ledger">Purchase Ledger</span>
                 </a>
                 <a href="#buyer-feedback" class="nav-item" data-tab="buyer-feedback">
                     <i class="fa-solid fa-star"></i>
-                    <span>Farmer & FPO Ratings</span>
+                    <span data-i18n="bnav_feedback">Farmer & FPO Ratings</span>
                 </a>
                 <a href="#buyer-kyc" class="nav-item" data-tab="buyer-kyc">
                     <i class="fa-solid fa-building-circle-check"></i>
-                    <span>Buyer Verification</span>
+                    <span data-i18n="bnav_kyc">Buyer Verification</span>
                 </a>
             </nav>
 
@@ -366,8 +366,8 @@
                             <button class="role-switch-btn active" id="openAuthModalBtn">
                                 <i class="fa-solid fa-arrow-right-to-bracket"></i>
                                 <div>
-                                    <strong>Switch Role / Account</strong>
-                                    <small>Login as Farmer or Verified Buyer</small>
+                                    <strong data-i18n="switch_role_title">Switch Role / Account</strong>
+                                    <small data-i18n="switch_role_sub">Login as Farmer or Verified Buyer</small>
                                 </div>
                             </button>
                         </div>
@@ -1076,7 +1076,7 @@
                             <input type="text" id="fbTarget" value="ITC Ltd (Choupal Saagar)" class="form-input">
                         </div>
                         <div class="form-group mt-2">
-                            <label>Rating (1 to 5 Stars)</label>
+                            <label data-i18n="bfb_label_rating">Rating (1 to 5 Stars)</label>
                             <select id="fbRating" class="form-select">
                                 <option value="5">⭐⭐⭐⭐⭐ (5 - Excellent)</option>
                                 <option value="4">⭐⭐⭐⭐ (4 - Very Good)</option>
@@ -1096,32 +1096,32 @@
                 <section class="tab-view" id="tab-buyer-home">
                     <div class="hero-banner" style="background: linear-gradient(135deg, #0F172A 0%, #1E293B 100%);">
                         <div class="hero-content">
-                            <div class="welcome-tag"><span style="background:rgba(255,255,255,0.2); color:#FFF;">Buyer Workspace</span></div>
+                            <div class="welcome-tag"><span style="background:rgba(255,255,255,0.2); color:#FFF;" data-i18n="bhome_tag">Buyer Workspace</span></div>
                             <h1 class="farmer-greeting" style="color:#FFF;"><span id="buyerHeroName">Rajesh Agrotech Ltd</span> <i class="fa-solid fa-building-wheat text-green"></i></h1>
-                            <p class="hero-slogan" style="color:#CBD5E1;">Direct Crop Procurement Engine • Verified Farmers & FPO Suppliers</p>
+                            <p class="hero-slogan" style="color:#CBD5E1;" data-i18n="bhome_sub">Direct Crop Procurement Engine • Verified Farmers & FPO Suppliers</p>
                         </div>
                     </div>
 
                     <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap:16px; margin:20px 0;">
                         <div class="card" style="background:#F0FDF4; border:1px solid #86EFAC;">
-                            <span style="font-size:12px; color:#166534; font-weight:700;">Current Procurement</span>
+                            <span style="font-size:12px; color:#166534; font-weight:700;" data-i18n="bhome_procurement_title">Current Procurement</span>
                             <div style="font-size:24px; font-weight:800; color:#15803D;">450 MT</div>
                             <small style="color:#166534;">Soybean & Wheat</small>
                         </div>
                         <div class="card" style="background:#FEF3C7; border:1px solid #FDE68A;">
-                            <span style="font-size:12px; color:#92400E; font-weight:700;">Active Bids</span>
+                            <span style="font-size:12px; color:#92400E; font-weight:700;" data-i18n="bhome_bids_title">Active Bids</span>
                             <div style="font-size:24px; font-weight:800; color:#B45309;">6 Bids Live</div>
                             <small style="color:#92400E;">Pending Farmer Acceptance</small>
                         </div>
                         <div class="card" style="background:#EFF6FF; border:1px solid #93C5FD;">
-                            <span style="font-size:12px; color:#1E40AF; font-weight:700;">Spending Summary</span>
+                            <span style="font-size:12px; color:#1E40AF; font-weight:700;" data-i18n="bhome_spending_title">Spending Summary</span>
                             <div style="font-size:24px; font-weight:800; color:#1D4ED8;">₹23.5 Lakhs</div>
                             <small style="color:#1E40AF;">This Month</small>
                         </div>
                     </div>
 
                     <div class="card mt-4">
-                        <h3>Available Crops for Procurement</h3>
+                        <h3 data-i18n="bhome_avail_crops">Available Crops for Procurement</h3>
                         <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap:14px; margin-top:14px;">
                             <div style="padding:14px; border:1px solid #E2E8E4; border-radius:10px; background:#F9FBF9;">
                                 <h4>Soybean (Grade A)</h4>
@@ -1142,12 +1142,12 @@
                 <section class="tab-view" id="tab-buyer-analytics">
                     <div class="page-header">
                         <div>
-                            <h2>📊 <span>Market Prices & Procurement Analytics</span></h2>
-                            <p>Live mandi prices, historical trends, and price forecast for industrial buyers.</p>
+                            <h2>📊 <span data-i18n="bana_title">Market Prices & Procurement Analytics</span></h2>
+                            <p data-i18n="bana_sub">Live mandi prices, historical trends, and price forecast for industrial buyers.</p>
                         </div>
                     </div>
                     <div class="card">
-                        <h3>Mandi Market Trends & Procurement Ceiling Rates</h3>
+                        <h3 data-i18n="bana_card_title">Mandi Market Trends & Procurement Ceiling Rates</h3>
                         <div id="buyerAnalyticsList" class="mt-3"></div>
                     </div>
                 </section>
@@ -1157,8 +1157,8 @@
                 <section class="tab-view" id="tab-buyer-find-farmers">
                     <div class="page-header">
                         <div>
-                            <h2>🔎 <span>Find Farmers & FPO Suppliers</span></h2>
-                            <p>Search verified farmer suppliers across all crops, districts, and required tonnage.</p>
+                            <h2>🔎 <span data-i18n="bfind_title">Find Farmers & FPO Suppliers</span></h2>
+                            <p data-i18n="bfind_sub">Search verified farmer suppliers across all crops, districts, and required tonnage.</p>
                         </div>
                     </div>
                     <div class="card">
@@ -1176,7 +1176,7 @@
                             </select>
                             <input type="text" id="bFindLocation" value="Indore" placeholder="District / Mandi" class="form-input flex-1">
                             <input type="number" id="bFindQty" value="500" placeholder="Qty (Quintals)" class="form-input flex-1">
-                            <button class="btn btn-primary" id="btnSearchFarmers"><i class="fa-solid fa-magnifying-glass"></i> Search Suppliers</button>
+                            <button class="btn btn-primary" id="btnSearchFarmers"><i class="fa-solid fa-magnifying-glass"></i> <span data-i18n="bfind_btn">Search Suppliers</span></button>
                         </div>
                         <div id="buyerFarmerSearchResults" class="mt-4">
                             <div style="padding:16px; border:1px solid #E2E8E4; border-radius:12px; margin-bottom:10px; display:flex; justify-content:space-between; align-items:center; background:#F9FBF9;">
@@ -1204,8 +1204,8 @@
                 <section class="tab-view" id="tab-buyer-marketplace">
                     <div class="page-header">
                         <div>
-                            <h2>🛒 <span>Buyer Crop Marketplace</span></h2>
-                            <p>Browse available crop lots directly from verified farmers and FPOs.</p>
+                            <h2>🛒 <span data-i18n="bmp_title">Buyer Crop Marketplace</span></h2>
+                            <p data-i18n="bmp_sub">Browse available crop lots directly from verified farmers and FPOs.</p>
                         </div>
                     </div>
                     <div class="buyers-grid" id="buyerMarketplaceGrid"></div>
@@ -1216,21 +1216,21 @@
                 <section class="tab-view" id="tab-buyer-bidding">
                     <div class="page-header">
                         <div>
-                            <h2>💰 <span>Bidding & Offer Management</span></h2>
-                            <p>Send binding offers to farmers, negotiate prices, or submit bulk bids.</p>
+                            <h2>💰 <span data-i18n="bbid_title">Bidding & Offer Management</span></h2>
+                            <p data-i18n="bbid_sub">Send binding offers to farmers, negotiate prices, or submit bulk bids.</p>
                         </div>
                     </div>
                     <div class="card">
-                        <h3>Send Offer to Farmer Lot</h3>
+                        <h3 data-i18n="bbid_card_title">Send Offer to Farmer Lot</h3>
                         <div class="form-group mt-3">
-                            <label>Target Farmer / FPO</label>
+                            <label data-i18n="bbid_label_target">Target Farmer / FPO</label>
                             <input type="text" id="biddingTargetFarmer" value="Anjali Khandelwal (30 Qtl Soybean Grade A+)" class="form-input" readonly>
                         </div>
                         <div class="form-group mt-2">
-                            <label>Your Offered Rate (₹/Quintal)</label>
+                            <label data-i18n="bbid_label_rate">Your Offered Rate (₹/Quintal)</label>
                             <input type="number" id="buyerOfferRate" value="5300" class="form-input">
                         </div>
-                        <button class="btn btn-primary btn-full mt-3" id="btnSendBiddingOffer">Send Binding Offer</button>
+                        <button class="btn btn-primary btn-full mt-3" id="btnSendBiddingOffer" data-i18n="bbid_btn">Send Binding Offer</button>
                     </div>
                 </section>
 
@@ -1239,8 +1239,8 @@
                 <section class="tab-view" id="tab-buyer-demand-intel">
                     <div class="page-header">
                         <div>
-                            <h2>🔥 <span>Demand Intelligence & Regional Procurement Insights</span></h2>
-                            <p>AI-powered analysis identifying high industrial deficit zones, surplus Mandi supply clusters, and 30-day crop price movement forecasts.</p>
+                            <h2>🔥 <span data-i18n="bdem_title">Demand Intelligence & Regional Procurement Insights</span></h2>
+                            <p data-i18n="bdem_sub">AI-powered analysis identifying high industrial deficit zones, surplus Mandi supply clusters, and 30-day crop price movement forecasts.</p>
                         </div>
                     </div>
 
@@ -1351,14 +1351,14 @@
                 <section class="tab-view" id="tab-buyer-bulk-procurement">
                     <div class="page-header">
                         <div>
-                            <h2>📦 <span>Bulk Quantity Procurement Engine</span></h2>
-                            <p>Create bulk requirements (e.g., Need 1000 Qtl) and auto-aggregate from multi-farmer clusters.</p>
+                            <h2>📦 <span data-i18n="bbulk_title">Bulk Quantity Procurement Engine</span></h2>
+                            <p data-i18n="bbulk_sub">Create bulk requirements (e.g., Need 1000 Qtl) and auto-aggregate from multi-farmer clusters.</p>
                         </div>
                     </div>
                     <div class="card">
-                        <h3>Create Bulk Requirement Request</h3>
+                        <h3 data-i18n="bbulk_card_title">Create Bulk Requirement Request</h3>
                         <div class="form-group mt-3">
-                            <label>Crop Required</label>
+                            <label data-i18n="bbulk_crop_label">Crop Required</label>
                             <select id="bulkCrop" class="form-select">
                                 <option value="Soybean">Soybean / सोयाबीन</option>
                                 <option value="Wheat">Wheat / गेहूं</option>
@@ -1371,10 +1371,10 @@
                             </select>
                         </div>
                         <div class="form-group mt-2">
-                            <label>Bulk Quantity Needed (Quintals)</label>
+                            <label data-i18n="bbulk_qty_label">Bulk Quantity Needed (Quintals)</label>
                             <input type="number" id="bulkQty" value="1000" class="form-input">
                         </div>
-                        <button class="btn btn-primary btn-full mt-3" id="btnPostBulkRequirement">Post Bulk Requirement</button>
+                        <button class="btn btn-primary btn-full mt-3" id="btnPostBulkRequirement" data-i18n="bbulk_btn">Post Bulk Requirement</button>
                     </div>
                 </section>
 
@@ -1383,12 +1383,12 @@
                 <section class="tab-view" id="tab-buyer-fpo">
                     <div class="page-header">
                         <div>
-                            <h2>👥 <span>FPO & Farmer Group Suppliers</span></h2>
-                            <p>Direct bulk procurement contracts with FPO cooperatives.</p>
+                            <h2>👥 <span data-i18n="bfpo_title">FPO & Farmer Group Suppliers</span></h2>
+                            <p data-i18n="bfpo_sub">Direct bulk procurement contracts with FPO cooperatives.</p>
                         </div>
                     </div>
                     <div class="card">
-                        <h3>Verified FPO Partners</h3>
+                        <h3 data-i18n="bfpo_card_title">Verified FPO Partners</h3>
                         <div id="buyerFpoList" class="mt-3"></div>
                     </div>
                 </section>
@@ -1398,8 +1398,8 @@
                 <section class="tab-view" id="tab-buyer-quality">
                     <div class="page-header">
                         <div>
-                            <h2>📷 <span>AI Crop Quality Verification</span></h2>
-                            <p>Inspect farmer crop sample photos, official lab test reports, and AI quality scores before purchasing.</p>
+                            <h2>📷 <span data-i18n="bqual_title">AI Crop Quality Verification</span></h2>
+                            <p data-i18n="bqual_sub">Inspect farmer crop sample photos, official lab test reports, and AI quality scores before purchasing.</p>
                         </div>
                     </div>
                     <div class="card" id="buyerQualityCard">
@@ -1428,18 +1428,18 @@
                 <section class="tab-view" id="tab-buyer-antifraud">
                     <div class="page-header">
                         <div>
-                            <h2>🛡️ <span>AI Price & Deal Risk Detector</span></h2>
-                            <p>Highlights price risk indicators for buyers.</p>
+                            <h2>🛡️ <span data-i18n="brisk_title">AI Price & Deal Risk Detector</span></h2>
+                            <p data-i18n="brisk_sub">Highlights price risk indicators for buyers.</p>
                         </div>
                     </div>
 
                     <div class="card">
-                        <h3>Test Seller Asking Rate Risk</h3>
+                        <h3 data-i18n="brisk_card_title">Test Seller Asking Rate Risk</h3>
                         <div class="form-group mt-3">
-                            <label>Seller Asking Rate (₹/Qtl)</label>
+                            <label data-i18n="brisk_rate_label">Seller Asking Rate (₹/Qtl)</label>
                             <input type="number" id="buyerRiskPrice" value="7800" class="form-input">
                         </div>
-                        <button class="btn btn-primary btn-full mt-3" id="btnEvaluateBuyerRisk" onclick="evaluateBuyerDealRisk()">Evaluate Deal Risk</button>
+                        <button class="btn btn-primary btn-full mt-3" id="btnEvaluateBuyerRisk" onclick="evaluateBuyerDealRisk()" data-i18n="brisk_btn">Evaluate Deal Risk</button>
                         <div id="buyerRiskBox" class="mt-3" style="padding:16px; border-radius:10px;"></div>
                     </div>
                 </section>
@@ -1449,8 +1449,8 @@
                 <section class="tab-view" id="tab-buyer-logistics">
                     <div class="page-header">
                         <div>
-                            <h2>🚚 <span>Logistics & Delivery Tracking</span></h2>
-                            <p>Track pickup locations, freight dispatches, and shipment status.</p>
+                            <h2>🚚 <span data-i18n="blog_title">Logistics & Delivery Tracking</span></h2>
+                            <p data-i18n="blog_sub">Track pickup locations, freight dispatches, and shipment status.</p>
                         </div>
                     </div>
                     <div class="card">
@@ -1467,8 +1467,8 @@
                 <section class="tab-view" id="tab-buyer-ledger">
                     <div class="page-header">
                         <div>
-                            <h2>📒 <span>Buyer Purchase Ledger & Invoices</span></h2>
-                            <p>Complete history of completed purchases and pending payments.</p>
+                            <h2>📒 <span data-i18n="bled_title">Buyer Purchase Ledger & Invoices</span></h2>
+                            <p data-i18n="bled_sub">Complete history of completed purchases and pending payments.</p>
                         </div>
                     </div>
                     <div class="card">
@@ -1477,9 +1477,9 @@
                                 <tr>
                                     <th>Deal ID</th>
                                     <th>Date</th>
-                                    <th>Supplier Name</th>
+                                    <th data-i18n="bled_th_supplier">Supplier Name</th>
                                     <th>Crop & Qty</th>
-                                    <th>Total Payment</th>
+                                    <th data-i18n="bled_th_payment">Total Payment</th>
                                     <th>Status</th>
                                 </tr>
                             </thead>
@@ -1493,14 +1493,14 @@
                 <section class="tab-view" id="tab-buyer-feedback">
                     <div class="page-header">
                         <div>
-                            <h2>⭐ <span>Farmer & FPO Ratings</span></h2>
-                            <p>Rate suppliers on quality compliance, punctuality, and trust score.</p>
+                            <h2>⭐ <span data-i18n="bfb_title">Farmer & FPO Ratings</span></h2>
+                            <p data-i18n="bfb_sub">Rate suppliers on quality compliance, punctuality, and trust score.</p>
                         </div>
                     </div>
                     <div class="card">
-                        <h3>Submit Supplier Rating</h3>
+                        <h3 data-i18n="bfb_card_title">Submit Supplier Rating</h3>
                         <div class="form-group mt-3">
-                            <label>Supplier Type</label>
+                            <label data-i18n="bfb_label_type">Supplier Type</label>
                             <select id="buyerFbType" class="form-select">
                                 <option value="Farmer">Individual Farmer / किसान</option>
                                 <option value="FPO">Farmer Producer Co. (FPO)</option>
@@ -1508,7 +1508,7 @@
                             </select>
                         </div>
                         <div class="form-group mt-2">
-                            <label>Target Supplier Name</label>
+                            <label data-i18n="bfb_label_name">Target Supplier Name</label>
                             <input type="text" id="buyerFbTarget" value="Anjali Khandelwal (Farmer)" placeholder="Enter farmer or FPO name" class="form-input">
                         </div>
                         <div class="form-group mt-2">
@@ -1521,7 +1521,7 @@
                                 <option value="1">⭐ (1 Star - Poor Quality)</option>
                             </select>
                         </div>
-                        <button class="btn btn-primary btn-full mt-3" id="btnSubmitBuyerRating">Publish Supplier Rating</button>
+                        <button class="btn btn-primary btn-full mt-3" id="btnSubmitBuyerRating" data-i18n="bfb_btn">Publish Supplier Rating</button>
                     </div>
                 </section>
 
@@ -1530,14 +1530,14 @@
                 <section class="tab-view" id="tab-buyer-kyc">
                     <div class="page-header">
                         <div>
-                            <h2>🪪 <span>Buyer Business Verification & Licensing</span></h2>
-                            <p>Verify APMC Trade License, GSTIN, PAN, and Business Registration Proof.</p>
+                            <h2>🪪 <span data-i18n="bkyc_title">Buyer Business Verification & Licensing</span></h2>
+                            <p data-i18n="bkyc_sub">Verify APMC Trade License, GSTIN, PAN, and Business Registration Proof.</p>
                         </div>
                     </div>
                     <div class="grid-2-cols">
                         <div class="card">
                             <div style="display:flex; justify-content:space-between; align-items:center;">
-                                <h3>Verified Buyer Business Profile</h3>
+                                <h3 data-i18n="bkyc_card_title">Verified Buyer Business Profile</h3>
                                 <span class="tag tag-emerald" id="buyerKycTag">🟢 Verified Buyer</span>
                             </div>
                             <div style="background:#F9FBF9; padding:18px; border-radius:12px; border:1px solid #E2E8E4; margin-top:14px;">
