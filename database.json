@@ -1,6 +1,48 @@
 {
   "users": [
     {
+      "id": "USR-FARMER-7284",
+      "role": "farmer",
+      "name": "Anjali Khandelwal",
+      "mobile": "9876543210",
+      "location": "Indore, MP",
+      "aadhar": "9918-2281-8821",
+      "apmcLicense": "",
+      "gstin": "",
+      "landSize": "2.5 Hectares",
+      "crop": "Soybean (JS 335)",
+      "language": "en",
+      "kycVerified": true
+    },
+    {
+      "id": "USR-BUYER-7813",
+      "role": "buyer",
+      "name": "Rajesh Agrotech Ltd",
+      "mobile": "9123456789",
+      "location": "Indore APMC Yard",
+      "aadhar": "XXXX-XXXX-0000",
+      "apmcLicense": "MP-IND-APMC-88219",
+      "gstin": "23AAACK8819Q1ZP",
+      "landSize": "2.5 Hectares",
+      "crop": "Soybean",
+      "language": "en",
+      "kycVerified": true
+    },
+    {
+      "id": "USR-FARMER-7896",
+      "role": "farmer",
+      "name": "Anjali Khandelwal",
+      "mobile": "9876543210",
+      "location": "Indore, MP",
+      "aadhar": "9918-2281-8821",
+      "apmcLicense": "",
+      "gstin": "",
+      "landSize": "2.5 Hectares",
+      "crop": "Soybean (JS 335)",
+      "language": "en",
+      "kycVerified": true
+    },
+    {
       "id": "USR-BUYER-6975",
       "role": "buyer",
       "name": "Rajesh Agrotech Ltd",
